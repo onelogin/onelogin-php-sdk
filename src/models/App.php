@@ -34,7 +34,7 @@ class App
         $this->name = $data->name;
         $this->icon = $data->icon;
         $this->provisioned = $data->provisioned;
-        $this->extensionRequired = $data->extension_required;
+        $this->extensionRequired = $data->extension;
         $this->loginId = isset($data->login_id)? (int) $data->login_id : null;
         $this->personal = $data->personal;
     }
