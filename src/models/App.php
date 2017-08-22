@@ -13,7 +13,7 @@ class App
     /** @var string */
     public $icon;
 
-    /** @var string */
+    /** @var int */
     public $provisioned;
 
     /** @var bool */
@@ -33,7 +33,7 @@ class App
         $this->id = isset($data->id)? (int) $data->id : null;
         $this->name = $data->name;
         $this->icon = $data->icon;
-        $this->provisioned = $data->provisioned;
+        $this->provisioned = isset($data->provisioned)? (int) $data->provisioned : null;
         $this->extensionRequired = $data->extension;
         $this->loginId = isset($data->login_id)? (int) $data->login_id : null;
         $this->personal = $data->personal;
