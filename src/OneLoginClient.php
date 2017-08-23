@@ -46,6 +46,9 @@ class OneLoginClient
     /** @var Settings $settings Settings object */
     protected $settings;
 
+    /** @var String $userAgent the User-Agent to be used on requests */
+    public $userAgent;
+
     /**
      * Create a new instance of Client.
      */
@@ -175,6 +178,16 @@ class OneLoginClient
         return $apps;
     }
 
+    protected function getAuthorization($bearer=true)
+    {
+        if ($bearer) {
+            $authorization = "bearer:" . $this->accessToken;
+        } else {
+            $authorization = "client_id:" . $this->settings->getClientId() . ", client_secret:" . $this->settings->getClientSecret();
+        }
+        return $authorization;
+    }
+
     protected function getBeforeCursor($response)
     {
         $beforeCursor = null;
@@ -229,7 +242,7 @@ class OneLoginClient
         $this->cleanError();
         try {
             $url = $this->settings->getURL(Constants::TOKEN_REQUEST_URL);
-            $authorization = "client_id:" . $this->settings->getClientId() . ", client_secret:" . $this->settings->getClientSecret();
+            $authorization = $this->getAuthorization(false);
 
             $data = array(
                 "grant_type" => "client_credentials"
@@ -322,7 +335,7 @@ class OneLoginClient
             }
 
             $url = $this->settings->getURL(Constants::TOKEN_REVOKE_URL);
-            $authorization = "client_id:" . $this->settings->getClientId() . ", client_secret:" . $this->settings->getClientSecret();
+            $authorization = $this->getAuthorization(false);
 
             $data = array(
                 "access_token" => $this->accessToken
@@ -373,7 +386,7 @@ class OneLoginClient
 
         try {
             $url = $this->settings->getURL(Constants::GET_RATE_URL);
-            $authorization = "bearer:" . $this->accessToken;
+            $authorization = $this->getAuthorization();
 
             $headers = array(
                 'Authorization' => $authorization,
@@ -422,7 +435,7 @@ class OneLoginClient
         $limit = 50;
 
         try {
-            $authorization = "bearer:" . $this->accessToken;
+            $authorization = $this->getAuthorization();
             $headers = array(
                 'Authorization' => $authorization,
                 'Content-Type' => 'application/json'
@@ -505,7 +518,7 @@ class OneLoginClient
         $this->prepareToken();
 
         try {
-            $authorization = "bearer:" . $this->accessToken;
+            $authorization = $this->getAuthorization();
 
             $url = $this->settings->getURL(Constants::GET_USER_URL, $id);
 
@@ -554,7 +567,7 @@ class OneLoginClient
         $this->prepareToken();
 
         try {
-            $authorization = "bearer:" . $this->accessToken;
+            $authorization = $this->getAuthorization();
 
             $url = $this->settings->getURL(Constants::GET_APPS_FOR_USER_URL, $id);
 
@@ -607,7 +620,7 @@ class OneLoginClient
         $this->prepareToken();
 
         try {
-            $authorization = "bearer:" . $this->accessToken;
+            $authorization = $this->getAuthorization();
 
             $url = $this->settings->getURL(Constants::GET_ROLES_FOR_USER_URL, $id);
 
@@ -655,7 +668,7 @@ class OneLoginClient
         $this->prepareToken();
 
         try {
-            $authorization = "bearer:" . $this->accessToken;
+            $authorization = $this->getAuthorization();
 
             $url = $this->settings->getURL(Constants::GET_CUSTOM_ATTRIBUTES_URL);
 
@@ -707,7 +720,7 @@ class OneLoginClient
         $this->prepareToken();
 
         try {
-            $authorization = "bearer:" . $this->accessToken;
+            $authorization = $this->getAuthorization();
 
             $url = $this->settings->getURL(Constants::CREATE_USER_URL);
 
@@ -760,7 +773,7 @@ class OneLoginClient
         $this->prepareToken();
 
         try {
-            $authorization = "bearer:" . $this->accessToken;
+            $authorization = $this->getAuthorization();
 
             $url = $this->settings->getURL(Constants::UPDATE_USER_URL, $id);
 
@@ -808,7 +821,7 @@ class OneLoginClient
         $this->prepareToken();
 
         try {
-            $authorization = "bearer:" . $this->accessToken;
+            $authorization = $this->getAuthorization();
 
             $url = $this->settings->getURL(Constants::ADD_ROLE_TO_USER_URL, $id);
 
@@ -857,7 +870,7 @@ class OneLoginClient
         $this->prepareToken();
 
         try {
-            $authorization = "bearer:" . $this->accessToken;
+            $authorization = $this->getAuthorization();
 
             $url = $this->settings->getURL(Constants::DELETE_ROLE_TO_USER_URL, $id);
 
@@ -908,7 +921,7 @@ class OneLoginClient
         $this->prepareToken();
 
         try {
-            $authorization = "bearer:" . $this->accessToken;
+            $authorization = $this->getAuthorization();
 
             $url = $this->settings->getURL(Constants::SET_PW_CLEARTEXT, $id);
 
@@ -964,7 +977,7 @@ class OneLoginClient
         $this->prepareToken();
 
         try {
-            $authorization = "bearer:" . $this->accessToken;
+            $authorization = $this->getAuthorization();
 
             $url = $this->settings->getURL(Constants::SET_PW_SALT, $id);
 
@@ -1019,7 +1032,7 @@ class OneLoginClient
         $this->prepareToken();
 
         try {
-            $authorization = "bearer:" . $this->accessToken;
+            $authorization = $this->getAuthorization();
 
             $url = $this->settings->getURL(Constants::SET_CUSTOM_ATTRIBUTE_TO_USER_URL, $id);
 
@@ -1066,7 +1079,7 @@ class OneLoginClient
         $this->prepareToken();
 
         try {
-            $authorization = "bearer:" . $this->accessToken;
+            $authorization = $this->getAuthorization();
 
             $url = $this->settings->getURL(Constants::LOG_USER_OUT_URL, $id);
 
@@ -1112,7 +1125,7 @@ class OneLoginClient
         $this->prepareToken();
 
         try {
-            $authorization = "bearer:" . $this->accessToken;
+            $authorization = $this->getAuthorization();
 
             $url = $this->settings->getURL(Constants::LOCK_USER_URL, $id);
 
@@ -1159,7 +1172,7 @@ class OneLoginClient
         $this->prepareToken();
 
         try {
-            $authorization = "bearer:" . $this->accessToken;
+            $authorization = $this->getAuthorization();
 
             $url = $this->settings->getURL(Constants::DELETE_USER_URL, $id);
 
@@ -1214,7 +1227,7 @@ class OneLoginClient
         $this->prepareToken();
 
         try {
-            $authorization = "bearer:" . $this->accessToken;
+            $authorization = $this->getAuthorization();
 
             $url = $this->settings->getURL(Constants::SESSION_LOGIN_TOKEN_URL);
 
@@ -1266,7 +1279,7 @@ class OneLoginClient
         $this->prepareToken();
 
         try {
-            $authorization = "bearer:" . $this->accessToken;
+            $authorization = $this->getAuthorization();
 
             $url = $this->settings->getURL(Constants::GET_TOKEN_VERIFY_FACTOR);
 
@@ -1369,7 +1382,10 @@ class OneLoginClient
         $limit = 50;
 
         try {
-            $authorization = "bearer:" . $this->accessToken;
+            $authorization = $this->getAuthorization();
+
+            $url = $this->settings->getURL(Constants::GET_ROLES_URL);
+
             $headers = array(
                 'Authorization' => $authorization,
                 'Content-Type' => 'application/json'
@@ -1392,8 +1408,6 @@ class OneLoginClient
                 }
                 $options['query'] = $queryParameters;
             }
-
-            $url = $this->settings->getURL(Constants::GET_ROLES_URL);
 
             $roles = array();
             $afterCursor = null;
@@ -1449,7 +1463,7 @@ class OneLoginClient
         $this->prepareToken();
 
         try {
-            $authorization = "bearer:" . $this->accessToken;
+            $authorization = $this->getAuthorization();
 
             $url = $this->settings->getURL(Constants::GET_ROLE_URL, $id);
 
@@ -1495,7 +1509,7 @@ class OneLoginClient
         $this->prepareToken();
 
         try {
-            $authorization = "bearer:" . $this->accessToken;
+            $authorization = $this->getAuthorization();
 
             $url = $this->settings->getURL(Constants::GET_EVENT_TYPES_URL);
 
@@ -1545,7 +1559,10 @@ class OneLoginClient
         $limit = 50;
 
         try {
-            $authorization = "bearer:" . $this->accessToken;
+            $authorization = $this->getAuthorization();
+
+            $url = $this->settings->getURL(Constants::GET_EVENTS_URL);
+
             $headers = array(
                 'Authorization' => $authorization,
                 'Content-Type' => 'application/json'
@@ -1568,8 +1585,6 @@ class OneLoginClient
                 }
                 $options['query'] = $queryParameters;
             }
-
-            $url = $this->settings->getURL(Constants::GET_EVENTS_URL);
 
             $events = array();
             $afterCursor = null;
@@ -1627,7 +1642,7 @@ class OneLoginClient
         $this->prepareToken();
 
         try {
-            $authorization = "bearer:" . $this->accessToken;
+            $authorization = $this->getAuthorization();
 
             $url = $this->settings->getURL(Constants::GET_EVENT_URL, $id);
 
@@ -1676,7 +1691,7 @@ class OneLoginClient
         $this->prepareToken();
 
         try {
-            $authorization = "bearer:" . $this->accessToken;
+            $authorization = $this->getAuthorization();
 
             $url = $this->settings->getURL(Constants::CREATE_EVENT_URL);
 
@@ -1724,7 +1739,7 @@ class OneLoginClient
         $this->prepareToken();
 
         try {
-            $authorization = "bearer:" . $this->accessToken;
+            $authorization = $this->getAuthorization();
 
             $url = $this->settings->getURL(Constants::GET_GROUPS_URL);
 
@@ -1791,7 +1806,7 @@ class OneLoginClient
         $this->prepareToken();
 
         try {
-            $authorization = "bearer:" . $this->accessToken;
+            $authorization = $this->getAuthorization();
 
             $url = $this->settings->getURL(Constants::GET_GROUP_URL, $id);
 
@@ -1848,7 +1863,7 @@ class OneLoginClient
         $this->prepareToken();
 
         try {
-            $authorization = "bearer:" . $this->accessToken;
+            $authorization = $this->getAuthorization();
 
             $url = $this->settings->getURL(Constants::GET_SAML_ASSERTION_URL);
 
@@ -1912,7 +1927,7 @@ class OneLoginClient
         $this->prepareToken();
 
         try {
-            $authorization = "bearer:" . $this->accessToken;
+            $authorization = $this->getAuthorization();
 
             if (empty($urlEndpoint)) {
                 $url = $this->settings->getURL(Constants::GET_SAML_VERIFY_FACTOR);
@@ -1974,7 +1989,7 @@ class OneLoginClient
         $this->prepareToken();
 
         try {
-            $authorization = "bearer:" . $this->accessToken;
+            $authorization = $this->getAuthorization();
 
             $url = $this->settings->getURL(Constants::GENERATE_INVITE_LINK_URL);
 
@@ -2028,7 +2043,7 @@ class OneLoginClient
         $this->prepareToken();
 
         try {
-            $authorization = "bearer:" . $this->accessToken;
+            $authorization = $this->getAuthorization();
 
             $url = $this->settings->getURL(Constants::SEND_INVITE_LINK_URL);
 
