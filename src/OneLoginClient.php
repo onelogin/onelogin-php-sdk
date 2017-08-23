@@ -25,6 +25,10 @@ use OneLogin\api\models\User;
  */
 class OneLoginClient
 {
+    const VERSION = "1.0.0";
+
+    const CUSTOM_USER_AGENT = "onelogin-php-sdk ".OneLoginClient::VERSION;
+
     /** @var GuzzleHttp\Client client  */
     protected $client;
 
@@ -56,6 +60,7 @@ class OneLoginClient
     {
         $this->settings = $settings;
         $this->client = new Client();
+        $this->userAgent = OneLoginClient::CUSTOM_USER_AGENT;
     }
 
     /**
@@ -178,7 +183,7 @@ class OneLoginClient
         return $apps;
     }
 
-    protected function getAuthorization($bearer=true)
+    protected function getAuthorization($bearer = true)
     {
         if ($bearer) {
             $authorization = "bearer:" . $this->accessToken;
@@ -248,7 +253,8 @@ class OneLoginClient
                 "grant_type" => "client_credentials"
             );
             $headers = array(
-                'Authorization' => $authorization
+                'Authorization' => $authorization,
+                'User-Agent'=> $this->userAgent
             );
 
             $response = $this->client->post(
@@ -291,6 +297,10 @@ class OneLoginClient
 
             $url = $this->settings->getURL(Constants::TOKEN_REQUEST_URL);
 
+            $headers = array(
+                'User-Agent'=> $this->userAgent
+            );
+
             $data = array(
                 "grant_type" => "refresh_token",
                 "access_token" => $this->accessToken,
@@ -300,6 +310,7 @@ class OneLoginClient
             $response = $this->client->post(
                 $url,
                 array(
+                    'headers' => $headers,
                     'json' => $data
                 )
             );
@@ -341,7 +352,8 @@ class OneLoginClient
                 "access_token" => $this->accessToken
             );
             $headers = array(
-                'Authorization' => $authorization
+                'Authorization' => $authorization,
+                'User-Agent'=> $this->userAgent
             );
 
             $response = $this->client->post(
@@ -390,7 +402,8 @@ class OneLoginClient
 
             $headers = array(
                 'Authorization' => $authorization,
-                'Content-Type' => 'application/json'
+                'Content-Type' => 'application/json',
+                'User-Agent'=> $this->userAgent
             );
 
             $response = $this->client->get(
@@ -438,7 +451,8 @@ class OneLoginClient
             $authorization = $this->getAuthorization();
             $headers = array(
                 'Authorization' => $authorization,
-                'Content-Type' => 'application/json'
+                'Content-Type' => 'application/json',
+                'User-Agent'=> $this->userAgent
             );
 
             $options = array(
@@ -524,7 +538,8 @@ class OneLoginClient
 
             $headers = array(
                 'Authorization' => $authorization,
-                'Content-Type' => 'application/json'
+                'Content-Type' => 'application/json',
+                'User-Agent'=> $this->userAgent
             );
 
             $options = array(
@@ -573,7 +588,8 @@ class OneLoginClient
 
             $headers = array(
                 'Authorization' => $authorization,
-                'Content-Type' => 'application/json'
+                'Content-Type' => 'application/json',
+                'User-Agent'=> $this->userAgent
             );
 
             $options = array(
@@ -626,7 +642,8 @@ class OneLoginClient
 
             $headers = array(
                 'Authorization' => $authorization,
-                'Content-Type' => 'application/json'
+                'Content-Type' => 'application/json',
+                'User-Agent'=> $this->userAgent
             );
 
             $options = array(
@@ -674,7 +691,8 @@ class OneLoginClient
 
             $headers = array(
                 'Authorization' => $authorization,
-                'Content-Type' => 'application/json'
+                'Content-Type' => 'application/json',
+                'User-Agent'=> $this->userAgent
             );
 
             $response = $this->client->get(
@@ -725,7 +743,8 @@ class OneLoginClient
             $url = $this->settings->getURL(Constants::CREATE_USER_URL);
 
             $headers = array(
-                'Authorization' => $authorization
+                'Authorization' => $authorization,
+                'User-Agent'=> $this->userAgent
             );
 
             $response = $this->client->post(
@@ -778,7 +797,8 @@ class OneLoginClient
             $url = $this->settings->getURL(Constants::UPDATE_USER_URL, $id);
 
             $headers = array(
-                'Authorization' => $authorization
+                'Authorization' => $authorization,
+                'User-Agent'=> $this->userAgent
             );
 
             $response = $this->client->put(
@@ -830,7 +850,8 @@ class OneLoginClient
             );
 
             $headers = array(
-                'Authorization' => $authorization
+                'Authorization' => $authorization,
+                'User-Agent'=> $this->userAgent
             );
 
             $response = $this->client->put(
@@ -879,7 +900,8 @@ class OneLoginClient
             );
 
             $headers = array(
-                'Authorization' => $authorization
+                'Authorization' => $authorization,
+                'User-Agent'=> $this->userAgent
             );
 
             $response = $this->client->put(
@@ -931,7 +953,8 @@ class OneLoginClient
             );
 
             $headers = array(
-                'Authorization' => $authorization
+                'Authorization' => $authorization,
+                'User-Agent'=> $this->userAgent
             );
 
             $response = $this->client->put(
@@ -992,7 +1015,8 @@ class OneLoginClient
             }
 
             $headers = array(
-                'Authorization' => $authorization
+                'Authorization' => $authorization,
+                'User-Agent'=> $this->userAgent
             );
 
             $response = $this->client->put(
@@ -1041,7 +1065,8 @@ class OneLoginClient
             );
 
             $headers = array(
-                'Authorization' => $authorization
+                'Authorization' => $authorization,
+                'User-Agent'=> $this->userAgent
             );
 
             $response = $this->client->put(
@@ -1084,7 +1109,8 @@ class OneLoginClient
             $url = $this->settings->getURL(Constants::LOG_USER_OUT_URL, $id);
 
             $headers = array(
-                'Authorization' => $authorization
+                'Authorization' => $authorization,
+                'User-Agent'=> $this->userAgent
             );
 
             $response = $this->client->put(
@@ -1134,7 +1160,8 @@ class OneLoginClient
             );
 
             $headers = array(
-                'Authorization' => $authorization
+                'Authorization' => $authorization,
+                'User-Agent'=> $this->userAgent
             );
 
             $response = $this->client->put(
@@ -1179,7 +1206,8 @@ class OneLoginClient
             $headers = array(
                 'Authorization' => $authorization,
                 'Accept' => '*/*',
-                'Content-Type' => 'application/json'
+                'Content-Type' => 'application/json',
+                'User-Agent'=> $this->userAgent
             );
 
             $response = $this->client->detele(
@@ -1233,6 +1261,7 @@ class OneLoginClient
 
             $headers = array(
                 'Authorization' => $authorization,
+                'User-Agent'=> $this->userAgent
             );
 
             if (!empty($allowedOrigin)) {
@@ -1294,6 +1323,7 @@ class OneLoginClient
 
             $headers = array(
                 'Authorization' => $authorization,
+                'User-Agent'=> $this->userAgent
             );
 
             $response = $this->client->post(
@@ -1338,9 +1368,14 @@ class OneLoginClient
                 "session_token" => $sessionToken
             );
 
+            $headers = array(
+                'User-Agent'=> $this->userAgent
+            );
+
             $response = $this->client->post(
                 $url,
                 array(
+                    'headers' => $headers,
                     'json' => $data
                 )
             );
@@ -1388,7 +1423,8 @@ class OneLoginClient
 
             $headers = array(
                 'Authorization' => $authorization,
-                'Content-Type' => 'application/json'
+                'Content-Type' => 'application/json',
+                'User-Agent'=> $this->userAgent
             );
 
             $options = array(
@@ -1469,7 +1505,8 @@ class OneLoginClient
 
             $headers = array(
                 'Authorization' => $authorization,
-                'Content-Type' => 'application/json'
+                'Content-Type' => 'application/json',
+                'User-Agent'=> $this->userAgent
             );
 
             $response = $this->client->get(
@@ -1515,7 +1552,8 @@ class OneLoginClient
 
             $headers = array(
                 'Authorization' => $authorization,
-                'Content-Type' => 'application/json'
+                'Content-Type' => 'application/json',
+                'User-Agent'=> $this->userAgent
             );
 
             $response = $this->client->get(
@@ -1565,7 +1603,8 @@ class OneLoginClient
 
             $headers = array(
                 'Authorization' => $authorization,
-                'Content-Type' => 'application/json'
+                'Content-Type' => 'application/json',
+                'User-Agent'=> $this->userAgent
             );
 
             $options = array(
@@ -1648,7 +1687,8 @@ class OneLoginClient
 
             $headers = array(
                 'Authorization' => $authorization,
-                'Content-Type' => 'application/json'
+                'Content-Type' => 'application/json',
+                'User-Agent'=> $this->userAgent
             );
 
             $response = $this->client->get(
@@ -1696,7 +1736,8 @@ class OneLoginClient
             $url = $this->settings->getURL(Constants::CREATE_EVENT_URL);
 
             $headers = array(
-                'Authorization' => $authorization
+                'Authorization' => $authorization,
+                'User-Agent'=> $this->userAgent
             );
 
             $response = $this->client->post(
@@ -1745,7 +1786,8 @@ class OneLoginClient
 
             $headers = array(
                 'Authorization' => $authorization,
-                'Content-Type' => 'application/json'
+                'Content-Type' => 'application/json',
+                'User-Agent'=> $this->userAgent
             );
 
             $options = array(
@@ -1812,7 +1854,8 @@ class OneLoginClient
 
             $headers = array(
                 'Authorization' => $authorization,
-                'Content-Type' => 'application/json'
+                'Content-Type' => 'application/json',
+                'User-Agent'=> $this->userAgent
             );
 
             $response = $this->client->get(
@@ -1869,7 +1912,8 @@ class OneLoginClient
 
             $headers = array(
                 'Authorization' => $authorization,
-                'Content-Type' => 'application/json'
+                'Content-Type' => 'application/json',
+                'User-Agent'=> $this->userAgent
             );
 
             $data = array(
@@ -1937,7 +1981,8 @@ class OneLoginClient
 
             $headers = array(
                 'Authorization' => $authorization,
-                'Content-Type' => 'application/json'
+                'Content-Type' => 'application/json',
+                'User-Agent'=> $this->userAgent
             );
 
             $data = array(
@@ -1998,7 +2043,8 @@ class OneLoginClient
             );
 
             $headers = array(
-                'Authorization' => $authorization
+                'Authorization' => $authorization,
+                'User-Agent'=> $this->userAgent
             );
 
             $response = $this->client->post(
@@ -2056,7 +2102,8 @@ class OneLoginClient
             }
 
             $headers = array(
-                'Authorization' => $authorization
+                'Authorization' => $authorization,
+                'User-Agent'=> $this->userAgent
             );
 
             $response = $this->client->post(
@@ -2106,14 +2153,17 @@ class OneLoginClient
                 "email" => $email
             );
 
-            $options = array(
-                'json' => $data
+            $headers = array (
+                'User-Agent'=> $this->userAgent
             );
 
             $apps = null;
             $response = $this->client->get(
                 $url,
-                $options
+                array(
+                    'headers' => $headers,
+                    'json' => $data
+                )
             );
 
             $xmlContent = $response->getBody()->getContents();
