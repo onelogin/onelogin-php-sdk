@@ -1205,20 +1205,17 @@ class OneLoginClient
 
             $headers = array(
                 'Authorization' => $authorization,
-                'Accept' => '*/*',
-                'Content-Type' => 'application/json',
                 'User-Agent'=> $this->userAgent
             );
 
-            $response = $this->client->detele(
+            $response = $this->client->delete(
                 $url,
                 array(
                     'headers' => $headers
                 )
             );
 
-            // TODO: Fix that method. currently not working
-            return fale;
+            return $this->handleOperationResponse($response);
         } catch (ClientException $e) {
             $response = $e->getResponse();
             $this->error = $response->getStatusCode();
