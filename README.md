@@ -11,15 +11,15 @@ The toolkit is hosted on github. You can download it from:
 * Master repo: https://github.com/onelogin/onelogin-php-sdk/tree/master
 
 #### Composer
-The toolkit supports [composer](https://getcomposer.org/). You can find the `onelogin/onelogin-php-sdk` package at https://packagist.org/packages/onelogin/onelogin-php-sdk
+The toolkit supports [composer](https://getcomposer.org/). You can find the `onelogin/api` package at https://packagist.org/packages/onelogin/api
 
 In order to import the sdk into your current php project, execute
 ```
-composer require onelogin/onelogin-php-sdk
+composer require onelogin/api
 ```
 
 ### Dependencies
-onelogin-php-sdk has the following dependencies:
+The SDK has the following dependencies:
 
 * PHP >5.6
 * guzzle

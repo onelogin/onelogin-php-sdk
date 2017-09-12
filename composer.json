@@ -1,5 +1,5 @@
 {
-    "name": "onelogin/onelogin-php-sdk",
+    "name": "onelogin/api",
     "type": "library",
     "version": "1.0.0",
     "minimum-stability": "dev",
