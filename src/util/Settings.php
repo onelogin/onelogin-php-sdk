@@ -10,7 +10,7 @@ class Settings
     const ONELOGIN_PROPERTIES_FILE = "onelogin.sdk.ini";
     const CLIENT_ID_KEY = "onelogin.sdk.client_id";
     const CLIENT_SECRET_KEY = "onelogin.sdk.client_secret";
-    const INSTANCE = "onelogin.sdk.instance";
+    const REGION = "onelogin.sdk.region";
 
     /** @var string $clientID OneLogin Client ID */
     private $clientID;
@@ -18,8 +18,8 @@ class Settings
     /** @var string $clientSecret OneLogin Client  */
     private $clientSecret;
 
-    /** @var string $instance Onelogin instance */
-    private $instance = "us";
+    /** @var string $region Onelogin Region */
+    private $region = "us";
 
     /**
      * Create a new instance of Settings.
@@ -51,8 +51,8 @@ class Settings
             $this->clientSecret = $info[self::CLIENT_SECRET_KEY];
         }
 
-        if (!empty($info[self::INSTANCE])) {
-            $this->instance = $info[self::INSTANCE];
+        if (!empty($info[self::REGION])) {
+            $this->region = $info[self::REGION];
         }
     }
 
@@ -66,17 +66,17 @@ class Settings
         return $this->clientSecret;
     }
 
-    public function getInstance()
+    public function getRegion()
     {
-        return $this->instance;
+        return $this->region;
     }
 
     public function getURL($base, $id = null)
     {
         if ($id != null) {
-            return sprintf($base, $this->instance, $id);
+            return sprintf($base, $this->region, $id);
         } else {
-            return sprintf($base, $this->instance);
+            return sprintf($base, $this->region);
         }
     }
 }
