@@ -8,6 +8,7 @@ use GuzzleHttp\Psr7\Request;
 use OneLogin\api\util\UrlBuilder;
 use OneLogin\api\util\Constants;
 use OneLogin\api\models\App;
+use OneLogin\api\models\EmbedApp;
 use OneLogin\api\models\Event;
 use OneLogin\api\models\EventType;
 use OneLogin\api\models\Group;
@@ -177,7 +178,7 @@ class OneLoginClient
 
     public function retrieveAppsFromXML($xmlContent)
     {
-        $apps = array();
+        $embedApps = array();
         $doc = new \DOMDocument();
         $doc->loadXML($xmlContent);
         $xpath = new \DOMXpath($doc);
@@ -191,9 +192,9 @@ class OneLoginClient
                     $appData[$appAttr->nodeName] = $appAttr->textContent;
                 }
             }
-            $apps[] = new App((object) $appData);
+            $embedApps[] = new EmbedApp((object) $appData);
         }
-        return $apps;
+        return $embedApps;
     }
 
     protected function getAuthorization($bearer = true)
