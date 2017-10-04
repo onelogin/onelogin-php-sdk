@@ -2,7 +2,7 @@
 
 namespace OneLogin\api\models;
 
-class App
+class EmbedApp
 {
     /** @var int */
     public $id;
@@ -13,11 +13,11 @@ class App
     /** @var string */
     public $icon;
 
-    /** @var string */
+    /** @var int */
     public $provisioned;
 
     /** @var bool */
-    public $extension;
+    public $extensionRequired;
 
     /** @var int */
     public $loginId;
@@ -33,9 +33,9 @@ class App
         $this->id = isset($data->id)? (int) $data->id : null;
         $this->name = $data->name;
         $this->icon = $data->icon;
-        $this->provisioned = $data->provisioned;
-        $this->extension = $data->extension;
+        $this->provisioned = isset($data->provisioned)? (int) $data->provisioned : null;
+        $this->extensionRequired = boolval($data->personal);
         $this->loginId = isset($data->login_id)? (int) $data->login_id : null;
-        $this->personal = $data->personal;
+        $this->personal = boolval($data->personal);
     }
 }

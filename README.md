@@ -1,4 +1,4 @@
-# OneLogin's PHP SDK
+# OneLogin PHP SDK
 
 This SDK will let you execute all the API methods, version/1, described
 at https://developers.onelogin.com/api-docs/1/getting-started/dev-overview.
@@ -27,46 +27,42 @@ The SDK has the following dependencies:
 
 ## Getting started
 
-### PHPdocs
+You'll need a OneLogin account and a set of API credentials before you get started. 
 
-PHPdocs of this SDK are published at:
-https://onelogin.github.io/onelogin-php-sdk/index.html
+If you don't have an account you can [sign up for a free developer account here](https://www.onelogin.com/developer-signup).
 
-
-### Settings
-
-SDK settings are stored in a file named *onelogin.sdk.ini*. A template can be found at *src/* folder.
-
-The SDK has 3 settings parameters:
-* onelogin.sdk.client_id  Onelogin OAuth2 client ID
-* onelogin.sdk.client_secret  Onelogin OAuth2 client secret
-* onelogin.sdk.region  Indicates where the instance is hosted. Possible values: 'us' or 'eu'.
-
-Read more about Onelogin API credentials at:
-https://developers.onelogin.com/api-docs/1/getting-started/working-with-api-credentials
-
-
-### Errors and exceptions
-
-Onelogin's API can return 400, 401, 403 or 404 when there was any issue executing the action. When that happens, the methods of the SDK will include error and errorMessage in the OneLoginClient. Use the getError() and the getErrorDescription() to retrieve them.
-
-
-### How it works
-
-Following there is PHP code that executes calls on all the available methods on the SDK.
-
-It assumes that there are 2 users on the OL instance: 'user@example.com' and other with MFA enabled 'usermfa@example.com' and some roles, custom attributes and groups defined.
+|||
+|---|---|
+|client_id|Required: A valid OneLogin API client_id|
+|client_secret|Required: A valid OneLogin API client_secret|
+|region| Optional: `us` or `eu`. Defaults to `us`   |
 
 ```php
 <?php
 
 use \OneLogin\api\OneLoginClient;
-use \OneLogin\api\util\Settings;
-use \OneLogin\api\util\Constants;
 
-$settings = new Settings(dirname(__FILE__));
-$client = new OneLoginClient($settings);
+$client = new OneLoginClient($clientId, $clientSecret, $region);
 
+#Now you can make requests 
+client.getUsers()
+``` 
+
+For all methods see PHPdoc of this SDK published at:
+https://onelogin.github.io/onelogin-php-sdk/index.html
+
+## Usage
+
+### Errors and exceptions
+
+OneLogin's API can return 400, 401, 403 or 404 when there was any issue executing the action. When that happens, the methods of the SDK will include error and errorMessage in the OneLoginClient. Use the getError() and the getErrorDescription() to retrieve them.
+
+
+### Authentication
+
+By default methods call internally to `getAccessToken` if there is no valid accessToken. You can also get tokens etc directly if needed. 
+
+```php
 /* Get an AccessToken */
 $token = $client->getAccessToken();
 
@@ -75,9 +71,11 @@ $token2 = $client->refreshToken();
 
 /* Revoke an AccessToken */
 $client->revokeToken();
+```
 
-// By default methods call internally to getAccessToken()
-// if there is not valid access_token
+### Available Methods
+
+```php
 
 /* Get rate limits */
 $rateLimit = $client->getRateLimit();
@@ -247,3 +245,21 @@ $sent = $client->sendInviteLink("user@example.com");
 $embedToken = "30e256c101cd0d2e731de1ec222e93c4be8a1578";
 $apps = $client->getEmbedApps($embedToken, "user@example.com");
 ```
+
+## Development
+
+After checking out the repo, run `composer install` to install dependencies. Then, `cd tests` and `phpunit .` to run the tests.
+
+To release a new version, update the version number of the `composer.json` and commit it, then you will be able to update it to composer, creating a previously a new tag on github.
+
+## Contributing
+
+Bug reports and pull requests are welcome on GitHub at https://github.com/onelogin/onelogin-php-sdk. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+
+## License
+
+The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
+
+## Code of Conduct
+
+Everyone interacting in the OneLogin PHP SDK project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/onelogin/onelogin-php-sdk/blob/master/CODE_OF_CONDUCT.md).
