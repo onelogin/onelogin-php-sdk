@@ -5,4 +5,5 @@ onelogin.sdk.ini
 vendor/
 docs/
 build/
+test/build/
 
