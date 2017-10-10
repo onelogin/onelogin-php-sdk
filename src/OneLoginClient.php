@@ -57,19 +57,23 @@ class OneLoginClient
     /** @var string $errorDescription Description of last error found */
     protected $errorDescription;
 
-    /** @var String $userAgent the User-Agent to be used on requests */
+    /** @var string $userAgent the User-Agent to be used on requests */
     public $userAgent;
+
+    /** @var int $maxResults Limit the number of elements returned in a search */
+    public $maxResults;
 
     /**
      * Create a new instance of Client.
      */
-    public function __construct($clientId, $clientSecret, $region="us")
+    public function __construct($clientId, $clientSecret, $region = "us", $maxResults = 1000)
     {
         $this->client = new Client();
         $this->clientId = $clientId;
         $this->clientSecret = $clientSecret;
         $this->urlBuilder = new UrlBuilder($region);
         $this->userAgent = OneLoginClient::CUSTOM_USER_AGENT;
+        $this->maxResults = $maxResults;
     }
 
     /**
@@ -197,6 +201,15 @@ class OneLoginClient
         return $embedApps;
     }
 
+    protected function getAuthorizedHeader($bearer = true)
+    {
+        return array(
+            'Authorization' => $this->getAuthorization($bearer),
+            'Content-Type' => 'application/json',
+            'User-Agent'=> $this->userAgent
+        );
+    }
+
     protected function getAuthorization($bearer = true)
     {
         if ($bearer) {
@@ -261,14 +274,10 @@ class OneLoginClient
         $this->cleanError();
         try {
             $url = $this->getURL(Constants::TOKEN_REQUEST_URL);
-            $authorization = $this->getAuthorization(false);
+            $headers = $this->getAuthorizedHeader(false);
 
             $data = array(
                 "grant_type" => "client_credentials"
-            );
-            $headers = array(
-                'Authorization' => $authorization,
-                'User-Agent'=> $this->userAgent
             );
 
             $response = $this->client->post(
@@ -310,7 +319,6 @@ class OneLoginClient
             }
 
             $url = $this->getURL(Constants::TOKEN_REQUEST_URL);
-
             $headers = array(
                 'User-Agent'=> $this->userAgent
             );
@@ -360,14 +368,10 @@ class OneLoginClient
             }
 
             $url = $this->getURL(Constants::TOKEN_REVOKE_URL);
-            $authorization = $this->getAuthorization(false);
+            $headers = $this->getAuthorizedHeader(false);
 
             $data = array(
                 "access_token" => $this->accessToken
-            );
-            $headers = array(
-                'Authorization' => $authorization,
-                'User-Agent'=> $this->userAgent
             );
 
             $response = $this->client->post(
@@ -412,13 +416,7 @@ class OneLoginClient
 
         try {
             $url = $this->getURL(Constants::GET_RATE_URL);
-            $authorization = $this->getAuthorization();
-
-            $headers = array(
-                'Authorization' => $authorization,
-                'Content-Type' => 'application/json',
-                'User-Agent'=> $this->userAgent
-            );
+            $headers = $this->getAuthorizedHeader();
 
             $response = $this->client->get(
                 $url,
@@ -445,29 +443,28 @@ class OneLoginClient
     ////////////////////
 
     /**
-     * Gets a list of User resources. (if no limit provided, by default get 50 elements)
+     * Gets a list of User resources.
      *
      * @param queryParameters
      *            Parameters to filter the result of the list
+     * @param maxResults
+     *            Limit the number of users returned (optional)
      *
      * @return Array of User
      *
      *
      * @see https://developers.onelogin.com/api-docs/1/users/get-users Get Users documentation
      */
-    public function getUsers($queryParameters = null)
+    public function getUsers($queryParameters = null, $maxResults = null)
     {
         $this->cleanError();
         $this->prepareToken();
-        $limit = 50;
 
         try {
-            $authorization = $this->getAuthorization();
-            $headers = array(
-                'Authorization' => $authorization,
-                'Content-Type' => 'application/json',
-                'User-Agent'=> $this->userAgent
-            );
+            $url = $this->getURL(Constants::GET_USERS_URL);
+            $headers = $this->getAuthorizedHeader();
+
+            $maxResults = empty($maxResults)? $this->maxResults : $maxResults;
 
             $options = array(
                 'headers' => $headers
@@ -478,20 +475,12 @@ class OneLoginClient
                     new \Exception("Invalid value for queryParameters, must to be an indexed array");
                 }
 
-                if (!empty($queryParameters['limit'])) {
-                    $limit = intVal($queryParameters['limit']);
-                    if ($limit >= 50) {
-                         unset($queryParameters['limit']);
-                    }
-                }
                 $options['query'] = $queryParameters;
             }
 
-            $url = $this->getURL(Constants::GET_USERS_URL);
-
             $users = array();
             $afterCursor = null;
-            while (!isset($response) || (count($users) < $limit && !empty($afterCursor))) {
+            while (!isset($response) || (count($users) < $maxResults && !empty($afterCursor))) {
                 $response = $this->client->get(
                     $url,
                     $options
@@ -500,7 +489,7 @@ class OneLoginClient
             
                 if (isset($data)) {
                     foreach ($data as $userData) {
-                        if (count($users) < $limit) {
+                        if (count($users) < $maxResults) {
                             $users[] = new User($userData);
                         } else {
                             return $users;
@@ -515,9 +504,6 @@ class OneLoginClient
                     }
                     $options['query']['after_cursor'] = $afterCursor;
                 }
-            }
-            if (count($users) > $limit) {
-                $users = array_slice($users, 0, $limit);
             }
             return $users;
         } catch (ClientException $e) {
@@ -546,19 +532,8 @@ class OneLoginClient
         $this->prepareToken();
 
         try {
-            $authorization = $this->getAuthorization();
-
             $url = $this->getURL(Constants::GET_USER_URL, $id);
-
-            $headers = array(
-                'Authorization' => $authorization,
-                'Content-Type' => 'application/json',
-                'User-Agent'=> $this->userAgent
-            );
-
-            $options = array(
-                'headers' => $headers
-            );
+            $headers = $this->getAuthorizedHeader();
 
             $response = $this->client->get(
                 $url,
@@ -596,19 +571,8 @@ class OneLoginClient
         $this->prepareToken();
 
         try {
-            $authorization = $this->getAuthorization();
-
             $url = $this->getURL(Constants::GET_APPS_FOR_USER_URL, $id);
-
-            $headers = array(
-                'Authorization' => $authorization,
-                'Content-Type' => 'application/json',
-                'User-Agent'=> $this->userAgent
-            );
-
-            $options = array(
-                'headers' => $headers
-            );
+            $headers = $this->getAuthorizedHeader();
 
             $response = $this->client->get(
                 $url,
@@ -638,7 +602,8 @@ class OneLoginClient
      * Gets a list of role IDs that have been assigned to a user.
      *
      * @param id
-     *            Id of the user
+     *            Id of the role
+     *
      *
      * @return List of Role Ids
      *
@@ -650,19 +615,8 @@ class OneLoginClient
         $this->prepareToken();
 
         try {
-            $authorization = $this->getAuthorization();
-
             $url = $this->getURL(Constants::GET_ROLES_FOR_USER_URL, $id);
-
-            $headers = array(
-                'Authorization' => $authorization,
-                'Content-Type' => 'application/json',
-                'User-Agent'=> $this->userAgent
-            );
-
-            $options = array(
-                'headers' => $headers
-            );
+            $headers = $this->getAuthorizedHeader();
 
             $response = $this->client->get(
                 $url,
@@ -699,15 +653,8 @@ class OneLoginClient
         $this->prepareToken();
 
         try {
-            $authorization = $this->getAuthorization();
-
             $url = $this->getURL(Constants::GET_CUSTOM_ATTRIBUTES_URL);
-
-            $headers = array(
-                'Authorization' => $authorization,
-                'Content-Type' => 'application/json',
-                'User-Agent'=> $this->userAgent
-            );
+            $headers = $this->getAuthorizedHeader();
 
             $response = $this->client->get(
                 $url,
@@ -752,14 +699,8 @@ class OneLoginClient
         $this->prepareToken();
 
         try {
-            $authorization = $this->getAuthorization();
-
             $url = $this->getURL(Constants::CREATE_USER_URL);
-
-            $headers = array(
-                'Authorization' => $authorization,
-                'User-Agent'=> $this->userAgent
-            );
+            $headers = $this->getAuthorizedHeader();
 
             $response = $this->client->post(
                 $url,
@@ -806,14 +747,8 @@ class OneLoginClient
         $this->prepareToken();
 
         try {
-            $authorization = $this->getAuthorization();
-
             $url = $this->getURL(Constants::UPDATE_USER_URL, $id);
-
-            $headers = array(
-                'Authorization' => $authorization,
-                'User-Agent'=> $this->userAgent
-            );
+            $headers = $this->getAuthorizedHeader();
 
             $response = $this->client->put(
                 $url,
@@ -855,17 +790,11 @@ class OneLoginClient
         $this->prepareToken();
 
         try {
-            $authorization = $this->getAuthorization();
-
             $url = $this->getURL(Constants::ADD_ROLE_TO_USER_URL, $id);
+            $headers = $this->getAuthorizedHeader();
 
             $data = array(
                 "role_id_array" => $roleIds,
-            );
-
-            $headers = array(
-                'Authorization' => $authorization,
-                'User-Agent'=> $this->userAgent
             );
 
             $response = $this->client->put(
@@ -905,17 +834,11 @@ class OneLoginClient
         $this->prepareToken();
 
         try {
-            $authorization = $this->getAuthorization();
-
             $url = $this->getURL(Constants::DELETE_ROLE_TO_USER_URL, $id);
+            $headers = $this->getAuthorizedHeader();
 
             $data = array(
                 "role_id_array" => $roleIds,
-            );
-
-            $headers = array(
-                'Authorization' => $authorization,
-                'User-Agent'=> $this->userAgent
             );
 
             $response = $this->client->put(
@@ -957,18 +880,12 @@ class OneLoginClient
         $this->prepareToken();
 
         try {
-            $authorization = $this->getAuthorization();
-
             $url = $this->getURL(Constants::SET_PW_CLEARTEXT, $id);
+            $headers = $this->getAuthorizedHeader();
 
             $data = array(
                 "password" => $password,
                 "password_confirmation" => $passwordConfirmation
-            );
-
-            $headers = array(
-                'Authorization' => $authorization,
-                'User-Agent'=> $this->userAgent
             );
 
             $response = $this->client->put(
@@ -1014,9 +931,8 @@ class OneLoginClient
         $this->prepareToken();
 
         try {
-            $authorization = $this->getAuthorization();
-
             $url = $this->getURL(Constants::SET_PW_SALT, $id);
+            $headers = $this->getAuthorizedHeader();
 
             $data = array(
                 "password" => $password,
@@ -1027,11 +943,6 @@ class OneLoginClient
             if (!empty($passwordSalt)) {
                 $data["password_salt"] = $passwordSalt;
             }
-
-            $headers = array(
-                'Authorization' => $authorization,
-                'User-Agent'=> $this->userAgent
-            );
 
             $response = $this->client->put(
                 $url,
@@ -1070,17 +981,11 @@ class OneLoginClient
         $this->prepareToken();
 
         try {
-            $authorization = $this->getAuthorization();
-
             $url = $this->getURL(Constants::SET_CUSTOM_ATTRIBUTE_TO_USER_URL, $id);
+            $headers = $this->getAuthorizedHeader();
 
             $data = array(
                 "custom_attributes" => $customAttributes
-            );
-
-            $headers = array(
-                'Authorization' => $authorization,
-                'User-Agent'=> $this->userAgent
             );
 
             $response = $this->client->put(
@@ -1118,14 +1023,8 @@ class OneLoginClient
         $this->prepareToken();
 
         try {
-            $authorization = $this->getAuthorization();
-
             $url = $this->getURL(Constants::LOG_USER_OUT_URL, $id);
-
-            $headers = array(
-                'Authorization' => $authorization,
-                'User-Agent'=> $this->userAgent
-            );
+            $headers = $this->getAuthorizedHeader();
 
             $response = $this->client->put(
                 $url,
@@ -1165,17 +1064,11 @@ class OneLoginClient
         $this->prepareToken();
 
         try {
-            $authorization = $this->getAuthorization();
-
             $url = $this->getURL(Constants::LOCK_USER_URL, $id);
+            $headers = $this->getAuthorizedHeader();
 
             $data = array(
                 "locked_until" => $minutes
-            );
-
-            $headers = array(
-                'Authorization' => $authorization,
-                'User-Agent'=> $this->userAgent
             );
 
             $response = $this->client->put(
@@ -1213,14 +1106,8 @@ class OneLoginClient
         $this->prepareToken();
 
         try {
-            $authorization = $this->getAuthorization();
-
             $url = $this->getURL(Constants::DELETE_USER_URL, $id);
-
-            $headers = array(
-                'Authorization' => $authorization,
-                'User-Agent'=> $this->userAgent
-            );
+            $headers = $this->getAuthorizedHeader();
 
             $response = $this->client->delete(
                 $url,
@@ -1266,14 +1153,8 @@ class OneLoginClient
         $this->prepareToken();
 
         try {
-            $authorization = $this->getAuthorization();
-
             $url = $this->getURL(Constants::SESSION_LOGIN_TOKEN_URL);
-
-            $headers = array(
-                'Authorization' => $authorization,
-                'User-Agent'=> $this->userAgent
-            );
+            $headers = $this->getAuthorizedHeader();
 
             if (!empty($allowedOrigin)) {
                 $headers['Custom-Allowed-Origin-Header-1'] = $allowedOrigin;
@@ -1319,9 +1200,8 @@ class OneLoginClient
         $this->prepareToken();
 
         try {
-            $authorization = $this->getAuthorization();
-
             $url = $this->getURL(Constants::GET_TOKEN_VERIFY_FACTOR);
+            $headers = $this->getAuthorizedHeader();
 
             $data = array(
                 "device_id" => strval($devideId),
@@ -1331,11 +1211,6 @@ class OneLoginClient
             if (!empty($otpToken)) {
                 $data["otp_token"] = $otpToken;
             }
-
-            $headers = array(
-                'Authorization' => $authorization,
-                'User-Agent'=> $this->userAgent
-            );
 
             $response = $this->client->post(
                 $url,
@@ -1374,13 +1249,12 @@ class OneLoginClient
 
         try {
             $url = $this->getURL(Constants::SESSION_API_TOKEN_URL);
+            $headers = array(
+                'User-Agent'=> $this->userAgent
+            );
 
             $data = array(
                 "session_token" => $sessionToken
-            );
-
-            $headers = array(
-                'User-Agent'=> $this->userAgent
             );
 
             $response = $this->client->post(
@@ -1412,10 +1286,12 @@ class OneLoginClient
     ////////////////////
 
     /**
-     * Gets a list of Role resources. (if no limit provided, by default get 50 elements)
+     * Gets a list of Role resources.
      *
      * @param queryParameters
      *            Parameters to filter the result of the list
+     * @param maxResults
+     *            Limit the number of roles returned (optional)
      *
      * @return List of Role
      *
@@ -1425,18 +1301,12 @@ class OneLoginClient
     {
         $this->cleanError();
         $this->prepareToken();
-        $limit = 50;
+
+        $maxResults = empty($maxResults)? $this->maxResults : $maxResults;
 
         try {
-            $authorization = $this->getAuthorization();
-
             $url = $this->getURL(Constants::GET_ROLES_URL);
-
-            $headers = array(
-                'Authorization' => $authorization,
-                'Content-Type' => 'application/json',
-                'User-Agent'=> $this->userAgent
-            );
+            $headers = $this->getAuthorizedHeader();
 
             $options = array(
                 'headers' => $headers
@@ -1447,18 +1317,12 @@ class OneLoginClient
                     new \Exception("Invalid value for queryParameters, must to be an indexed array");
                 }
 
-                if (!empty($queryParameters['limit'])) {
-                    $limit = intVal($queryParameters['limit']);
-                    if ($limit >= 50) {
-                         unset($queryParameters['limit']);
-                    }
-                }
                 $options['query'] = $queryParameters;
             }
 
             $roles = array();
             $afterCursor = null;
-            while (!isset($response) || (count($roles) < $limit && !empty($afterCursor))) {
+            while (!isset($response) || (count($roles) < $maxResults && !empty($afterCursor))) {
                 $response = $this->client->get(
                     $url,
                     $options
@@ -1467,7 +1331,7 @@ class OneLoginClient
             
                 if (isset($data)) {
                     foreach ($data as $roleData) {
-                        if (count($roles) < $limit) {
+                        if (count($roles) < $maxResults) {
                             $roles[] = new Role($roleData);
                         } else {
                             return $roles;
@@ -1510,15 +1374,8 @@ class OneLoginClient
         $this->prepareToken();
 
         try {
-            $authorization = $this->getAuthorization();
-
             $url = $this->getURL(Constants::GET_ROLE_URL, $id);
-
-            $headers = array(
-                'Authorization' => $authorization,
-                'Content-Type' => 'application/json',
-                'User-Agent'=> $this->userAgent
-            );
+            $headers = $this->getAuthorizedHeader();
 
             $response = $this->client->get(
                 $url,
@@ -1557,15 +1414,8 @@ class OneLoginClient
         $this->prepareToken();
 
         try {
-            $authorization = $this->getAuthorization();
-
             $url = $this->getURL(Constants::GET_EVENT_TYPES_URL);
-
-            $headers = array(
-                'Authorization' => $authorization,
-                'Content-Type' => 'application/json',
-                'User-Agent'=> $this->userAgent
-            );
+            $headers = $this->getAuthorizedHeader();
 
             $response = $this->client->get(
                 $url,
@@ -1596,27 +1446,23 @@ class OneLoginClient
      *
      * @param queryParameters
      *            Parameters to filter the result of the list
+     * @param maxResults
+     *            Limit the number of events returned (optional)
      *
      * @return List of Event
      *
      * @see https://developers.onelogin.com/api-docs/1/events/get-events Get Events documentation
      */
-    public function getEvents($queryParameters = null)
+    public function getEvents($queryParameters = null, $maxResults = null)
     {
         $this->cleanError();
         $this->prepareToken();
-        $limit = 50;
+
+        $maxResults = empty($maxResults)? $this->maxResults : $maxResults;
 
         try {
-            $authorization = $this->getAuthorization();
-
             $url = $this->getURL(Constants::GET_EVENTS_URL);
-
-            $headers = array(
-                'Authorization' => $authorization,
-                'Content-Type' => 'application/json',
-                'User-Agent'=> $this->userAgent
-            );
+            $headers = $this->getAuthorizedHeader();
 
             $options = array(
                 'headers' => $headers
@@ -1627,18 +1473,12 @@ class OneLoginClient
                     new \Exception("Invalid value for queryParameters, must to be an indexed array");
                 }
 
-                if (!empty($queryParameters['limit'])) {
-                    $limit = intVal($queryParameters['limit']);
-                    if ($limit >= 50) {
-                         unset($queryParameters['limit']);
-                    }
-                }
                 $options['query'] = $queryParameters;
             }
 
             $events = array();
             $afterCursor = null;
-            while (!isset($response) || (count($events) < $limit && !empty($afterCursor))) {
+            while (!isset($response) || (count($events) < $maxResults && !empty($afterCursor))) {
                 $response = $this->client->get(
                     $url,
                     $options
@@ -1648,7 +1488,7 @@ class OneLoginClient
             
                 if (isset($data)) {
                     foreach ($data as $eventData) {
-                        if (count($events) < $limit) {
+                        if (count($events) < $maxResults) {
                             $events[] = new Event($eventData);
                         } else {
                             return $events;
@@ -1692,15 +1532,8 @@ class OneLoginClient
         $this->prepareToken();
 
         try {
-            $authorization = $this->getAuthorization();
-
             $url = $this->getURL(Constants::GET_EVENT_URL, $id);
-
-            $headers = array(
-                'Authorization' => $authorization,
-                'Content-Type' => 'application/json',
-                'User-Agent'=> $this->userAgent
-            );
+            $headers = $this->getAuthorizedHeader();
 
             $response = $this->client->get(
                 $url,
@@ -1742,14 +1575,8 @@ class OneLoginClient
         $this->prepareToken();
 
         try {
-            $authorization = $this->getAuthorization();
-
             $url = $this->getURL(Constants::CREATE_EVENT_URL);
-
-            $headers = array(
-                'Authorization' => $authorization,
-                'User-Agent'=> $this->userAgent
-            );
+            $headers = $this->getAuthorizedHeader();
 
             $response = $this->client->post(
                 $url,
@@ -1778,28 +1605,23 @@ class OneLoginClient
     /**
      * Gets a list of Group resources (element of groups limited with the limit parameter).
      *
-     * @param limit
+     * @param maxResults
      *            Limit the number of groups returned (optional)
      *
      * @return List of Group
      *
      * @see https://developers.onelogin.com/api-docs/1/groups/get-groups Get Groups documentation
      */
-    public function getGroups($limit = 50)
+    public function getGroups($maxResults = null)
     {
         $this->cleanError();
         $this->prepareToken();
 
+        $maxResults = empty($maxResults)? $this->maxResults : $maxResults;
+
         try {
-            $authorization = $this->getAuthorization();
-
             $url = $this->getURL(Constants::GET_GROUPS_URL);
-
-            $headers = array(
-                'Authorization' => $authorization,
-                'Content-Type' => 'application/json',
-                'User-Agent'=> $this->userAgent
-            );
+            $headers = $this->getAuthorizedHeader();
 
             $options = array(
                 'headers' => $headers
@@ -1807,7 +1629,7 @@ class OneLoginClient
 
             $groups = array();
             $afterCursor = null;
-            while (!isset($response) || (count($groups) < $limit && !empty($afterCursor))) {
+            while (!isset($response) || (count($groups) < $maxResults && !empty($afterCursor))) {
                 $response = $this->client->get(
                     $url,
                     $options
@@ -1816,7 +1638,7 @@ class OneLoginClient
             
                 if (isset($data)) {
                     foreach ($data as $groupData) {
-                        if (count($groups) < $limit) {
+                        if (count($groups) < $maxResults) {
                             $groups[] = new Group($groupData);
                         } else {
                             return $groups;
@@ -1859,15 +1681,8 @@ class OneLoginClient
         $this->prepareToken();
 
         try {
-            $authorization = $this->getAuthorization();
-
             $url = $this->getURL(Constants::GET_GROUP_URL, $id);
-
-            $headers = array(
-                'Authorization' => $authorization,
-                'Content-Type' => 'application/json',
-                'User-Agent'=> $this->userAgent
-            );
+            $headers = $this->getAuthorizedHeader();
 
             $response = $this->client->get(
                 $url,
@@ -1917,15 +1732,8 @@ class OneLoginClient
         $this->prepareToken();
 
         try {
-            $authorization = $this->getAuthorization();
-
             $url = $this->getURL(Constants::GET_SAML_ASSERTION_URL);
-
-            $headers = array(
-                'Authorization' => $authorization,
-                'Content-Type' => 'application/json',
-                'User-Agent'=> $this->userAgent
-            );
+            $headers = $this->getAuthorizedHeader();
 
             $data = array(
                 "username_or_email" => $usernameOrEmail,
@@ -1982,19 +1790,13 @@ class OneLoginClient
         $this->prepareToken();
 
         try {
-            $authorization = $this->getAuthorization();
-
             if (empty($urlEndpoint)) {
                 $url = $this->getURL(Constants::GET_SAML_VERIFY_FACTOR);
             } else {
                 $url = $urlEndpoint;
             }
 
-            $headers = array(
-                'Authorization' => $authorization,
-                'Content-Type' => 'application/json',
-                'User-Agent'=> $this->userAgent
-            );
+            $headers = $this->getAuthorizedHeader();
 
             $data = array(
                 "app_id" => $appId,
@@ -2045,17 +1847,11 @@ class OneLoginClient
         $this->prepareToken();
 
         try {
-            $authorization = $this->getAuthorization();
-
             $url = $this->getURL(Constants::GENERATE_INVITE_LINK_URL);
+            $headers = $this->getAuthorizedHeader();
 
             $data = array(
                 "email" => $email
-            );
-
-            $headers = array(
-                'Authorization' => $authorization,
-                'User-Agent'=> $this->userAgent
             );
 
             $response = $this->client->post(
@@ -2100,9 +1896,8 @@ class OneLoginClient
         $this->prepareToken();
 
         try {
-            $authorization = $this->getAuthorization();
-
             $url = $this->getURL(Constants::SEND_INVITE_LINK_URL);
+            $headers = $this->getAuthorizedHeader();
 
             $data = array(
                 "email" => $email
@@ -2111,11 +1906,6 @@ class OneLoginClient
             if (!empty($personalEmail)) {
                 $data["personal_email"] = $personalEmail;
             }
-
-            $headers = array(
-                'Authorization' => $authorization,
-                'User-Agent'=> $this->userAgent
-            );
 
             $response = $this->client->post(
                 $url,
@@ -2158,14 +1948,13 @@ class OneLoginClient
 
         try {
             $url = Constants::EMBED_APP_URL;
+            $headers = array (
+                'User-Agent'=> $this->userAgent
+            );
 
             $data = array(
                 "token" => $token,
                 "email" => $email
-            );
-
-            $headers = array (
-                'User-Agent'=> $this->userAgent
             );
 
             $apps = null;

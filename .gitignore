@@ -1,9 +1,0 @@
-autoload.php
-AppTest.php
-composer.lock
-onelogin.sdk.ini
-vendor/
-docs/
-build/
-test/build/
-
