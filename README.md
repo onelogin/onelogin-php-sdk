@@ -73,6 +73,13 @@ $token2 = $client->refreshToken();
 $client->revokeToken();
 ```
 
+### Searchs
+
+By default a search (getUsers, getEvents, getRoles, getGroups) will return
+a max of results determined by the client parameter maxResults (1000), but
+the search accept this parameter to get a different number of results.
+The max_results attribute of the client can be also overriden.
+
 ### Available Methods
 
 ```php
@@ -97,12 +104,11 @@ $queryParameters = array (
 );
 $usersFiltered2 = $client->getUsers($queryParameters);
 
-/* Get Users with limit */
+/* Get 10 Users with role_id 2 */
 $queryParameters = array (
-    "limit" => "3"
+    "role_id" => 2
 );
-$usersFilteredLimited = $client->getUsers($queryParameters);
-
+$usersFilteredByRoleId = $client->getUsers($queryParameters, 10);
 
 /* Get User By ID */
 $user = $client->getUser($usersFiltered[0]->id);
