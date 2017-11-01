@@ -1,0 +1,298 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>API Documentation » \OneLogin\api\models\UserData</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">API Documentation</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Namespaces</a></li>
+<li><a href="../namespaces/OneLogin.html"><i class="icon-th"></i> OneLogin</a></li>
+<li><a>Packages</a></li>
+<li><a href="../packages/Default.html"><i class="icon-folder-open"></i> Default</a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<div xmlns:php="http://php.net/xsl" class="btn-toolbar">
+<div class="btn-group visibility" data-toggle="buttons-checkbox">
+<button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button>
+</div>
+<div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+</div>
+<ul xmlns:php="http://php.net/xsl" class="side-nav nav nav-list"><li class="nav-header">
+<i title="Properties" class="icon-custom icon-property"></i> Properties
+                    <ul>
+<li class="property public "><a href="#property_company" title="$company() :: "><span class="description"></span><pre>$company</pre></a></li>
+<li class="property public "><a href="#property_department" title="$department() :: "><span class="description"></span><pre>$department</pre></a></li>
+<li class="property public "><a href="#property_directoryId" title="$directoryId() :: "><span class="description"></span><pre>$directoryId</pre></a></li>
+<li class="property public "><a href="#property_distinguishedName" title="$distinguishedName() :: "><span class="description"></span><pre>$distinguishedName</pre></a></li>
+<li class="property public "><a href="#property_email" title="$email() :: "><span class="description"></span><pre>$email</pre></a></li>
+<li class="property public "><a href="#property_externalId" title="$externalId() :: "><span class="description"></span><pre>$externalId</pre></a></li>
+<li class="property public "><a href="#property_firstname" title="$firstname() :: "><span class="description"></span><pre>$firstname</pre></a></li>
+<li class="property public "><a href="#property_id" title="$id() :: "><span class="description"></span><pre>$id</pre></a></li>
+<li class="property public "><a href="#property_lastname" title="$lastname() :: "><span class="description"></span><pre>$lastname</pre></a></li>
+<li class="property public "><a href="#property_localeCode" title="$localeCode() :: "><span class="description"></span><pre>$localeCode</pre></a></li>
+<li class="property public "><a href="#property_managerAdId" title="$managerAdId() :: "><span class="description"></span><pre>$managerAdId</pre></a></li>
+<li class="property public "><a href="#property_memberOf" title="$memberOf() :: "><span class="description"></span><pre>$memberOf</pre></a></li>
+<li class="property public "><a href="#property_openidName" title="$openidName() :: "><span class="description"></span><pre>$openidName</pre></a></li>
+<li class="property public "><a href="#property_phone" title="$phone() :: "><span class="description"></span><pre>$phone</pre></a></li>
+<li class="property public "><a href="#property_samaccountname" title="$samaccountname() :: "><span class="description"></span><pre>$samaccountname</pre></a></li>
+<li class="property public "><a href="#property_status" title="$status() :: "><span class="description"></span><pre>$status</pre></a></li>
+<li class="property public "><a href="#property_trustedIdPId" title="$trustedIdPId() :: "><span class="description"></span><pre>$trustedIdPId</pre></a></li>
+<li class="property public "><a href="#property_username" title="$username() :: "><span class="description"></span><pre>$username</pre></a></li>
+<li class="property public "><a href="#property_userprincipalname" title="$userprincipalname() :: "><span class="description"></span><pre>$userprincipalname</pre></a></li>
+</ul>
+</li></ul>
+</div>
+<div class="span8">
+<a xmlns:php="http://php.net/xsl" id="\OneLogin\api\models\UserData"></a><ul xmlns:php="http://php.net/xsl" class="breadcrumb">
+<li>
+<a href="../index.html"><i title="Classes" class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/OneLogin.html">OneLogin</a></li>
+<li>
+<span class="divider">\</span><a href="../namespaces/OneLogin.api.html">api</a>
+</li>
+<li>
+<span class="divider">\</span><a href="../namespaces/OneLogin.api.models.html">models</a>
+</li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/OneLogin.api.models.UserData.html">UserData</a>
+</li>
+</ul>
+<div xmlns:php="http://php.net/xsl" class="element class">
+<p class="short_description"></p>
+<div class="details">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>package</th>
+<td><a href="../packages/Default.html">Default</a></td>
+</tr></table>
+<h3>
+<i title="Properties" class="icon-custom icon-property"></i> Properties</h3>
+<a id="property_company"> </a><div class="element clickable property public property_company" data-toggle="collapse" data-target=".property_company .collapse" title="public">
+<h2>$company</h2>
+<pre>$company : string</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_department"> </a><div class="element clickable property public property_department" data-toggle="collapse" data-target=".property_department .collapse" title="public">
+<h2>$department</h2>
+<pre>$department : string</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_directoryId"> </a><div class="element clickable property public property_directoryId" data-toggle="collapse" data-target=".property_directoryId .collapse" title="public">
+<h2>$directoryId</h2>
+<pre>$directoryId : integer</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_distinguishedName"> </a><div class="element clickable property public property_distinguishedName" data-toggle="collapse" data-target=".property_distinguishedName .collapse" title="public">
+<h2>$distinguishedName</h2>
+<pre>$distinguishedName : string</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_email"> </a><div class="element clickable property public property_email" data-toggle="collapse" data-target=".property_email .collapse" title="public">
+<h2>$email</h2>
+<pre>$email : string</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_externalId"> </a><div class="element clickable property public property_externalId" data-toggle="collapse" data-target=".property_externalId .collapse" title="public">
+<h2>$externalId</h2>
+<pre>$externalId : integer</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_firstname"> </a><div class="element clickable property public property_firstname" data-toggle="collapse" data-target=".property_firstname .collapse" title="public">
+<h2>$firstname</h2>
+<pre>$firstname : string</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_id"> </a><div class="element clickable property public property_id" data-toggle="collapse" data-target=".property_id .collapse" title="public">
+<h2>$id</h2>
+<pre>$id : integer</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_lastname"> </a><div class="element clickable property public property_lastname" data-toggle="collapse" data-target=".property_lastname .collapse" title="public">
+<h2>$lastname</h2>
+<pre>$lastname : string</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_localeCode"> </a><div class="element clickable property public property_localeCode" data-toggle="collapse" data-target=".property_localeCode .collapse" title="public">
+<h2>$localeCode</h2>
+<pre>$localeCode : string</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_managerAdId"> </a><div class="element clickable property public property_managerAdId" data-toggle="collapse" data-target=".property_managerAdId .collapse" title="public">
+<h2>$managerAdId</h2>
+<pre>$managerAdId : integer</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_memberOf"> </a><div class="element clickable property public property_memberOf" data-toggle="collapse" data-target=".property_memberOf .collapse" title="public">
+<h2>$memberOf</h2>
+<pre>$memberOf : string</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_openidName"> </a><div class="element clickable property public property_openidName" data-toggle="collapse" data-target=".property_openidName .collapse" title="public">
+<h2>$openidName</h2>
+<pre>$openidName : string</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_phone"> </a><div class="element clickable property public property_phone" data-toggle="collapse" data-target=".property_phone .collapse" title="public">
+<h2>$phone</h2>
+<pre>$phone : string</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_samaccountname"> </a><div class="element clickable property public property_samaccountname" data-toggle="collapse" data-target=".property_samaccountname .collapse" title="public">
+<h2>$samaccountname</h2>
+<pre>$samaccountname : string</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_status"> </a><div class="element clickable property public property_status" data-toggle="collapse" data-target=".property_status .collapse" title="public">
+<h2>$status</h2>
+<pre>$status : integer</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_trustedIdPId"> </a><div class="element clickable property public property_trustedIdPId" data-toggle="collapse" data-target=".property_trustedIdPId .collapse" title="public">
+<h2>$trustedIdPId</h2>
+<pre>$trustedIdPId : integer</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_username"> </a><div class="element clickable property public property_username" data-toggle="collapse" data-target=".property_username .collapse" title="public">
+<h2>$username</h2>
+<pre>$username : string</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_userprincipalname"> </a><div class="element clickable property public property_userprincipalname" data-toggle="collapse" data-target=".property_userprincipalname .collapse" title="public">
+<h2>$userprincipalname</h2>
+<pre>$userprincipalname : string</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.9.0</a> and<br>
+            generated on 2017-10-23T15:03:28+02:00.<br></footer></div>
+</div>
+</body>
+</html>

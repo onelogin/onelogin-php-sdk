@@ -1,0 +1,1227 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>API Documentation » \OneLogin\api\OneLoginClient</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">API Documentation</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Namespaces</a></li>
+<li><a href="../namespaces/OneLogin.html"><i class="icon-th"></i> OneLogin</a></li>
+<li><a>Packages</a></li>
+<li><a href="../packages/Default.html"><i class="icon-folder-open"></i> Default</a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<div xmlns:php="http://php.net/xsl" class="btn-toolbar">
+<div class="btn-group visibility" data-toggle="buttons-checkbox">
+<button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button>
+</div>
+<div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+</div>
+<ul xmlns:php="http://php.net/xsl" class="side-nav nav nav-list">
+<li class="nav-header">
+<i title="Methods" class="icon-custom icon-method"></i> Methods
+                    <ul>
+<li class="method public "><a href="#method___construct" title="__construct() :: Create a new instance of Client."><span class="description">Create a new instance of Client.</span><pre>__construct()</pre></a></li>
+<li class="method public "><a href="#method_assignRoleToUser" title="assignRoleToUser() :: Assigns Roles to User"><span class="description">Assigns Roles to User</span><pre>assignRoleToUser()</pre></a></li>
+<li class="method public "><a href="#method_cleanError" title="cleanError() :: Clean any previous error registered at the client."><span class="description">Clean any previous error registered at the client.</span><pre>cleanError()</pre></a></li>
+<li class="method public "><a href="#method_createEvent" title="createEvent() :: Create an event in the OneLogin event log."><span class="description">Create an event in the OneLogin event log.</span><pre>createEvent()</pre></a></li>
+<li class="method public "><a href="#method_createSessionLoginToken" title="createSessionLoginToken() :: Generates a session login token in scenarios in which MFA may or may not be required."><span class="description">Generates a session login token in scenarios in which MFA may or may not be required.</span><pre>createSessionLoginToken()</pre></a></li>
+<li class="method public "><a href="#method_createSessionViaToken" title="createSessionViaToken() :: Post a session token to this API endpoint to start a session and set a cookie to log a user into an app."><span class="description">Post a session token to this API endpoint to start a session and set a cookie to log a user into an app.</span><pre>createSessionViaToken()</pre></a></li>
+<li class="method public "><a href="#method_createUser" title="createUser() :: Creates an user"><span class="description">Creates an user</span><pre>createUser()</pre></a></li>
+<li class="method public "><a href="#method_deleteUser" title="deleteUser() :: Deletes an user"><span class="description">Deletes an user</span><pre>deleteUser()</pre></a></li>
+<li class="method public "><a href="#method_generateInviteLink" title="generateInviteLink() :: Generates an invite link for a user that you have already created in your OneLogin account."><span class="description">Generates an invite link for a user that you have already created in your OneLogin account.</span><pre>generateInviteLink()</pre></a></li>
+<li class="method public "><a href="#method_getAccessToken" title="getAccessToken() :: Generates an access token and refresh token that you may use to
+ call Onelogin's API methods."><span class="description">Generates an access token and refresh token that you may use to
+ call Onelogin's API methods.</span><pre>getAccessToken()</pre></a></li>
+<li class="method public "><a href="#method_getCustomAttributes" title="getCustomAttributes() :: Gets a list of all custom attribute fields (also known as custom user fields) that have been defined for OL account."><span class="description">Gets a list of all custom attribute fields (also known as custom user fields) that have been defined for OL account.</span><pre>getCustomAttributes()</pre></a></li>
+<li class="method public "><a href="#method_getEmbedApps" title="getEmbedApps() :: Lists apps accessible by a OneLogin user."><span class="description">Lists apps accessible by a OneLogin user.</span><pre>getEmbedApps()</pre></a></li>
+<li class="method public "><a href="#method_getError" title="getError() :: "><span class="description">getError()
+        </span><pre>getError()</pre></a></li>
+<li class="method public "><a href="#method_getErrorDescription" title="getErrorDescription() :: "><span class="description">getErrorDescription()
+        </span><pre>getErrorDescription()</pre></a></li>
+<li class="method public "><a href="#method_getEvent" title="getEvent() :: Gets Event by ID."><span class="description">Gets Event by ID.</span><pre>getEvent()</pre></a></li>
+<li class="method public "><a href="#method_getEventTypes" title="getEventTypes() :: List of all OneLogin event types available to the Events API."><span class="description">List of all OneLogin event types available to the Events API.</span><pre>getEventTypes()</pre></a></li>
+<li class="method public "><a href="#method_getEvents" title="getEvents() :: Gets a list of Event resources. (if no limit provided, by default get 50 elements)"><span class="description">Gets a list of Event resources. (if no limit provided, by default get 50 elements)</span><pre>getEvents()</pre></a></li>
+<li class="method public "><a href="#method_getGroup" title="getGroup() :: Gets Group by ID."><span class="description">Gets Group by ID.</span><pre>getGroup()</pre></a></li>
+<li class="method public "><a href="#method_getGroups" title="getGroups() :: Gets a list of Group resources (element of groups limited with the limit parameter)."><span class="description">Gets a list of Group resources (element of groups limited with the limit parameter).</span><pre>getGroups()</pre></a></li>
+<li class="method public "><a href="#method_getRateLimit" title="getRateLimit() :: Gets current rate limit details about an access token."><span class="description">Gets current rate limit details about an access token.</span><pre>getRateLimit()</pre></a></li>
+<li class="method public "><a href="#method_getRole" title="getRole() :: Gets Role by ID."><span class="description">Gets Role by ID.</span><pre>getRole()</pre></a></li>
+<li class="method public "><a href="#method_getRoles" title="getRoles() :: Gets a list of Role resources."><span class="description">Gets a list of Role resources.</span><pre>getRoles()</pre></a></li>
+<li class="method public "><a href="#method_getSAMLAssertion" title="getSAMLAssertion() :: Generates a SAML Assertion."><span class="description">Generates a SAML Assertion.</span><pre>getSAMLAssertion()</pre></a></li>
+<li class="method public "><a href="#method_getSAMLAssertionVerifying" title="getSAMLAssertionVerifying() :: Verifies a one-time password (OTP) value provided for a second factor
+when multi-factor authentication (MFA) is required for SAML authentication."><span class="description">Verifies a one-time password (OTP) value provided for a second factor
+when multi-factor authentication (MFA) is required for SAML authentication.</span><pre>getSAMLAssertionVerifying()</pre></a></li>
+<li class="method public "><a href="#method_getSessionTokenVerified" title="getSessionTokenVerified() :: Verify a one-time password (OTP) value provided for multi-factor authentication (MFA)."><span class="description">Verify a one-time password (OTP) value provided for multi-factor authentication (MFA).</span><pre>getSessionTokenVerified()</pre></a></li>
+<li class="method public "><a href="#method_getUrl" title="getUrl() :: "><span class="description">getUrl()
+        </span><pre>getUrl()</pre></a></li>
+<li class="method public "><a href="#method_getUser" title="getUser() :: Gets User by ID."><span class="description">Gets User by ID.</span><pre>getUser()</pre></a></li>
+<li class="method public "><a href="#method_getUserApps" title="getUserApps() :: Gets a list of apps accessible by a user, not including personal apps."><span class="description">Gets a list of apps accessible by a user, not including personal apps.</span><pre>getUserApps()</pre></a></li>
+<li class="method public "><a href="#method_getUserRoles" title="getUserRoles() :: Gets a list of role IDs that have been assigned to a user."><span class="description">Gets a list of role IDs that have been assigned to a user.</span><pre>getUserRoles()</pre></a></li>
+<li class="method public "><a href="#method_getUsers" title="getUsers() :: Gets a list of User resources."><span class="description">Gets a list of User resources.</span><pre>getUsers()</pre></a></li>
+<li class="method public "><a href="#method_isExpired" title="isExpired() :: "><span class="description">isExpired()
+        </span><pre>isExpired()</pre></a></li>
+<li class="method public "><a href="#method_lockUser" title="lockUser() :: Use this call to lock a user's account based on the policy assigned to
+the user, for a specific time you define in the request, or until you
+unlock it."><span class="description">Use this call to lock a user's account based on the policy assigned to
+the user, for a specific time you define in the request, or until you
+unlock it.</span><pre>lockUser()</pre></a></li>
+<li class="method public "><a href="#method_logUserOut" title="logUserOut() :: Log a user out of any and all sessions."><span class="description">Log a user out of any and all sessions.</span><pre>logUserOut()</pre></a></li>
+<li class="method public "><a href="#method_refreshToken" title="refreshToken() :: Refreshing tokens provides a new set of access and refresh tokens."><span class="description">Refreshing tokens provides a new set of access and refresh tokens.</span><pre>refreshToken()</pre></a></li>
+<li class="method public "><a href="#method_removeRoleFromUser" title="removeRoleFromUser() :: Remove Role from User"><span class="description">Remove Role from User</span><pre>removeRoleFromUser()</pre></a></li>
+<li class="method public "><a href="#method_retrieveAppsFromXML" title="retrieveAppsFromXML() :: "><span class="description">retrieveAppsFromXML()
+        </span><pre>retrieveAppsFromXML()</pre></a></li>
+<li class="method public "><a href="#method_revokeToken" title="revokeToken() :: Revokes an access token and refresh token pair."><span class="description">Revokes an access token and refresh token pair.</span><pre>revokeToken()</pre></a></li>
+<li class="method public "><a href="#method_sendInviteLink" title="sendInviteLink() :: Sends an invite link to a user that you have already created in your OneLogin account."><span class="description">Sends an invite link to a user that you have already created in your OneLogin account.</span><pre>sendInviteLink()</pre></a></li>
+<li class="method public "><a href="#method_setCustomAttributeToUser" title="setCustomAttributeToUser() :: Set Custom Attribute Value"><span class="description">Set Custom Attribute Value</span><pre>setCustomAttributeToUser()</pre></a></li>
+<li class="method public "><a href="#method_setPasswordUsingClearText" title="setPasswordUsingClearText() :: Sets Password by ID Using Cleartext"><span class="description">Sets Password by ID Using Cleartext</span><pre>setPasswordUsingClearText()</pre></a></li>
+<li class="method public "><a href="#method_setPasswordUsingHashSalt" title="setPasswordUsingHashSalt() :: Set Password by ID Using Salt and SHA-256"><span class="description">Set Password by ID Using Salt and SHA-256</span><pre>setPasswordUsingHashSalt()</pre></a></li>
+<li class="method public "><a href="#method_updateUser" title="updateUser() :: Updates an user"><span class="description">Updates an user</span><pre>updateUser()</pre></a></li>
+</ul>
+</li>
+<li class="nav-header protected">» Protected
+                    <ul>
+<li class="method protected "><a href="#method_extractErrorMessageFromResponse" title="extractErrorMessageFromResponse() :: "><span class="description">extractErrorMessageFromResponse()
+        </span><pre>extractErrorMessageFromResponse()</pre></a></li>
+<li class="method protected "><a href="#method_getAfterCursor" title="getAfterCursor() :: "><span class="description">getAfterCursor()
+        </span><pre>getAfterCursor()</pre></a></li>
+<li class="method protected "><a href="#method_getAuthorization" title="getAuthorization() :: "><span class="description">getAuthorization()
+        </span><pre>getAuthorization()</pre></a></li>
+<li class="method protected "><a href="#method_getAuthorizedHeader" title="getAuthorizedHeader() :: "><span class="description">getAuthorizedHeader()
+        </span><pre>getAuthorizedHeader()</pre></a></li>
+<li class="method protected "><a href="#method_getBeforeCursor" title="getBeforeCursor() :: "><span class="description">getBeforeCursor()
+        </span><pre>getBeforeCursor()</pre></a></li>
+<li class="method protected "><a href="#method_handleDataResponse" title="handleDataResponse() :: "><span class="description">handleDataResponse()
+        </span><pre>handleDataResponse()</pre></a></li>
+<li class="method protected "><a href="#method_handleOperationResponse" title="handleOperationResponse() :: "><span class="description">handleOperationResponse()
+        </span><pre>handleOperationResponse()</pre></a></li>
+<li class="method protected "><a href="#method_handleSAMLEndpointResponse" title="handleSAMLEndpointResponse() :: "><span class="description">handleSAMLEndpointResponse()
+        </span><pre>handleSAMLEndpointResponse()</pre></a></li>
+<li class="method protected "><a href="#method_handleSessionTokenResponse" title="handleSessionTokenResponse() :: "><span class="description">handleSessionTokenResponse()
+        </span><pre>handleSessionTokenResponse()</pre></a></li>
+<li class="method protected "><a href="#method_handleTokenResponse" title="handleTokenResponse() :: "><span class="description">handleTokenResponse()
+        </span><pre>handleTokenResponse()</pre></a></li>
+<li class="method protected "><a href="#method_prepareToken" title="prepareToken() :: "><span class="description">prepareToken()
+        </span><pre>prepareToken()</pre></a></li>
+</ul>
+</li>
+<li class="nav-header">
+<i title="Properties" class="icon-custom icon-property"></i> Properties
+                    <ul>
+<li class="property public "><a href="#property_clientID" title="$clientID() :: "><span class="description">OneLogin Client ID</span><pre>$clientID</pre></a></li>
+<li class="property public "><a href="#property_clientSecret" title="$clientSecret() :: "><span class="description">OneLogin Client</span><pre>$clientSecret</pre></a></li>
+<li class="property public "><a href="#property_maxResults" title="$maxResults() :: "><span class="description">Limit the number of elements returned in a search</span><pre>$maxResults</pre></a></li>
+<li class="property public "><a href="#property_urlBuilder" title="$urlBuilder() :: "><span class="description">Aux object to build the API URL endpoints</span><pre>$urlBuilder</pre></a></li>
+<li class="property public "><a href="#property_userAgent" title="$userAgent() :: "><span class="description">the User-Agent to be used on requests</span><pre>$userAgent</pre></a></li>
+</ul>
+</li>
+<li class="nav-header protected">» Protected
+                    <ul>
+<li class="property protected "><a href="#property_accessToken" title="$accessToken() :: "><span class="description">OAuth 2.0 Access Token</span><pre>$accessToken</pre></a></li>
+<li class="property protected "><a href="#property_client" title="$client() :: "><span class="description">client</span><pre>$client</pre></a></li>
+<li class="property protected "><a href="#property_error" title="$error() :: "><span class="description">Last error found</span><pre>$error</pre></a></li>
+<li class="property protected "><a href="#property_errorDescription" title="$errorDescription() :: "><span class="description">Description of last error found</span><pre>$errorDescription</pre></a></li>
+<li class="property protected "><a href="#property_expiration" title="$expiration() :: "><span class="description">OAuth 2.0 Token expiration</span><pre>$expiration</pre></a></li>
+<li class="property protected "><a href="#property_refreshToken" title="$refreshToken() :: "><span class="description">OAuth 2.0 Refresh Token</span><pre>$refreshToken</pre></a></li>
+</ul>
+</li>
+<li class="nav-header">
+<i title="Constants" class="icon-custom icon-constant"></i> Constants
+                    <ul>
+<li class="constant  "><a href="#constant_CUSTOM_USER_AGENT" title="CUSTOM_USER_AGENT() :: "><span class="description">CUSTOM_USER_AGENT</span><pre>CUSTOM_USER_AGENT</pre></a></li>
+<li class="constant  "><a href="#constant_VERSION" title="VERSION() :: "><span class="description">VERSION</span><pre>VERSION</pre></a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="span8">
+<a xmlns:php="http://php.net/xsl" id="\OneLogin\api\OneLoginClient"></a><ul xmlns:php="http://php.net/xsl" class="breadcrumb">
+<li>
+<a href="../index.html"><i title="Classes" class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/OneLogin.html">OneLogin</a></li>
+<li>
+<span class="divider">\</span><a href="../namespaces/OneLogin.api.html">api</a>
+</li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/OneLogin.api.OneLoginClient.html">OneLoginClient</a>
+</li>
+</ul>
+<div xmlns:php="http://php.net/xsl" class="element class">
+<p class="short_description">OneLogin client implementation</p>
+<div class="details">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>package</th>
+<td><a href="../packages/Default.html">Default</a></td>
+</tr></table>
+<h3>
+<i title="Methods" class="icon-custom icon-method"></i> Methods</h3>
+<a id="method___construct"></a><div class="element clickable method public method___construct " data-toggle="collapse" data-target=".method___construct .collapse" title="public">
+<h2>Create a new instance of Client.</h2>
+<pre>__construct($clientId, $clientSecret, $region<code> = "us"</code>, $maxResults<code> = 1000</code>) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$clientId</h4></div>
+<div class="subelement argument"><h4>$clientSecret</h4></div>
+<div class="subelement argument"><h4>$region</h4></div>
+<div class="subelement argument"><h4>$maxResults</h4></div>
+</div></div>
+</div>
+<a id="method_assignRoleToUser"></a><div class="element clickable method public method_assignRoleToUser " data-toggle="collapse" data-target=".method_assignRoleToUser .collapse" title="public">
+<h2>Assigns Roles to User</h2>
+<pre>assignRoleToUser(\OneLogin\api\id $id, \OneLogin\api\roleIds $roleIds) : true</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td><a href="https://developers.onelogin.com/api-docs/1/users/assign-role-to-user">Assign Role to User documentation</a></td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$id</h4>
+<code>\OneLogin\api\id</code><p>Id of the user to be modified</p></div>
+<div class="subelement argument">
+<h4>$roleIds</h4>
+<code>\OneLogin\api\roleIds</code><p>Set to an array of one or more role IDs.</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>true</code>if success</div>
+</div></div>
+</div>
+<a id="method_cleanError"></a><div class="element clickable method public method_cleanError " data-toggle="collapse" data-target=".method_cleanError .collapse" title="public">
+<h2>Clean any previous error registered at the client.</h2>
+<pre>cleanError() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="method_createEvent"></a><div class="element clickable method public method_createEvent " data-toggle="collapse" data-target=".method_createEvent .collapse" title="public">
+<h2>Create an event in the OneLogin event log.</h2>
+<pre>createEvent(\OneLogin\api\eventParams $eventParams) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td><a href="https://developers.onelogin.com/api-docs/1/events/create-event">Create Event documentation</a></td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$eventParams</h4>
+<code>\OneLogin\api\eventParams</code><p>Event Data (event_type_id, account_id, actor_system,
+actor_user_id, actor_user_name, app_id,
+assuming_acting_user_id, custom_message,
+directory_sync_run_id, group_id, group_name,
+ipaddr, otp_device_id, otp_device_name,
+policy_id, policy_name, role_id, role_name,
+user_id, user_name)</p></div>
+</div></div>
+</div>
+<a id="method_createSessionLoginToken"></a><div class="element clickable method public method_createSessionLoginToken " data-toggle="collapse" data-target=".method_createSessionLoginToken .collapse" title="public">
+<h2>Generates a session login token in scenarios in which MFA may or may not be required.</h2>
+<pre>createSessionLoginToken(\OneLogin\api\queryParams $queryParams, \OneLogin\api\allowedOrigin $allowedOrigin<code> = ''</code>) : \OneLogin\api\models\SessionTokenInfo</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>A session login token expires two minutes after creation.</p></div>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td><a href="https://developers.onelogin.com/api-docs/1/users/create-session-login-token">Create Session Login Token documentation</a></td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$queryParams</h4>
+<code>\OneLogin\api\queryParams</code><p>Query Parameters (username_or_email, password, subdomain, return_to_url,
+ip_address, browser_id)</p></div>
+<div class="subelement argument">
+<h4>$allowedOrigin</h4>
+<code>\OneLogin\api\allowedOrigin</code><p>Custom-Allowed-Origin-Header. Required for CORS requests only. Set to the Origin URI
+from which you are allowed to send a request using CORS.</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>\OneLogin\api\models\SessionTokenInfo</code>or SessionTokenMFAInfo object if success</div>
+</div></div>
+</div>
+<a id="method_createSessionViaToken"></a><div class="element clickable method public method_createSessionViaToken " data-toggle="collapse" data-target=".method_createSessionViaToken .collapse" title="public">
+<h2>Post a session token to this API endpoint to start a session and set a cookie to log a user into an app.</h2>
+<pre>createSessionViaToken(\OneLogin\api\sessionToken $sessionToken) : \OneLogin\api\Header</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td><a href="https://github.com/onelogin/onelogin-api-examples/blob/master/php/users/session_via_api_token.php">Create Session Via API Token documentation</a></td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$sessionToken</h4>
+<code>\OneLogin\api\sessionToken</code><p>The session token</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>\OneLogin\api\Header</code>'Set-Cookie' value</div>
+</div></div>
+</div>
+<a id="method_createUser"></a><div class="element clickable method public method_createUser " data-toggle="collapse" data-target=".method_createUser .collapse" title="public">
+<h2>Creates an user</h2>
+<pre>createUser(\OneLogin\api\userParams $userParams) : \OneLogin\api\Created</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td><a href="https://developers.onelogin.com/api-docs/1/users/create-user">Create User documentation</a></td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$userParams</h4>
+<code>\OneLogin\api\userParams</code><p>User data (firstname, lastname, email, username, company,
+department, directory_id, distinguished_name,
+external_id, group_id, invalid_login_attempts,
+locale_code, manager_ad_id, member_of,
+openid_name, phone, samaccountname, title,
+userprincipalname)</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>\OneLogin\api\Created</code>User</div>
+</div></div>
+</div>
+<a id="method_deleteUser"></a><div class="element clickable method public method_deleteUser " data-toggle="collapse" data-target=".method_deleteUser .collapse" title="public">
+<h2>Deletes an user</h2>
+<pre>deleteUser(\OneLogin\api\id $id) : true</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td><a href="https://developers.onelogin.com/api-docs/1/users/delete-user">Delete User by ID documentation</a></td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$id</h4>
+<code>\OneLogin\api\id</code><p>Id of the user to be deleted</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>true</code>if success</div>
+</div></div>
+</div>
+<a id="method_generateInviteLink"></a><div class="element clickable method public method_generateInviteLink " data-toggle="collapse" data-target=".method_generateInviteLink .collapse" title="public">
+<h2>Generates an invite link for a user that you have already created in your OneLogin account.</h2>
+<pre>generateInviteLink(\OneLogin\api\email $email) : String</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td><a href="https://developers.onelogin.com/api-docs/1/invite-links/generate-invite-link">Generate Invite Link documentation</a></td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$email</h4>
+<code>\OneLogin\api\email</code><p>Set the email address of the user that you want to generate an invite link for.</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>String</code>with the link</div>
+</div></div>
+</div>
+<a id="method_getAccessToken"></a><div class="element clickable method public method_getAccessToken " data-toggle="collapse" data-target=".method_getAccessToken .collapse" title="public">
+<h2>Generates an access token and refresh token that you may use to
+ call Onelogin's API methods.</h2>
+<pre>getAccessToken() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td><a href="https://developers.onelogin.com/api-docs/1/oauth20-tokens/generate-tokens">Generate Tokens documentation.</a></td>
+</tr></table>
+</div></div>
+</div>
+<a id="method_getCustomAttributes"></a><div class="element clickable method public method_getCustomAttributes " data-toggle="collapse" data-target=".method_getCustomAttributes .collapse" title="public">
+<h2>Gets a list of all custom attribute fields (also known as custom user fields) that have been defined for OL account.</h2>
+<pre>getCustomAttributes() : \OneLogin\api\List</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td><a href="https://developers.onelogin.com/api-docs/1/users/get-custom-attributes">Get Custom Attributes documentation</a></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>\OneLogin\api\List</code>of custom attribute fields</div>
+</div></div>
+</div>
+<a id="method_getEmbedApps"></a><div class="element clickable method public method_getEmbedApps " data-toggle="collapse" data-target=".method_getEmbedApps .collapse" title="public">
+<h2>Lists apps accessible by a OneLogin user.</h2>
+<pre>getEmbedApps(\OneLogin\api\token $token, \OneLogin\api\email $email) : \OneLogin\api\A</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td><a href="https://developers.onelogin.com/api-docs/1/embed-apps/get-apps-to-embed-for-a-user">Get Apps to Embed for a User documentation</a></td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$token</h4>
+<code>\OneLogin\api\token</code><p>Provide your embedding token.</p></div>
+<div class="subelement argument">
+<h4>$email</h4>
+<code>\OneLogin\api\email</code><p>Provide the email of the user for which you want to return a list of embeddable apps.</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>\OneLogin\api\A</code>list of Apps</div>
+</div></div>
+</div>
+<a id="method_getError"></a><div class="element clickable method public method_getError " data-toggle="collapse" data-target=".method_getError .collapse" title="public">
+<h2>getError()
+        </h2>
+<pre>getError() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="method_getErrorDescription"></a><div class="element clickable method public method_getErrorDescription " data-toggle="collapse" data-target=".method_getErrorDescription .collapse" title="public">
+<h2>getErrorDescription()
+        </h2>
+<pre>getErrorDescription() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="method_getEvent"></a><div class="element clickable method public method_getEvent " data-toggle="collapse" data-target=".method_getEvent .collapse" title="public">
+<h2>Gets Event by ID.</h2>
+<pre>getEvent(\OneLogin\api\id $id) : \OneLogin\api\models\Event</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td><a href="https://developers.onelogin.com/api-docs/1/events/get-event-by-id">Get Event by ID documentation</a></td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$id</h4>
+<code>\OneLogin\api\id</code><p>Id of the event</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>\OneLogin\api\models\Event</code></div>
+</div></div>
+</div>
+<a id="method_getEventTypes"></a><div class="element clickable method public method_getEventTypes " data-toggle="collapse" data-target=".method_getEventTypes .collapse" title="public">
+<h2>List of all OneLogin event types available to the Events API.</h2>
+<pre>getEventTypes() : \OneLogin\api\List</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td><a href="https://developers.onelogin.com/api-docs/1/events/event-types">Get Event Types documentation</a></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>\OneLogin\api\List</code>of EventType</div>
+</div></div>
+</div>
+<a id="method_getEvents"></a><div class="element clickable method public method_getEvents " data-toggle="collapse" data-target=".method_getEvents .collapse" title="public">
+<h2>Gets a list of Event resources. (if no limit provided, by default get 50 elements)</h2>
+<pre>getEvents(\OneLogin\api\queryParameters $queryParameters<code> = null</code>, \OneLogin\api\maxResults $maxResults<code> = null</code>) : \OneLogin\api\List</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td><a href="https://developers.onelogin.com/api-docs/1/events/get-events">Get Events documentation</a></td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$queryParameters</h4>
+<code>\OneLogin\api\queryParameters</code><p>Parameters to filter the result of the list</p></div>
+<div class="subelement argument">
+<h4>$maxResults</h4>
+<code>\OneLogin\api\maxResults</code><p>Limit the number of events returned (optional)</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>\OneLogin\api\List</code>of Event</div>
+</div></div>
+</div>
+<a id="method_getGroup"></a><div class="element clickable method public method_getGroup " data-toggle="collapse" data-target=".method_getGroup .collapse" title="public">
+<h2>Gets Group by ID.</h2>
+<pre>getGroup(\OneLogin\api\id $id) : \OneLogin\api\models\Group</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td><a href="https://developers.onelogin.com/api-docs/1/groups/get-group-by-id">Get Group by ID documentation</a></td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$id</h4>
+<code>\OneLogin\api\id</code><p>Id of the group</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>\OneLogin\api\models\Group</code></div>
+</div></div>
+</div>
+<a id="method_getGroups"></a><div class="element clickable method public method_getGroups " data-toggle="collapse" data-target=".method_getGroups .collapse" title="public">
+<h2>Gets a list of Group resources (element of groups limited with the limit parameter).</h2>
+<pre>getGroups(\OneLogin\api\maxResults $maxResults<code> = null</code>) : \OneLogin\api\List</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td><a href="https://developers.onelogin.com/api-docs/1/groups/get-groups">Get Groups documentation</a></td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$maxResults</h4>
+<code>\OneLogin\api\maxResults</code><p>Limit the number of groups returned (optional)</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>\OneLogin\api\List</code>of Group</div>
+</div></div>
+</div>
+<a id="method_getRateLimit"></a><div class="element clickable method public method_getRateLimit " data-toggle="collapse" data-target=".method_getRateLimit .collapse" title="public">
+<h2>Gets current rate limit details about an access token.</h2>
+<pre>getRateLimit() : \OneLogin\api\models\RateLimit</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td><a href="https://developers.onelogin.com/api-docs/1/oauth20-tokens/get-rate-limit">Get Rate Limit documentation</a></td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>\OneLogin\api\models\RateLimit</code>object</div>
+</div></div>
+</div>
+<a id="method_getRole"></a><div class="element clickable method public method_getRole " data-toggle="collapse" data-target=".method_getRole .collapse" title="public">
+<h2>Gets Role by ID.</h2>
+<pre>getRole(\OneLogin\api\id $id) : \OneLogin\api\models\Role</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td><a href="https://developers.onelogin.com/api-docs/1/roles/get-role-by-id">Get Role by ID documentation</a></td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$id</h4>
+<code>\OneLogin\api\id</code><p>Id of the role</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>\OneLogin\api\models\Role</code></div>
+</div></div>
+</div>
+<a id="method_getRoles"></a><div class="element clickable method public method_getRoles " data-toggle="collapse" data-target=".method_getRoles .collapse" title="public">
+<h2>Gets a list of Role resources.</h2>
+<pre>getRoles(\OneLogin\api\queryParameters $queryParameters<code> = null</code>) : \OneLogin\api\List</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td><a href="https://developers.onelogin.com/api-docs/1/roles/get-roles">Get Roles documentation</a></td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$queryParameters</h4>
+<code>\OneLogin\api\queryParameters</code><p>Parameters to filter the result of the list</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>\OneLogin\api\List</code>of Role</div>
+</div></div>
+</div>
+<a id="method_getSAMLAssertion"></a><div class="element clickable method public method_getSAMLAssertion " data-toggle="collapse" data-target=".method_getSAMLAssertion .collapse" title="public">
+<h2>Generates a SAML Assertion.</h2>
+<pre>getSAMLAssertion(\OneLogin\api\usernameOrEmail $usernameOrEmail, \OneLogin\api\password $password, \OneLogin\api\appId $appId, \OneLogin\api\subdomain $subdomain, \OneLogin\api\ipAddress $ipAddress<code> = null</code>) : \OneLogin\api\models\SAMLEndpointResponse</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td><a href="https://developers.onelogin.com/api-docs/1/saml-assertions/generate-saml-assertion">Generate SAML Assertion documentation</a></td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$usernameOrEmail</h4>
+<code>\OneLogin\api\usernameOrEmail</code><p>username or email of the OneLogin user accessing the app</p></div>
+<div class="subelement argument">
+<h4>$password</h4>
+<code>\OneLogin\api\password</code><p>Password of the OneLogin user accessing the app</p></div>
+<div class="subelement argument">
+<h4>$appId</h4>
+<code>\OneLogin\api\appId</code><p>App ID of the app for which you want to generate a SAML token</p></div>
+<div class="subelement argument">
+<h4>$subdomain</h4>
+<code>\OneLogin\api\subdomain</code><p>subdomain of the OneLogin account related to the user/app</p></div>
+<div class="subelement argument">
+<h4>$ipAddress</h4>
+<code>\OneLogin\api\ipAddress</code><p>whitelisted IP address that needs to be bypassed (some MFA scenarios).</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>\OneLogin\api\models\SAMLEndpointResponse</code></div>
+</div></div>
+</div>
+<a id="method_getSAMLAssertionVerifying"></a><div class="element clickable method public method_getSAMLAssertionVerifying " data-toggle="collapse" data-target=".method_getSAMLAssertionVerifying .collapse" title="public">
+<h2>Verifies a one-time password (OTP) value provided for a second factor
+when multi-factor authentication (MFA) is required for SAML authentication.</h2>
+<pre>getSAMLAssertionVerifying(\OneLogin\api\appId $appId, \OneLogin\api\devideId $devideId, \OneLogin\api\stateToken $stateToken, \OneLogin\api\otpToken $otpToken<code> = null</code>, \OneLogin\api\urlEndpoint $urlEndpoint<code> = null</code>) : \OneLogin\api\models\SAMLEndpointResponse</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td><a href="https://developers.onelogin.com/api-docs/1/saml-assertions/verify-factor">Verify Factor documentation</a></td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$appId</h4>
+<code>\OneLogin\api\appId</code><p>App ID of the app for which you want to generate a SAML token</p></div>
+<div class="subelement argument">
+<h4>$devideId</h4>
+<code>\OneLogin\api\devideId</code><p>Provide the MFA device_id you are submitting for verification.</p></div>
+<div class="subelement argument">
+<h4>$stateToken</h4>
+<code>\OneLogin\api\stateToken</code><p>Provide the state_token associated with the MFA device_id you are submitting for verification.</p></div>
+<div class="subelement argument">
+<h4>$otpToken</h4>
+<code>\OneLogin\api\otpToken</code><p>Provide the OTP value for the MFA factor you are submitting for verification.</p></div>
+<div class="subelement argument">
+<h4>$urlEndpoint</h4>
+<code>\OneLogin\api\urlEndpoint</code><p>Specify an url where return the response.</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>\OneLogin\api\models\SAMLEndpointResponse</code></div>
+</div></div>
+</div>
+<a id="method_getSessionTokenVerified"></a><div class="element clickable method public method_getSessionTokenVerified " data-toggle="collapse" data-target=".method_getSessionTokenVerified .collapse" title="public">
+<h2>Verify a one-time password (OTP) value provided for multi-factor authentication (MFA).</h2>
+<pre>getSessionTokenVerified(\OneLogin\api\devideId $devideId, \OneLogin\api\stateToken $stateToken, \OneLogin\api\otpToken $otpToken<code> = null</code>) : \OneLogin\api\Session</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td><a href="https://developers.onelogin.com/api-docs/1/users/verify-factor">Verify Factor documentation</a></td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$devideId</h4>
+<code>\OneLogin\api\devideId</code><p>Provide the MFA device_id you are submitting for verification.</p></div>
+<div class="subelement argument">
+<h4>$stateToken</h4>
+<code>\OneLogin\api\stateToken</code><p>Provide the state_token associated with the MFA device_id you are submitting for verification.</p></div>
+<div class="subelement argument">
+<h4>$otpToken</h4>
+<code>\OneLogin\api\otpToken</code><p>Provide the OTP value for the MFA factor you are submitting for verification.</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>\OneLogin\api\Session</code>Token</div>
+</div></div>
+</div>
+<a id="method_getUrl"></a><div class="element clickable method public method_getUrl " data-toggle="collapse" data-target=".method_getUrl .collapse" title="public">
+<h2>getUrl()
+        </h2>
+<pre>getUrl($base, $id<code> = null</code>) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$base</h4></div>
+<div class="subelement argument"><h4>$id</h4></div>
+</div></div>
+</div>
+<a id="method_getUser"></a><div class="element clickable method public method_getUser " data-toggle="collapse" data-target=".method_getUser .collapse" title="public">
+<h2>Gets User by ID.</h2>
+<pre>getUser(\OneLogin\api\id $id) : \OneLogin\api\models\User</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td><a href="https://developers.onelogin.com/api-docs/1/users/get-user-by-id">Get User by ID documentation</a></td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$id</h4>
+<code>\OneLogin\api\id</code><p>Id of the user</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>\OneLogin\api\models\User</code></div>
+</div></div>
+</div>
+<a id="method_getUserApps"></a><div class="element clickable method public method_getUserApps " data-toggle="collapse" data-target=".method_getUserApps .collapse" title="public">
+<h2>Gets a list of apps accessible by a user, not including personal apps.</h2>
+<pre>getUserApps(\OneLogin\api\id $id) : \OneLogin\api\List</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td><a href="https://developers.onelogin.com/api-docs/1/users/get-apps-for-user">Get Apps for a User documentation</a></td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$id</h4>
+<code>\OneLogin\api\id</code><p>Id of the user</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>\OneLogin\api\List</code>of Apps</div>
+</div></div>
+</div>
+<a id="method_getUserRoles"></a><div class="element clickable method public method_getUserRoles " data-toggle="collapse" data-target=".method_getUserRoles .collapse" title="public">
+<h2>Gets a list of role IDs that have been assigned to a user.</h2>
+<pre>getUserRoles(\OneLogin\api\id $id) : \OneLogin\api\List</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td><a href="https://developers.onelogin.com/api-docs/1/users/get-roles-for-user">Get Roles for a User documentation</a></td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$id</h4>
+<code>\OneLogin\api\id</code><p>Id of the role</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>\OneLogin\api\List</code>of Role Ids</div>
+</div></div>
+</div>
+<a id="method_getUsers"></a><div class="element clickable method public method_getUsers " data-toggle="collapse" data-target=".method_getUsers .collapse" title="public">
+<h2>Gets a list of User resources.</h2>
+<pre>getUsers(\OneLogin\api\queryParameters $queryParameters<code> = null</code>, \OneLogin\api\maxResults $maxResults<code> = null</code>) : Array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td><a href="https://developers.onelogin.com/api-docs/1/users/get-users">Get Users documentation</a></td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$queryParameters</h4>
+<code>\OneLogin\api\queryParameters</code><p>Parameters to filter the result of the list</p></div>
+<div class="subelement argument">
+<h4>$maxResults</h4>
+<code>\OneLogin\api\maxResults</code><p>Limit the number of users returned (optional)</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>Array</code>of User</div>
+</div></div>
+</div>
+<a id="method_isExpired"></a><div class="element clickable method public method_isExpired " data-toggle="collapse" data-target=".method_isExpired .collapse" title="public">
+<h2>isExpired()
+        </h2>
+<pre>isExpired() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="method_lockUser"></a><div class="element clickable method public method_lockUser " data-toggle="collapse" data-target=".method_lockUser .collapse" title="public">
+<h2>Use this call to lock a user's account based on the policy assigned to
+the user, for a specific time you define in the request, or until you
+unlock it.</h2>
+<pre>lockUser(\OneLogin\api\id $id, \OneLogin\api\minutes $minutes) : true</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td><a href="https://developers.onelogin.com/api-docs/1/users/lock-user-account">Lock User Account documentation</a></td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$id</h4>
+<code>\OneLogin\api\id</code><p>Id of the user to be locked</p></div>
+<div class="subelement argument">
+<h4>$minutes</h4>
+<code>\OneLogin\api\minutes</code><p>Set to the number of minutes for which you want to lock the user account. (0 to delegate on policy)</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>true</code>if success</div>
+</div></div>
+</div>
+<a id="method_logUserOut"></a><div class="element clickable method public method_logUserOut " data-toggle="collapse" data-target=".method_logUserOut .collapse" title="public">
+<h2>Log a user out of any and all sessions.</h2>
+<pre>logUserOut(\OneLogin\api\id $id) : true</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td><a href="https://developers.onelogin.com/api-docs/1/users/log-user-out">Log User Out documentation</a></td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$id</h4>
+<code>\OneLogin\api\id</code><p>Id of the user to be logged out</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>true</code>if success</div>
+</div></div>
+</div>
+<a id="method_refreshToken"></a><div class="element clickable method public method_refreshToken " data-toggle="collapse" data-target=".method_refreshToken .collapse" title="public">
+<h2>Refreshing tokens provides a new set of access and refresh tokens.</h2>
+<pre>refreshToken() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td><a href="https://developers.onelogin.com/api-docs/1/oauth20-tokens/refresh-tokens">Refresh Tokens documentation</a></td>
+</tr></table>
+</div></div>
+</div>
+<a id="method_removeRoleFromUser"></a><div class="element clickable method public method_removeRoleFromUser " data-toggle="collapse" data-target=".method_removeRoleFromUser .collapse" title="public">
+<h2>Remove Role from User</h2>
+<pre>removeRoleFromUser(\OneLogin\api\id $id, \OneLogin\api\roleIds $roleIds) : true</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td><a href="https://developers.onelogin.com/api-docs/1/users/remove-role-from-user">Remove Role from User documentation</a></td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$id</h4>
+<code>\OneLogin\api\id</code><p>Id of the user to be modified</p></div>
+<div class="subelement argument">
+<h4>$roleIds</h4>
+<code>\OneLogin\api\roleIds</code><p>Set to an array of one or more role IDs.</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>true</code>if success</div>
+</div></div>
+</div>
+<a id="method_retrieveAppsFromXML"></a><div class="element clickable method public method_retrieveAppsFromXML " data-toggle="collapse" data-target=".method_retrieveAppsFromXML .collapse" title="public">
+<h2>retrieveAppsFromXML()
+        </h2>
+<pre>retrieveAppsFromXML($xmlContent) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$xmlContent</h4></div>
+</div></div>
+</div>
+<a id="method_revokeToken"></a><div class="element clickable method public method_revokeToken " data-toggle="collapse" data-target=".method_revokeToken .collapse" title="public">
+<h2>Revokes an access token and refresh token pair.</h2>
+<pre>revokeToken() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td><a href="https://developers.onelogin.com/api-docs/1/oauth20-tokens/revoke-tokens">Revoke Tokens documentation</a></td>
+</tr></table>
+</div></div>
+</div>
+<a id="method_sendInviteLink"></a><div class="element clickable method public method_sendInviteLink " data-toggle="collapse" data-target=".method_sendInviteLink .collapse" title="public">
+<h2>Sends an invite link to a user that you have already created in your OneLogin account.</h2>
+<pre>sendInviteLink(\OneLogin\api\email $email, \OneLogin\api\personal_email $personalEmail<code> = null</code>) : True</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td><a href="https://developers.onelogin.com/api-docs/1/invite-links/send-invite-link">Send Invite Link documentation</a></td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$email</h4>
+<code>\OneLogin\api\email</code><p>Set to the email address of the user that you want to send an invite link for.</p></div>
+<div class="subelement argument">
+<h4>$personalEmail</h4>
+<code>\OneLogin\api\personal_email</code><p>If you want to send the invite email to an email other than the
+           one provided in email, provide it here. The invite link will be
+           sent to this address instead.</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>True</code>if the mail with the link was sent</div>
+</div></div>
+</div>
+<a id="method_setCustomAttributeToUser"></a><div class="element clickable method public method_setCustomAttributeToUser " data-toggle="collapse" data-target=".method_setCustomAttributeToUser .collapse" title="public">
+<h2>Set Custom Attribute Value</h2>
+<pre>setCustomAttributeToUser(\OneLogin\api\id $id, \OneLogin\api\customAttributes $customAttributes) : true</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td><a href="https://developers.onelogin.com/api-docs/1/users/set-custom-attribute">Set Custom Attribute Value documentation</a></td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$id</h4>
+<code>\OneLogin\api\id</code><p>Id of the user to be modified</p></div>
+<div class="subelement argument">
+<h4>$customAttributes</h4>
+<code>\OneLogin\api\customAttributes</code><p>Provide one or more key value pairs composed of the custom attribute field shortname and the value that you want to set the field to.</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>true</code>if success</div>
+</div></div>
+</div>
+<a id="method_setPasswordUsingClearText"></a><div class="element clickable method public method_setPasswordUsingClearText " data-toggle="collapse" data-target=".method_setPasswordUsingClearText .collapse" title="public">
+<h2>Sets Password by ID Using Cleartext</h2>
+<pre>setPasswordUsingClearText(\OneLogin\api\id $id, \OneLogin\api\password $password, \OneLogin\api\passwordConfirmation $passwordConfirmation) : true</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td><a href="https://developers.onelogin.com/api-docs/1/users/set-password-in-cleartext">Set Password by ID Using Cleartext documentation</a></td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$id</h4>
+<code>\OneLogin\api\id</code><p>Id of the user to be modified</p></div>
+<div class="subelement argument">
+<h4>$password</h4>
+<code>\OneLogin\api\password</code><p>Set to the password value using cleartext.</p></div>
+<div class="subelement argument">
+<h4>$passwordConfirmation</h4>
+<code>\OneLogin\api\passwordConfirmation</code><p>Ensure that this value matches the password value exactly.</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>true</code>if success</div>
+</div></div>
+</div>
+<a id="method_setPasswordUsingHashSalt"></a><div class="element clickable method public method_setPasswordUsingHashSalt " data-toggle="collapse" data-target=".method_setPasswordUsingHashSalt .collapse" title="public">
+<h2>Set Password by ID Using Salt and SHA-256</h2>
+<pre>setPasswordUsingHashSalt(\OneLogin\api\id $id, \OneLogin\api\password $password, \OneLogin\api\passwordConfirmation $passwordConfirmation, \OneLogin\api\passwordAlgorithm $passwordAlgorithm, \OneLogin\api\passwordSalt $passwordSalt<code> = null</code>) : true</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td><a href="https://developers.onelogin.com/api-docs/1/users/set-password-using-sha-256">Set Password by ID Using Salt and SHA-256 documentation</a></td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$id</h4>
+<code>\OneLogin\api\id</code><p>Id of the user to be modified</p></div>
+<div class="subelement argument">
+<h4>$password</h4>
+<code>\OneLogin\api\password</code><p>Set to the password value using a SHA-256-encoded value.</p></div>
+<div class="subelement argument">
+<h4>$passwordConfirmation</h4>
+<code>\OneLogin\api\passwordConfirmation</code><p>This value must match the password value.</p></div>
+<div class="subelement argument">
+<h4>$passwordAlgorithm</h4>
+<code>\OneLogin\api\passwordAlgorithm</code><p>Set to salt+sha256.</p></div>
+<div class="subelement argument">
+<h4>$passwordSalt</h4>
+<code>\OneLogin\api\passwordSalt</code><p>To provide your own salt value.</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>true</code>if success</div>
+</div></div>
+</div>
+<a id="method_updateUser"></a><div class="element clickable method public method_updateUser " data-toggle="collapse" data-target=".method_updateUser .collapse" title="public">
+<h2>Updates an user</h2>
+<pre>updateUser(\OneLogin\api\id $id, \OneLogin\api\userParams $userParams) : \OneLogin\api\Updated</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>see</th>
+<td><a href="https://developers.onelogin.com/api-docs/1/users/update-user">Update User by ID documentation</a></td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$id</h4>
+<code>\OneLogin\api\id</code><p>Id of the user to be modified</p></div>
+<div class="subelement argument">
+<h4>$userParams</h4>
+<code>\OneLogin\api\userParams</code><p>User data (firstname, lastname, email, username, company,
+department, directory_id, distinguished_name,
+external_id, group_id, invalid_login_attempts,
+locale_code, manager_ad_id, member_of,
+openid_name, phone, samaccountname, title,
+userprincipalname)</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>\OneLogin\api\Updated</code>User</div>
+</div></div>
+</div>
+<a id="method_extractErrorMessageFromResponse"></a><div class="element clickable method protected method_extractErrorMessageFromResponse " data-toggle="collapse" data-target=".method_extractErrorMessageFromResponse .collapse" title="protected">
+<h2>extractErrorMessageFromResponse()
+        </h2>
+<pre>extractErrorMessageFromResponse($response) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$response</h4></div>
+</div></div>
+</div>
+<a id="method_getAfterCursor"></a><div class="element clickable method protected method_getAfterCursor " data-toggle="collapse" data-target=".method_getAfterCursor .collapse" title="protected">
+<h2>getAfterCursor()
+        </h2>
+<pre>getAfterCursor($response) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$response</h4></div>
+</div></div>
+</div>
+<a id="method_getAuthorization"></a><div class="element clickable method protected method_getAuthorization " data-toggle="collapse" data-target=".method_getAuthorization .collapse" title="protected">
+<h2>getAuthorization()
+        </h2>
+<pre>getAuthorization($bearer<code> = true</code>) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$bearer</h4></div>
+</div></div>
+</div>
+<a id="method_getAuthorizedHeader"></a><div class="element clickable method protected method_getAuthorizedHeader " data-toggle="collapse" data-target=".method_getAuthorizedHeader .collapse" title="protected">
+<h2>getAuthorizedHeader()
+        </h2>
+<pre>getAuthorizedHeader($bearer<code> = true</code>) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$bearer</h4></div>
+</div></div>
+</div>
+<a id="method_getBeforeCursor"></a><div class="element clickable method protected method_getBeforeCursor " data-toggle="collapse" data-target=".method_getBeforeCursor .collapse" title="protected">
+<h2>getBeforeCursor()
+        </h2>
+<pre>getBeforeCursor($response) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$response</h4></div>
+</div></div>
+</div>
+<a id="method_handleDataResponse"></a><div class="element clickable method protected method_handleDataResponse " data-toggle="collapse" data-target=".method_handleDataResponse .collapse" title="protected">
+<h2>handleDataResponse()
+        </h2>
+<pre>handleDataResponse($response) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$response</h4></div>
+</div></div>
+</div>
+<a id="method_handleOperationResponse"></a><div class="element clickable method protected method_handleOperationResponse " data-toggle="collapse" data-target=".method_handleOperationResponse .collapse" title="protected">
+<h2>handleOperationResponse()
+        </h2>
+<pre>handleOperationResponse($response) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$response</h4></div>
+</div></div>
+</div>
+<a id="method_handleSAMLEndpointResponse"></a><div class="element clickable method protected method_handleSAMLEndpointResponse " data-toggle="collapse" data-target=".method_handleSAMLEndpointResponse .collapse" title="protected">
+<h2>handleSAMLEndpointResponse()
+        </h2>
+<pre>handleSAMLEndpointResponse($response) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$response</h4></div>
+</div></div>
+</div>
+<a id="method_handleSessionTokenResponse"></a><div class="element clickable method protected method_handleSessionTokenResponse " data-toggle="collapse" data-target=".method_handleSessionTokenResponse .collapse" title="protected">
+<h2>handleSessionTokenResponse()
+        </h2>
+<pre>handleSessionTokenResponse($response) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$response</h4></div>
+</div></div>
+</div>
+<a id="method_handleTokenResponse"></a><div class="element clickable method protected method_handleTokenResponse " data-toggle="collapse" data-target=".method_handleTokenResponse .collapse" title="protected">
+<h2>handleTokenResponse()
+        </h2>
+<pre>handleTokenResponse($response) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$response</h4></div>
+</div></div>
+</div>
+<a id="method_prepareToken"></a><div class="element clickable method protected method_prepareToken " data-toggle="collapse" data-target=".method_prepareToken .collapse" title="protected">
+<h2>prepareToken()
+        </h2>
+<pre>prepareToken() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<h3>
+<i title="Properties" class="icon-custom icon-property"></i> Properties</h3>
+<a id="property_clientID"> </a><div class="element clickable property public property_clientID" data-toggle="collapse" data-target=".property_clientID .collapse" title="public">
+<h2>OneLogin Client ID</h2>
+<pre>$clientID : string</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_clientSecret"> </a><div class="element clickable property public property_clientSecret" data-toggle="collapse" data-target=".property_clientSecret .collapse" title="public">
+<h2>OneLogin Client</h2>
+<pre>$clientSecret : string</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_maxResults"> </a><div class="element clickable property public property_maxResults" data-toggle="collapse" data-target=".property_maxResults .collapse" title="public">
+<h2>Limit the number of elements returned in a search</h2>
+<pre>$maxResults : integer</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_urlBuilder"> </a><div class="element clickable property public property_urlBuilder" data-toggle="collapse" data-target=".property_urlBuilder .collapse" title="public">
+<h2>Aux object to build the API URL endpoints</h2>
+<pre>$urlBuilder : \OneLogin\api\[Object]</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_userAgent"> </a><div class="element clickable property public property_userAgent" data-toggle="collapse" data-target=".property_userAgent .collapse" title="public">
+<h2>the User-Agent to be used on requests</h2>
+<pre>$userAgent : string</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_accessToken"> </a><div class="element clickable property protected property_accessToken" data-toggle="collapse" data-target=".property_accessToken .collapse" title="protected">
+<h2>OAuth 2.0 Access Token</h2>
+<pre>$accessToken : string</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_client"> </a><div class="element clickable property protected property_client" data-toggle="collapse" data-target=".property_client .collapse" title="protected">
+<h2>client</h2>
+<pre>$client : \OneLogin\api\GuzzleHttp\Client</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_error"> </a><div class="element clickable property protected property_error" data-toggle="collapse" data-target=".property_error .collapse" title="protected">
+<h2>Last error found</h2>
+<pre>$error : string</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_errorDescription"> </a><div class="element clickable property protected property_errorDescription" data-toggle="collapse" data-target=".property_errorDescription .collapse" title="protected">
+<h2>Description of last error found</h2>
+<pre>$errorDescription : string</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_expiration"> </a><div class="element clickable property protected property_expiration" data-toggle="collapse" data-target=".property_expiration .collapse" title="protected">
+<h2>OAuth 2.0 Token expiration</h2>
+<pre>$expiration : \OneLogin\api\DateTime</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_refreshToken"> </a><div class="element clickable property protected property_refreshToken" data-toggle="collapse" data-target=".property_refreshToken .collapse" title="protected">
+<h2>OAuth 2.0 Refresh Token</h2>
+<pre>$refreshToken : string</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<h3>
+<i title="Constants" class="icon-custom icon-constant"></i> Constants</h3>
+<a id="constant_CUSTOM_USER_AGENT"> </a><div class="element clickable constant  constant_CUSTOM_USER_AGENT" data-toggle="collapse" data-target=".constant_CUSTOM_USER_AGENT .collapse" title="">
+<h2>CUSTOM_USER_AGENT</h2>
+<pre>CUSTOM_USER_AGENT = "onelogin-php-sdk " . \OneLogin\api\OneLoginClient::VERSION </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_VERSION"> </a><div class="element clickable constant  constant_VERSION" data-toggle="collapse" data-target=".constant_VERSION .collapse" title="">
+<h2>VERSION</h2>
+<pre>VERSION = "1.0.0" </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.9.0</a> and<br>
+            generated on 2017-10-23T15:03:28+02:00.<br></footer></div>
+</div>
+</body>
+</html>
