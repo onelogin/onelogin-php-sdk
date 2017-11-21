@@ -25,12 +25,14 @@ class UrlBuilder
         return $this->region;
     }
 
-    public function getURL($base, $id = null)
+    public function getURL($base, $id = null, $extraId = null)
     {
-        if ($id != null) {
+        if (empty($id)) {
+            return sprintf($base, $this->region);
+        } else if (empty($extraId)) {
             return sprintf($base, $this->region, $id);
         } else {
-            return sprintf($base, $this->region);
+            return sprintf($base, $this->region, $id, $extraId);
         }
     }
 }

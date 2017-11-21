@@ -55,6 +55,13 @@ class Constants
     const GET_SAML_ASSERTION_URL = "https://api.%s.onelogin.com/api/1/saml_assertion";
     const GET_SAML_VERIFY_FACTOR = "https://api.%s.onelogin.com/api/1/saml_assertion/verify_factor";
 
+    // Multi-Factor Authentication URLs
+    const GET_FACTORS_URL = "https://api.%s.onelogin.com/api/1/users/%s/auth_factors";
+    const ENROLL_FACTOR_URL = "https://api.%s.onelogin.com/api/1/users/%s/otp_devices";
+    const GET_ENROLLED_FACTORS_URL = "https://api.%s.onelogin.com/api/1/:users/%s/;otp_devices";
+    const ACTIVATE_FACTOR_URL = "https://api.%s.onelogin.com/api/1/users/%s/otp_devices/%s/trigger";
+    const VERIFY_FACTOR_URL = "https://api.%s.onelogin.com/api/1/users/%s/otp_devices/%s/verify";
+
     // Invite Link URLS
     const GENERATE_INVITE_LINK_URL = "https://api.%s.onelogin.com/api/1/invites/get_invite_link";
     const SEND_INVITE_LINK_URL = "https://api.%s.onelogin.com/api/1/invites/send_invite_link";
