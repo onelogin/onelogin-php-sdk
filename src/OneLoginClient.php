@@ -2046,7 +2046,7 @@ class OneLoginClient
      *            MUST be provided if the needs_trigger attribute from
      *            the proceeding calls is set to true.
      *
-     * @return OTPDevice The MFA device
+     * @return Boolean True if Factor is verified
      *
      * @see https://developers.onelogin.com/api-docs/1/multi-factor-authentication/verify-factor Verify an Authentication Factor documentation
      */
