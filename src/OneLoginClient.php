@@ -1921,7 +1921,11 @@ class OneLoginClient
                 )
             );
 
-            return $this->handleOperationResponse($response);
+            $data = $this->handleDataResponse($response);
+
+            if (!empty($data)) {
+                return new OTPDevice($data[0]);
+            }
         } catch (ClientException $e) {
             $response = $e->getResponse();
             $this->error = $response->getStatusCode();
@@ -1930,7 +1934,6 @@ class OneLoginClient
             $this->error = 500;
             $this->errorDescription = $e->getMessage();
         }
-        return false;
     }
 
     /**
