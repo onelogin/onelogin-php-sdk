@@ -19,7 +19,7 @@ class App
     /** @var bool */
     public $extension;
 
-    /** @var int */
+    /** @var string */
     public $loginId;
 
     /** @var bool */
@@ -35,7 +35,7 @@ class App
         $this->icon = $data->icon;
         $this->provisioned = $data->provisioned;
         $this->extension = $data->extension;
-        $this->loginId = isset($data->login_id)? (int) $data->login_id : null;
+        $this->loginId = $data->login_id;
         $this->personal = $data->personal;
     }
 }
