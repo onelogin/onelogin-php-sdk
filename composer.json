@@ -11,5 +11,10 @@
     "suggest": {
          "ext-json": "*",
          "ext-dom": "*"
+    },
+    "autoload": {
+         "psr-4": {
+             "OneLogin\\api\\": "api/src/"   
+         }
     }
 }
