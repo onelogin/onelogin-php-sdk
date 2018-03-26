@@ -967,6 +967,50 @@ class OneLoginClient
     }
 
     /**
+     * Set the State for a user.
+     *
+     * @param id
+     *            Id of the user to be modified
+     * @param state
+     *            Set to the state value. Valid values: 0-3.
+     *
+     * @return true if success
+     *
+     * @see https://developers.onelogin.com/api-docs/1/users/set-state Set User State documentation
+     */
+    public function setStateToUser($id, $state)
+    {
+        $this->cleanError();
+        $this->prepareToken();
+
+        try {
+            $url = $this->getURL(Constants::SET_STATE_TO_USER_URL, $id);
+            $headers = $this->getAuthorizedHeader();
+
+            $data = array(
+                "state" => $state
+            );
+
+            $response = $this->client->put(
+                $url,
+                array(
+                    'json' => $data,
+                    'headers' => $headers
+                )
+            );
+            return $this->handleOperationResponse($response);
+        } catch (ClientException $e) {
+            $response = $e->getResponse();
+            $this->error = $response->getStatusCode();
+            $this->errorDescription = $this->extractErrorMessageFromResponse($response);
+        } catch (\Exception $e) {
+            $this->error = 500;
+            $this->errorDescription = $e->getMessage();
+        }
+        return false;
+    }
+
+    /**
      * Set Custom Attribute Value
      *
      * @param id

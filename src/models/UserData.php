@@ -37,6 +37,9 @@ class UserData
     /** @var int */
     public $status;
 
+    /** @var int */
+    public $state;
+
     /** @var string */
     public $memberOf;
 

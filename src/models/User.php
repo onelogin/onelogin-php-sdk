@@ -40,6 +40,9 @@ class User
     /** @var int */
     public $status;
 
+    /** @var int */
+    public $state;
+
     /** @var string */
     public $memberOf;
 
@@ -120,6 +123,7 @@ class User
         $this->company = isset($data->company)? $data->company : null;
         $this->department = isset($data->department)? $data->department : null;
         $this->status = isset($data->status)? (int) $data->status : null;
+        $this->state = isset($data->state)? (int) $data->state : null;
         $this->memberOf = isset($data->member_of)? $data->member_of : null;
         $this->samaccountname = isset($data->samaccountname)? $data->samaccountname : null;
         $this->userprincipalname = isset($data->userprincipalname)? $data->userprincipalname : null;
@@ -191,6 +195,7 @@ class User
         $userData->company = $this->company;
         $userData->department = $this->department;
         $userData->status = $this->status;
+        $userData->state = $this->state;
         $userData->memberOf = $this->memberOf;
         $userData->samaccountname = $this->samaccountname;
         $userData->userprincipalname = $this->userprincipalname;
@@ -236,6 +241,7 @@ class User
         $userParams["company"] = $this->company;
         $userParams["department"] = $this->department;
         $userParams["status"] = $this->status;
+        $userParams["state"] = $this->state;
         $userParams["member_of"] = $this->memberOf;
         $userParams["samaccountname"] = $this->samaccountname;
         $userParams["invalid_login_attempts"] = $this->invalidLoginAttempts;

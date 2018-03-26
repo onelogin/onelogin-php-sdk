@@ -31,6 +31,7 @@ class Constants
     const DELETE_ROLE_TO_USER_URL = "https://api.%s.onelogin.com/api/1/users/%s/remove_roles";
     const SET_PW_CLEARTEXT = "https://api.%s.onelogin.com/api/1/users/set_password_clear_text/%s";
     const SET_PW_SALT = "https://api.%s.onelogin.com/api/1/users/set_password_using_salt/%s";
+    const SET_STATE_TO_USER_URL = "https://api.%s.onelogin.com/api/1/users/%s/set_state";
     const SET_CUSTOM_ATTRIBUTE_TO_USER_URL = "https://api.%s.onelogin.com/api/1/users/%s/set_custom_attributes";
     const LOG_USER_OUT_URL = "https://api.%s.onelogin.com/api/1/users/%s/logout";
     const LOCK_USER_URL = "https://api.%s.onelogin.com/api/1/users/%s/lock_user";
