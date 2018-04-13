@@ -258,6 +258,9 @@ $enrollmentResponse = $client->activateFactor($userId, $deviceId);
 $otpToken="XXXXXXXXXX";
 $result = $client->verifyFactor($userId, $deviceId, $otpToken);
 
+# Remove Factor
+$result = $client->removeFactor($userId, $deviceId);
+
 /* Generate Invite Link */
 $urlLink = $client->generateInviteLink("user@example.com");
 

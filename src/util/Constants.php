@@ -59,9 +59,10 @@ class Constants
     // Multi-Factor Authentication URLs
     const GET_FACTORS_URL = "https://api.%s.onelogin.com/api/1/users/%s/auth_factors";
     const ENROLL_FACTOR_URL = "https://api.%s.onelogin.com/api/1/users/%s/otp_devices";
-    const GET_ENROLLED_FACTORS_URL = "https://api.%s.onelogin.com/api/1/:users/%s/;otp_devices";
+    const GET_ENROLLED_FACTORS_URL = "https://api.%s.onelogin.com/api/1/users/%s/otp_devices";
     const ACTIVATE_FACTOR_URL = "https://api.%s.onelogin.com/api/1/users/%s/otp_devices/%s/trigger";
     const VERIFY_FACTOR_URL = "https://api.%s.onelogin.com/api/1/users/%s/otp_devices/%s/verify";
+    const REMOVE_FACTOR_URL = "https://api.%s.onelogin.com/api/1/users/%s/otp_devices/%s";
 
     // Invite Link URLS
     const GENERATE_INVITE_LINK_URL = "https://api.%s.onelogin.com/api/1/invites/get_invite_link";

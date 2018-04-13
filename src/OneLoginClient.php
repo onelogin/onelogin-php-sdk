@@ -2139,6 +2139,45 @@ class OneLoginClient
         return false;
     }
 
+    /**
+     * Remove an enrolled factor from a user..
+     *
+     * @param userId
+     *            The id of the user.
+     * @param deviceId
+     *            The device_id of the MFA device.
+     * @return Boolean The result of the action
+     *
+     * @see https://developers.onelogin.com/api-docs/1/multi-factor-authentication/remove-factor Remove a Factor documentation
+     */
+    public function removeFactor($userId, $deviceId)
+    {
+        $this->cleanError();
+        $this->prepareToken();
+
+        try {
+            $url = $this->getURL(Constants::REMOVE_FACTOR_URL, $userId, $deviceId);
+            $headers = $this->getAuthorizedHeader();
+
+            $response = $this->client->delete(
+                $url,
+                array(
+                    'headers' => $headers
+                )
+            );
+
+            return $response->getStatusCode() == 200;
+        } catch (ClientException $e) {
+            $response = $e->getResponse();
+            $this->error = $response->getStatusCode();
+            $this->errorDescription = $this->extractErrorMessageFromResponse($response);
+        } catch (\Exception $e) {
+            $this->error = 500;
+            $this->errorDescription = $e->getMessage();
+        }
+        return false;
+    }
+
     ////////////////////////////
     //  Invite Links Methods  //
     ////////////////////////////
