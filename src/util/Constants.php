@@ -10,9 +10,9 @@ namespace OneLogin\api\util;
 class Constants
 {
     // OAuth2 Tokens URLs
-    const TOKEN_REQUEST_URL = "https://api.%s.onelogin.com/auth/oauth2/token";
-    const TOKEN_REFRESH_URL = "https://api.%s.onelogin.com/auth/oauth2/token";
-    const TOKEN_REVOKE_URL = "https://api.%s.onelogin.com/auth/oauth2/revoke";
+    const TOKEN_REQUEST_URL = "https://api.%s.onelogin.com/auth/oauth2/v2/token";
+    const TOKEN_REFRESH_URL = "https://api.%s.onelogin.com/auth/oauth2/v2/token";
+    const TOKEN_REVOKE_URL = "https://api.%s.onelogin.com/auth/oauth2/v2/revoke";
     const GET_RATE_URL = "https://api.%s.onelogin.com/auth/rate_limit";
 
     // User URLs

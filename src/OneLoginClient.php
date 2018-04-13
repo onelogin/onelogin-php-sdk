@@ -118,9 +118,7 @@ class OneLoginClient
     {
         $token = null;
         $content = json_decode($response->getBody());
-        if (property_exists($content, 'data')) {
-            $token = new OneLoginToken($content->data[0]);
-        }
+        $token = new OneLoginToken($content);
         return $token;
     }
 
