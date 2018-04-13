@@ -31,6 +31,7 @@ class Constants
     const DELETE_ROLE_TO_USER_URL = "https://api.%s.onelogin.com/api/1/users/%s/remove_roles";
     const SET_PW_CLEARTEXT = "https://api.%s.onelogin.com/api/1/users/set_password_clear_text/%s";
     const SET_PW_SALT = "https://api.%s.onelogin.com/api/1/users/set_password_using_salt/%s";
+    const SET_STATE_TO_USER_URL = "https://api.%s.onelogin.com/api/1/users/%s/set_state";
     const SET_CUSTOM_ATTRIBUTE_TO_USER_URL = "https://api.%s.onelogin.com/api/1/users/%s/set_custom_attributes";
     const LOG_USER_OUT_URL = "https://api.%s.onelogin.com/api/1/users/%s/logout";
     const LOCK_USER_URL = "https://api.%s.onelogin.com/api/1/users/%s/lock_user";
@@ -54,6 +55,13 @@ class Constants
     // SAML Assertion URLs
     const GET_SAML_ASSERTION_URL = "https://api.%s.onelogin.com/api/1/saml_assertion";
     const GET_SAML_VERIFY_FACTOR = "https://api.%s.onelogin.com/api/1/saml_assertion/verify_factor";
+
+    // Multi-Factor Authentication URLs
+    const GET_FACTORS_URL = "https://api.%s.onelogin.com/api/1/users/%s/auth_factors";
+    const ENROLL_FACTOR_URL = "https://api.%s.onelogin.com/api/1/users/%s/otp_devices";
+    const GET_ENROLLED_FACTORS_URL = "https://api.%s.onelogin.com/api/1/:users/%s/;otp_devices";
+    const ACTIVATE_FACTOR_URL = "https://api.%s.onelogin.com/api/1/users/%s/otp_devices/%s/trigger";
+    const VERIFY_FACTOR_URL = "https://api.%s.onelogin.com/api/1/users/%s/otp_devices/%s/verify";
 
     // Invite Link URLS
     const GENERATE_INVITE_LINK_URL = "https://api.%s.onelogin.com/api/1/invites/get_invite_link";

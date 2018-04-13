@@ -179,25 +179,6 @@ $createdUser = $client->createUser($newUserParams);
 /* Delete user */
 $removed = $client->deleteUser($createdUser->id);
 
-
-/* Create Session Login Token */
-$sessionLoginTokenParams = array(
-    "username_or_email" => "user@example.com",
-    "password" => "Aa765431-XxX",
-    "subdomain"=> "example-onelogin-subdomain"
-);
-$sessionTokenData = $client->createSessionLoginToken($sessionLoginTokenParams);
-
-/* Create Session Login Token MFA , after verify */
-$sessionLoginTokenMFAParams = array(
-    "username_or_email" => "usermfa@example.com",
-    "password" => "Aa765432-YyY",
-    "subdomain" => "example-onelogin-subdomain"
-);
-$sessionTokenMFAData = $client->createSessionLoginToken($sessionLoginTokenMFAParams);
-$otpCode = "645645"; // We may take that value from OTP device
-$sessionTokenData2 = $client->getSessionTokenVerified($sessionTokenMFAData->devices[0]->getID(), $sessionTokenMFAData->stateToken, $otpCode);
-
 /* Get EventTypes */
 $eventTypes = $client->getEventTypes();
 
@@ -240,6 +221,42 @@ $samlEndpointResponse2 = $client->getSAMLAssertion("usermfa@example.com", "Aa765
 $mfa = $samlEndpointResponse2->getMFA();
 $otpToken = "000000";
 $samlEndpointResponseAfterVerify = $client->getSAMLAssertionVerifying($appId, $mfa->getDevices()[0]->getID(), $mfa->getStateToken(), $otpToken, null);
+
+/* Create Session Login Token */
+$sessionLoginTokenParams = array(
+    "username_or_email" => "user@example.com",
+    "password" => "Aa765431-XxX",
+    "subdomain"=> "example-onelogin-subdomain"
+);
+$sessionTokenData = $client->createSessionLoginToken($sessionLoginTokenParams);
+
+/* Create Session Login Token MFA , after verify */
+$sessionLoginTokenMFAParams = array(
+    "username_or_email" => "usermfa@example.com",
+    "password" => "Aa765432-YyY",
+    "subdomain" => "example-onelogin-subdomain"
+);
+$sessionTokenMFAData = $client->createSessionLoginToken($sessionLoginTokenMFAParams);
+$otpCode = "645645"; // We may take that value from OTP device
+$sessionTokenData2 = $client->getSessionTokenVerified($sessionTokenMFAData->devices[0]->getID(), $sessionTokenMFAData->stateToken, $otpCode);
+
+$userId = 00000000;
+# Get Available Authentication Factors
+$authFactors = $client->getFactors($userId);
+
+# Enroll an Authentication Factor
+$enrollFactor = $client->enrollFactor($userId, $authFactors[0]->id, 'My Device', '+14156456830');
+
+# Get Enrolled Authentication Factors
+$otpDevices = $client->getEnrolledFactors($userId);
+ 
+# Activate an Authentication Factor
+$deviceId = 0000000;
+$enrollmentResponse = $client->activateFactor($userId, $deviceId);
+
+# Verify an Authentication Factor
+$otpToken="XXXXXXXXXX";
+$result = $client->verifyFactor($userId, $deviceId, $otpToken);
 
 /* Generate Invite Link */
 $urlLink = $client->generateInviteLink("user@example.com");

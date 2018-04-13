@@ -8,12 +8,15 @@ use GuzzleHttp\Psr7\Request;
 use OneLogin\api\util\UrlBuilder;
 use OneLogin\api\util\Constants;
 use OneLogin\api\models\App;
+use OneLogin\api\models\AuthFactor;
 use OneLogin\api\models\EmbedApp;
 use OneLogin\api\models\Event;
 use OneLogin\api\models\EventType;
+use OneLogin\api\models\FactorEnrollmentResponse;
 use OneLogin\api\models\Group;
 use OneLogin\api\models\MFA;
 use OneLogin\api\models\OneLoginToken;
+use OneLogin\api\models\OTPDevice;
 use OneLogin\api\models\RateLimit;
 use OneLogin\api\models\Role;
 use OneLogin\api\models\SAMLEndpointResponse;
@@ -85,9 +88,9 @@ class OneLoginClient
         $this->errorDescription = null;
     }
 
-    public function getUrl($base, $id = null)
+    public function getUrl($base, $id = null, $extraId = null)
     {
-        return $this->urlBuilder->getUrl($base, $id);
+        return $this->urlBuilder->getUrl($base, $id, $extraId);
     }
 
     public function getError()
@@ -941,6 +944,50 @@ class OneLoginClient
             if (!empty($passwordSalt)) {
                 $data["password_salt"] = $passwordSalt;
             }
+
+            $response = $this->client->put(
+                $url,
+                array(
+                    'json' => $data,
+                    'headers' => $headers
+                )
+            );
+            return $this->handleOperationResponse($response);
+        } catch (ClientException $e) {
+            $response = $e->getResponse();
+            $this->error = $response->getStatusCode();
+            $this->errorDescription = $this->extractErrorMessageFromResponse($response);
+        } catch (\Exception $e) {
+            $this->error = 500;
+            $this->errorDescription = $e->getMessage();
+        }
+        return false;
+    }
+
+    /**
+     * Set the State for a user.
+     *
+     * @param id
+     *            Id of the user to be modified
+     * @param state
+     *            Set to the state value. Valid values: 0-3.
+     *
+     * @return true if success
+     *
+     * @see https://developers.onelogin.com/api-docs/1/users/set-state Set User State documentation
+     */
+    public function setStateToUser($id, $state)
+    {
+        $this->cleanError();
+        $this->prepareToken();
+
+        try {
+            $url = $this->getURL(Constants::SET_STATE_TO_USER_URL, $id);
+            $headers = $this->getAuthorizedHeader();
+
+            $data = array(
+                "state" => $state
+            );
 
             $response = $this->client->put(
                 $url,
@@ -1823,6 +1870,273 @@ class OneLoginClient
             $this->error = 500;
             $this->errorDescription = $e->getMessage();
         }
+    }
+
+    /////////////////////////////////
+    //  Multi-factor Auth Methods  //
+    /////////////////////////////////
+
+    /**
+     * Returns a list of authentication factors that are available for user enrollment
+     * via API.
+     *
+     * @param userId
+     *            The id of the user.
+     *
+     * @return Array AuthFactor list
+     *
+     * @see https://developers.onelogin.com/api-docs/1/multi-factor-authentication/available-factors Get Available Authentication Factors documentation
+     */
+    public function getFactors($userId)
+    {
+        $this->cleanError();
+        $this->prepareToken();
+
+        try {
+            $url = $this->getURL(Constants::GET_FACTORS_URL, $userId);
+            $headers = $this->getAuthorizedHeader();
+
+            $options = array(
+                'headers' => $headers
+            );
+
+            $authFactors = array();
+            $response = $this->client->get(
+                $url,
+                $options
+            );
+
+            $data = $this->handleDataResponse($response);
+
+            if (isset($data) && property_exists($data, 'auth_factors')) {
+                foreach ($data->auth_factors as $authFactorData) {
+                    $authFactors[] = new AuthFactor($authFactorData);
+                }
+            }
+            return $authFactors;
+        } catch (ClientException $e) {
+            $response = $e->getResponse();
+            $this->error = $response->getStatusCode();
+            $this->errorDescription = $this->extractErrorMessageFromResponse($response);
+        } catch (\Exception $e) {
+            $this->error = 500;
+            $this->errorDescription = $e->getMessage();
+        }
+    }
+
+    /**
+     * Enroll a user with a given authentication factor.
+     *
+     * @param userId
+     *            The id of the user.
+     * @param factorId
+     *            The identifier of the factor to enroll the user with.
+     * @param displayName
+     *            A name for the users device.
+     * @param number
+     *            The phone number of the user in E.164 format.
+     *
+     * @return OTPDevice The MFA device
+     *
+     * @see https://developers.onelogin.com/api-docs/1/multi-factor-authentication/enroll-factor Enroll an Authentication Factor documentation
+     */
+    public function enrollFactor($userId, $factorId, $displayName, $number)
+    {
+        $this->cleanError();
+        $this->prepareToken();
+
+        try {
+            $url = $this->getURL(Constants::ENROLL_FACTOR_URL, $userId);
+            $headers = $this->getAuthorizedHeader();
+
+            $data = array(
+                "factor_id" => $factorId,
+                "display_name" => $displayName,
+                "number" => $number
+            );
+
+            $response = $this->client->post(
+                $url,
+                array(
+                    'headers' => $headers,
+                    'json' => $data
+                )
+            );
+
+            $data = $this->handleDataResponse($response);
+
+            if (!empty($data)) {
+                return new OTPDevice($data[0]);
+            }
+        } catch (ClientException $e) {
+            $response = $e->getResponse();
+            $this->error = $response->getStatusCode();
+            $this->errorDescription = $this->extractErrorMessageFromResponse($response);
+        } catch (\Exception $e) {
+            $this->error = 500;
+            $this->errorDescription = $e->getMessage();
+        }
+    }
+
+    /**
+     * Return a list of authentication factors registered to a particular user
+     * for multifactor authentication (MFA)
+     *
+     * @param userId
+     *            The id of the user.
+     *
+     * @return Array OTPDevice list
+     *
+     * @see https://developers.onelogin.com/api-docs/1/multi-factor-authentication/enrolled-factors Get Enrolled Authentication Factors documentation
+     */
+    public function getEnrolledFactors($userId)
+    {
+        $this->cleanError();
+        $this->prepareToken();
+
+        try {
+            $url = $this->getURL(Constants::GET_ENROLLED_FACTORS_URL, $userId);
+            $headers = $this->getAuthorizedHeader();
+
+            $options = array(
+                'headers' => $headers
+            );
+
+            $otpDevices = array();
+            $response = $this->client->get(
+                $url,
+                $options
+            );
+
+            $data = $this->handleDataResponse($response);
+
+            if (isset($data) && property_exists($data, 'otp_devices')) {
+                foreach ($data->otp_devices as $otpDeviceData) {
+                    $otpDevices[] = new OTPDevice($otpDeviceData);
+                }
+            }
+            return $otpDevices;
+        } catch (ClientException $e) {
+            $response = $e->getResponse();
+            $this->error = $response->getStatusCode();
+            $this->errorDescription = $this->extractErrorMessageFromResponse($response);
+        } catch (\Exception $e) {
+            $this->error = 500;
+            $this->errorDescription = $e->getMessage();
+        }
+    }
+
+    /**
+     * Triggers an SMS or Push notification containing a One-Time Password (OTP)
+     * that can be used to authenticate a user with the Verify Factor call.
+     *
+     * @param userId
+     *            The id of the user.
+     * @param deviceId
+     *            the id of the MFA device.
+     *
+     * @return FactorEnrollmentResponse Info with User Id, Device Id, and OTP Device
+     *
+     * @see https://developers.onelogin.com/api-docs/1/multi-factor-authentication/activate-factor Activate an Authentication Factor documentation
+     */
+    public function activateFactor($userId, $deviceId)
+    {
+        $this->cleanError();
+        $this->prepareToken();
+
+        try {
+            $url = $this->getURL(Constants::ACTIVATE_FACTOR_URL, $userId, $deviceId);
+            $headers = $this->getAuthorizedHeader();
+
+            $response = $this->client->post(
+                $url,
+                array(
+                    'headers' => $headers
+                )
+            );
+
+            $data = $this->handleDataResponse($response);
+
+            if (!empty($data)) {
+                return new FactorEnrollmentResponse($data[0]);
+            }
+        } catch (ClientException $e) {
+            $response = $e->getResponse();
+            $this->error = $response->getStatusCode();
+            $this->errorDescription = $this->extractErrorMessageFromResponse($response);
+        } catch (\Exception $e) {
+            $this->error = 500;
+            $this->errorDescription = $e->getMessage();
+        }
+        return false;
+    }
+
+    /**
+     * Authenticates a one-time password (OTP) code provided by a multifactor authentication (MFA) device.
+     *
+     * @param userId
+     *            The id of the user.
+     * @param deviceId
+     *            The id of the MFA device.
+     * @param otpToken
+     *            OTP code provided by the device or SMS message sent to user.
+     *            When a device like OneLogin Protect that supports Push has
+     *            been used you do not need to provide the otp_token.
+     * @param stateToken
+     *            The state_token is returned after a successful request
+     *            to Enroll a Factor or Activate a Factor.
+     *            MUST be provided if the needs_trigger attribute from
+     *            the proceeding calls is set to true.
+     *
+     * @return Boolean True if Factor is verified
+     *
+     * @see https://developers.onelogin.com/api-docs/1/multi-factor-authentication/verify-factor Verify an Authentication Factor documentation
+     */
+    public function verifyFactor($userId, $deviceId, $otpToken = null, $stateToken = null)
+    {
+        $this->cleanError();
+        $this->prepareToken();
+
+        try {
+            $url = $this->getURL(Constants::VERIFY_FACTOR_URL, $userId, $deviceId);
+            $headers = $this->getAuthorizedHeader();
+
+            $data = array();
+
+            if (!empty($otpToken)) {
+                $data['otp_token'] = $otpToken;
+            }
+            if (!empty($stateToken)) {
+                $data['state_token'] = $stateToken;
+            }
+
+            if (!empty($data)) {
+                $response = $this->client->post(
+                    $url,
+                    array(
+                        'headers' => $headers,
+                        'json' => $data
+                    )
+                );
+            } else {
+                $response = $this->client->post(
+                    $url,
+                    array(
+                        'headers' => $headers
+                    )
+                );
+            }
+
+            return $this->handleOperationResponse($response);
+        } catch (ClientException $e) {
+            $response = $e->getResponse();
+            $this->error = $response->getStatusCode();
+            $this->errorDescription = $this->extractErrorMessageFromResponse($response);
+        } catch (\Exception $e) {
+            $this->error = 500;
+            $this->errorDescription = $e->getMessage();
+        }
+        return false;
     }
 
     ////////////////////////////
