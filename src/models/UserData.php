@@ -34,6 +34,9 @@ class UserData
     /** @var string */
     public $department;
 
+    /** @var string */
+    public $title;
+
     /** @var int */
     public $status;
 

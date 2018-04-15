@@ -37,6 +37,9 @@ class User
     /** @var string */
     public $department;
 
+    /** @var string */
+    public $title;
+
     /** @var int */
     public $status;
 
@@ -122,6 +125,7 @@ class User
         $this->phone = isset($data->phone)? $data->phone : null;
         $this->company = isset($data->company)? $data->company : null;
         $this->department = isset($data->department)? $data->department : null;
+        $this->title = isset($data->title)? $data->title : null;
         $this->status = isset($data->status)? (int) $data->status : null;
         $this->state = isset($data->state)? (int) $data->state : null;
         $this->memberOf = isset($data->member_of)? $data->member_of : null;
@@ -194,6 +198,7 @@ class User
         $userData->phone = $this->phone;
         $userData->company = $this->company;
         $userData->department = $this->department;
+        $userData->title = $this->title;
         $userData->status = $this->status;
         $userData->state = $this->state;
         $userData->memberOf = $this->memberOf;
@@ -240,6 +245,7 @@ class User
         $userParams["phone"] = $this->phone;
         $userParams["company"] = $this->company;
         $userParams["department"] = $this->department;
+        $userParams["title"] = $this->title;
         $userParams["status"] = $this->status;
         $userParams["state"] = $this->state;
         $userParams["member_of"] = $this->memberOf;
