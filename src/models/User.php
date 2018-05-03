@@ -71,9 +71,6 @@ class User
     public $localeCode;
 
     /** @var string */
-    #public $notes;
-
-    /** @var string */
     public $comment;
 
     /** @var int */

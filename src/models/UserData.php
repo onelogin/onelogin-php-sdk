@@ -58,9 +58,6 @@ class UserData
     /** @var string */
     public $localeCode;
 
-    /** @var string */
-    #public $notes;
-
     /** @var int */
     public $directoryId;
 
