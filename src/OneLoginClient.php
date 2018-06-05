@@ -145,17 +145,18 @@ class OneLoginClient
     {
         $samlEndpointResponse = null;
         $content = json_decode($response->getBody());
-        if (property_exists($content, 'status') && property_exists($content, 'data') && property_exists($content->status, 'message') && property_exists($content->status, 'type')) {
+        if (property_exists($content, 'status') && property_exists($content->status, 'message') && property_exists($content->status, 'type')) {
             $type = $content->status->type;
             $message = $content->status->message;
             $samlEndpointResponse = new SAMLEndpointResponse($type, $message);
-            
-            if ($message == "Success") {
-                $samlResponse = $content->data;
-                $samlEndpointResponse->setSAMLResponse($samlResponse);
-            } else {
-                $mfa = new MFA($content->data[0]);
-                $samlEndpointResponse->setMFA($mfa);
+            if (property_exists($content, 'data')) {
+                if ($message == "Success") {
+                    $samlResponse = $content->data;
+                    $samlEndpointResponse->setSAMLResponse($samlResponse);
+                } else {
+                    $mfa = new MFA($content->data[0]);
+                    $samlEndpointResponse->setMFA($mfa);
+                }
             }
         }
         return $samlEndpointResponse;
