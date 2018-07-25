@@ -24,7 +24,6 @@ class Constants
     const CREATE_USER_URL = "https://api.%s.onelogin.com/api/1/users";
     const SESSION_LOGIN_TOKEN_URL = "https://api.%s.onelogin.com/api/1/login/auth";
     const GET_TOKEN_VERIFY_FACTOR = "https://api.%s.onelogin.com/api/1/login/verify_factor";
-    const SESSION_API_TOKEN_URL = "https://admin.%s.onelogin.com/session_via_api_token";
     const UPDATE_USER_URL = "https://api.%s.onelogin.com/api/1/users/%s";
     const DELETE_USER_URL = "https://api.%s.onelogin.com/api/1/users/%s";
     const ADD_ROLE_TO_USER_URL = "https://api.%s.onelogin.com/api/1/users/%s/add_roles";

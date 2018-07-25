@@ -1282,55 +1282,6 @@ class OneLoginClient
         }
     }
 
-    /**
-     * Post a session token to this API endpoint to start a session and set a cookie to log a user into an app.
-     *
-     * @param sessionToken
-     *            The session token
-     *
-     * @return Header 'Set-Cookie' value
-     *
-     * @see https://github.com/onelogin/onelogin-api-examples/blob/master/php/users/session_via_api_token.php Create Session Via API Token documentation
-     */
-    public function createSessionViaToken($sessionToken)
-    {
-        $this->cleanError();
-        $this->prepareToken();
-
-        try {
-            $url = $this->getURL(Constants::SESSION_API_TOKEN_URL);
-            $headers = array(
-                'User-Agent'=> $this->userAgent
-            );
-
-            $data = array(
-                "session_token" => $sessionToken
-            );
-
-            $response = $this->client->post(
-                $url,
-                array(
-                    'headers' => $headers,
-                    'json' => $data
-                )
-            );
-
-            $cookieHeader = null;
-            $headers = $response->getHeaders();
-            if (!empty($headers["Set-Cookie"])) {
-                $cookieHeader = $headers["Set-Cookie"];
-            }
-            return $cookieHeader;
-        } catch (ClientException $e) {
-            $response = $e->getResponse();
-            $this->error = $response->getStatusCode();
-            $this->errorDescription = $response->getBody()->getContents();
-        } catch (\Exception $e) {
-            $this->error = 500;
-            $this->errorDescription = $e->getMessage();
-        }
-    }
-
     ////////////////////
     //  Role Methods  //
     ////////////////////
