@@ -46,6 +46,9 @@ class Event
     /** @var int */
     public $appId;
 
+    /** @var string */
+    public $appName;
+
     /** @var int */
     public $groupId;
 
@@ -111,6 +114,7 @@ class Event
         $this->roleId = isset($data->role_id)? (int) $data->role_id : null;
         $this->roleName = $data->role_name;
         $this->appId = isset($data->app_id)? (int) $data->app_id : null;
+        $this->appName = $data->app_name;
         $this->groupId = isset($data->group_id)? (int) $data->group_id : null;
         $this->groupName = $data->group_name;
         $this->otpDeviceId = isset($data->otp_device_id)? (int) $data->otp_device_id : null;
