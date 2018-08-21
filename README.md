@@ -57,6 +57,8 @@ https://onelogin.github.io/onelogin-php-sdk/index.html
 
 OneLogin's API can return 400, 401, 403 or 404 when there was any issue executing the action. When that happens, the methods of the SDK will include error and errorMessage in the OneLoginClient. Use the getError() and the getErrorDescription() to retrieve them.
 
+In some scenarios there is an attribute not provided or invalid that causes the error on the execution of the API call, when that happens at the OneLoginClient there is available a getErrorAttribute() method that contains the name of the attribute that caused the issue. See the API documentation to verify when this data is provided by the API.
+
 
 ### Authentication
 
