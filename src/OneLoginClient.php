@@ -1281,12 +1281,16 @@ class OneLoginClient
      *            Provide the state_token associated with the MFA device_id you are submitting for verification.
      * @param otpToken
      *            Provide the OTP value for the MFA factor you are submitting for verification.
+     * @param allowedOrigin
+     *            Required for CORS requests only. Set to the Origin URI from which you are allowed to send a request using CORS.
+     * @param doNotNotify
+     *            When verifying MFA via Protect Push, set this to true to stop additional push notifications being sent to the OneLogin Protect device.
      *
      * @return Session Token
      *
      * @see https://developers.onelogin.com/api-docs/1/users/verify-factor Verify Factor documentation
      */
-    public function getSessionTokenVerified($devideId, $stateToken, $otpToken = null)
+    public function getSessionTokenVerified($devideId, $stateToken, $otpToken = null, $allowedOrigin='', $doNotNotify=false)
     {
         $this->cleanError();
         $this->prepareToken();
@@ -1295,9 +1299,14 @@ class OneLoginClient
             $url = $this->getURL(Constants::GET_TOKEN_VERIFY_FACTOR);
             $headers = $this->getAuthorizedHeader();
 
+            if (!empty($allowedOrigin)) {
+                $headers['Custom-Allowed-Origin-Header-1'] = $allowedOrigin;
+            }
+
             $data = array(
                 "device_id" => strval($devideId),
-                "state_token" => $stateToken
+                "state_token" => $stateToken,
+                "do_not_notify" => $doNotNotify
             );
 
             if (!empty($otpToken)) {
@@ -1823,12 +1832,14 @@ class OneLoginClient
      *            Provide the OTP value for the MFA factor you are submitting for verification.
      * @param urlEndpoint
      *            Specify an url where return the response.
+     * @param doNotNotify
+     *            When verifying MFA via Protect Push, set this to true to stop additional push notifications being sent to the OneLogin Protect device
      *
      * @return SAMLEndpointResponse
      *
      * @see https://developers.onelogin.com/api-docs/1/saml-assertions/verify-factor Verify Factor documentation
      */
-    public function getSAMLAssertionVerifying($appId, $devideId, $stateToken, $otpToken = null, $urlEndpoint = null)
+    public function getSAMLAssertionVerifying($appId, $devideId, $stateToken, $otpToken = null, $urlEndpoint = null, $doNotNotify=false)
     {
         $this->cleanError();
         $this->prepareToken();
@@ -1845,7 +1856,8 @@ class OneLoginClient
             $data = array(
                 "app_id" => $appId,
                 "device_id" => strval($devideId),
-                "state_token" => $stateToken
+                "state_token" => $stateToken,
+                "do_not_notify" => $doNotNotify
             );
 
             if (!empty($otpToken)) {
