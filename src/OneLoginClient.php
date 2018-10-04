@@ -148,14 +148,6 @@ class OneLoginClient
         return $attribute;
     }
 
-    protected function handleTokenResponse($response)
-    {
-        $token = null;
-        $content = json_decode($response->getBody());
-        $token = new OneLoginToken($content);
-        return $token;
-    }
-
     protected function handleSessionTokenResponse($response)
     {
         $sessionToken = null;
@@ -325,13 +317,24 @@ class OneLoginClient
                 )
             );
 
-            $token = $this->handleTokenResponse($response);
-            if (!empty($token)) {
-                $this->accessToken = $token->getAccessToken();
-                $this->refreshToken = $token->getRefreshToken();
-                $this->expiration = $token->getExpiration();
+            if ($response->getStatusCode() == 200) {
+                $content = json_decode($response->getBody());
+                if (property_exists($content, 'status')) {
+                    $this->error = $content->status->code;
+                    $this->errorDescription = $this->extractErrorMessageFromResponse($response);
+                } else {
+                    $token = new OneLoginToken($content);
+                    if (!empty($token)) {
+                        $this->accessToken = $token->getAccessToken();
+                        $this->refreshToken = $token->getRefreshToken();
+                        $this->expiration = $token->getExpiration();
+                    }
+                    return $token;
+                }
+            } else {
+                $this->error = $response->getStatusCode();
+                $this->errorDescription = $this->extractErrorMessageFromResponse($response);
             }
-            return $token;
         } catch (ClientException $e) {
             $response = $e->getResponse();
             $this->error = $response->getStatusCode();
@@ -351,10 +354,6 @@ class OneLoginClient
     {
         $this->cleanError();
         try {
-            if ($this->accessToken == null || $this->refreshToken == null) {
-                throw new \Exception("Access token ot Refresh token not provided");
-            }
-
             $url = $this->getURL(Constants::TOKEN_REQUEST_URL);
             $headers = array(
                 'User-Agent'=> $this->userAgent
@@ -374,13 +373,24 @@ class OneLoginClient
                 )
             );
 
-            $token = $this->handleTokenResponse($response);
-            if (!empty($token)) {
-                $this->accessToken = $token->getAccessToken();
-                $this->refreshToken = $token->getRefreshToken();
-                $this->expiration = $token->getExpiration();
+            if ($response->getStatusCode() == 200) {
+                $content = json_decode($response->getBody());
+                if (property_exists($content, 'status')) {
+                    $this->error = $content->status->code;
+                    $this->errorDescription = $this->extractErrorMessageFromResponse($response);
+                } else {
+                    $token = new OneLoginToken($content);
+                    if (!empty($token)) {
+                        $this->accessToken = $token->getAccessToken();
+                        $this->refreshToken = $token->getRefreshToken();
+                        $this->expiration = $token->getExpiration();
+                    }
+                    return $token;
+                }
+            } else {
+                $this->error = $response->getStatusCode();
+                $this->errorDescription = $this->extractErrorMessageFromResponse($response);
             }
-            return $token;
         } catch (ClientException $e) {
             $response = $e->getResponse();
             $this->error = $response->getStatusCode();
@@ -400,10 +410,6 @@ class OneLoginClient
     {
         $this->cleanError();
         try {
-            if ($this->accessToken == null) {
-                throw new \Exception("Access token not provided");
-            }
-
             $url = $this->getURL(Constants::TOKEN_REVOKE_URL);
             $headers = $this->getAuthorizedHeader(false);
 
@@ -1290,7 +1296,7 @@ class OneLoginClient
      *
      * @see https://developers.onelogin.com/api-docs/1/users/verify-factor Verify Factor documentation
      */
-    public function getSessionTokenVerified($devideId, $stateToken, $otpToken = null, $allowedOrigin='', $doNotNotify=false)
+    public function getSessionTokenVerified($devideId, $stateToken, $otpToken = null, $allowedOrigin = '', $doNotNotify = false)
     {
         $this->cleanError();
         $this->prepareToken();
@@ -1839,7 +1845,7 @@ class OneLoginClient
      *
      * @see https://developers.onelogin.com/api-docs/1/saml-assertions/verify-factor Verify Factor documentation
      */
-    public function getSAMLAssertionVerifying($appId, $devideId, $stateToken, $otpToken = null, $urlEndpoint = null, $doNotNotify=false)
+    public function getSAMLAssertionVerifying($appId, $devideId, $stateToken, $otpToken = null, $urlEndpoint = null, $doNotNotify = false)
     {
         $this->cleanError();
         $this->prepareToken();
