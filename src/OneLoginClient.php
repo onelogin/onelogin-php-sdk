@@ -148,6 +148,29 @@ class OneLoginClient
         return $attribute;
     }
 
+    protected function handleTokenResponse($response)
+    {
+        $token = null;
+        if ($response->getStatusCode() == 200) {
+            $content = json_decode($response->getBody());
+            if (property_exists($content, 'status')) {
+                $this->error = $content->status->code;
+                $this->errorDescription = $this->extractErrorMessageFromResponse($response);
+            } else {
+                $token = new OneLoginToken($content);
+                if (!empty($token)) {
+                    $this->accessToken = $token->getAccessToken();
+                    $this->refreshToken = $token->getRefreshToken();
+                    $this->expiration = $token->getExpiration();
+                }
+            }
+        } else {
+            $this->error = $response->getStatusCode();
+            $this->errorDescription = $this->extractErrorMessageFromResponse($response);
+        }
+        return $token;
+    }
+
     protected function handleSessionTokenResponse($response)
     {
         $sessionToken = null;
@@ -317,24 +340,7 @@ class OneLoginClient
                 )
             );
 
-            if ($response->getStatusCode() == 200) {
-                $content = json_decode($response->getBody());
-                if (property_exists($content, 'status')) {
-                    $this->error = $content->status->code;
-                    $this->errorDescription = $this->extractErrorMessageFromResponse($response);
-                } else {
-                    $token = new OneLoginToken($content);
-                    if (!empty($token)) {
-                        $this->accessToken = $token->getAccessToken();
-                        $this->refreshToken = $token->getRefreshToken();
-                        $this->expiration = $token->getExpiration();
-                    }
-                    return $token;
-                }
-            } else {
-                $this->error = $response->getStatusCode();
-                $this->errorDescription = $this->extractErrorMessageFromResponse($response);
-            }
+            return $this->handleTokenResponse($response);
         } catch (ClientException $e) {
             $response = $e->getResponse();
             $this->error = $response->getStatusCode();
@@ -373,24 +379,7 @@ class OneLoginClient
                 )
             );
 
-            if ($response->getStatusCode() == 200) {
-                $content = json_decode($response->getBody());
-                if (property_exists($content, 'status')) {
-                    $this->error = $content->status->code;
-                    $this->errorDescription = $this->extractErrorMessageFromResponse($response);
-                } else {
-                    $token = new OneLoginToken($content);
-                    if (!empty($token)) {
-                        $this->accessToken = $token->getAccessToken();
-                        $this->refreshToken = $token->getRefreshToken();
-                        $this->expiration = $token->getExpiration();
-                    }
-                    return $token;
-                }
-            } else {
-                $this->error = $response->getStatusCode();
-                $this->errorDescription = $this->extractErrorMessageFromResponse($response);
-            }
+            return $this->handleTokenResponse($response);
         } catch (ClientException $e) {
             $response = $e->getResponse();
             $this->error = $response->getStatusCode();
