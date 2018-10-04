@@ -66,4 +66,7 @@ class UserData
 
     /** @var int */
     public $trustedIdPId;
+
+    /** @var int */
+    public $managerUserId;
 }

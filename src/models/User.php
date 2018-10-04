@@ -82,6 +82,9 @@ class User
     /** @var int */
     public $trustedIdPId;
 
+    /** @var int */
+    public $managerUserId;
+
     /** @var DateTime */
     public $activatedAt;
 
@@ -147,6 +150,7 @@ class User
         $this->directoryId = isset($data->directory_id)? (int) $data->directory_id : null;
         $this->managerAdId = isset($data->manager_ad_id)? (int) $data->manager_ad_id : null;
         $this->trustedIdPId = isset($data->trusted_idp_id)? (int) $data->trusted_idp_id : null;
+        $this->managerUserId = isset($data->manager_user_id)? (int) $data->manager_user_id : null;
         if (isset($data->activated)) {
             $this->activatedAt = \DateTime::createFromFormat('Y-m-d\TH:i:s+', $data->activated_at, $utc);
         }
@@ -206,6 +210,7 @@ class User
         $userData->directoryId = $this->directoryId;
         $userData->managerAdId = $this->managerAdId;
         $userData->trustedIdPId = $this->trustedIdPId;
+        $userData->managerUserId = $this->managerUserId;
         return $userData;
     }
 
