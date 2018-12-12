@@ -17,6 +17,7 @@ use OneLogin\api\models\Group;
 use OneLogin\api\models\MFA;
 use OneLogin\api\models\OneLoginToken;
 use OneLogin\api\models\OTPDevice;
+use OneLogin\api\models\Privilege;
 use OneLogin\api\models\RateLimit;
 use OneLogin\api\models\Role;
 use OneLogin\api\models\SAMLEndpointResponse;
@@ -128,7 +129,12 @@ class OneLoginClient
             } else if (property_exists($content->status, 'type')) {
                 $message = $content->status->type;
             }
+        } else if (property_exists($content, 'message') && !empty($content->message)) {
+            $message = $content->message;
+        } else if (property_exists($content, 'name')) {
+            $message = $content->name;
         }
+
         return $message;
     }
 
@@ -226,10 +232,25 @@ class OneLoginClient
     {
         $result = false;
         $content = json_decode($response->getBody());
-        if (property_exists($content, 'status') && property_exists($content->status, 'type') && $content->status->type == "success") {
+        if (is_object($content) && property_exists($content, 'status') && property_exists($content->status, 'type') && $content->status->type == "success") {
             $result = true;
+        } else {
+            $statusCode = $response->getStatusCode();
+            if (isset($statusCode) && $statusCode == 200 || $statusCode == 201 || $statusCode == 204) {
+                $result = true;
+            }
         }
         return $result;
+    }
+
+    protected function extractStatusCodeFromResponse($response)
+    {
+        $statusCode = '';
+        $content = json_decode((string) $response->getBody());
+        if (property_exists($content, 'statusCode')) {
+            $statusCode = $content->statusCode;
+        }
+        return $statusCode;
     }
 
     public function retrieveAppsFromXML($xmlContent)
@@ -265,7 +286,8 @@ class OneLoginClient
     protected function getAuthorization($bearer = true)
     {
         if ($bearer) {
-            $authorization = "bearer:" . $this->accessToken;
+            // ":" removed
+            $authorization = "bearer " . $this->accessToken;
         } else {
             $authorization = "client_id:" . $this->clientId . ", client_secret:" . $this->clientSecret;
         }
@@ -279,6 +301,8 @@ class OneLoginClient
         if (!empty($content)) {
             if (property_exists($content, 'pagination') && property_exists($content->pagination, 'before_cursor')) {
                 $beforeCursor = $content->pagination->before_cursor;
+            } else if (property_exists($content, 'beforeCursor')) {
+                $beforeCursor = $content->beforeCursor;
             }
         }
         return $beforeCursor;
@@ -291,6 +315,8 @@ class OneLoginClient
         if (!empty($content)) {
             if (property_exists($content, 'pagination') && property_exists($content->pagination, 'after_cursor')) {
                 $afterCursor = $content->pagination->after_cursor;
+            } else if (property_exists($content, 'afterCursor')) {
+                $afterCursor = $content->afterCursor;
             }
         }
         return $afterCursor;
@@ -2332,6 +2358,588 @@ class OneLoginClient
             $response = $e->getResponse();
             $this->error = $response->getStatusCode();
             $this->errorDescription = $this->extractErrorMessageFromResponse($response);
+        } catch (\Exception $e) {
+            $this->error = 500;
+            $this->errorDescription = $e->getMessage();
+        }
+    }
+
+    /////////////////////////
+    //  Privilege Methods  //
+    /////////////////////////
+
+    /**
+     * Gets a list of the Privileges created in an account.
+     *
+     * @return Array of Privilege
+     *
+     * @see https://developers.onelogin.com/api-docs/1/privileges/list-privileges List Privileges documentation
+     */
+    public function getPrivileges()
+    {
+        $this->cleanError();
+        $this->prepareToken();
+
+        try {
+            $url = $this->getURL(Constants::LIST_PRIVILEGES_URL);
+            $headers = $this->getAuthorizedHeader();
+
+            $response = $this->client->get(
+                $url,
+                array(
+                    'headers' => $headers
+                )
+            );
+            $data = json_decode($response->getBody());
+
+            $privileges = array();
+            if (!empty($data)) {
+                foreach ($data as $privilegeData) {
+                    $privileges[] = new Privilege($privilegeData);
+                }
+            }
+            return $privileges;
+        } catch (ClientException $e) {
+            $response = $e->getResponse();
+            $this->error = $this->extractStatusCodeFromResponse($response);
+            $this->errorDescription = $this->extractErrorMessageFromResponse($response);
+        } catch (\Exception $e) {
+            $this->error = 500;
+            $this->errorDescription = $e->getMessage();
+        }
+    }
+
+    /**
+     * Creates a Privilege
+     *
+     * @param name
+     *            The name of this privilege.
+     * @param version
+     *            The version for the privilege schema. Set to 2018-05-18.
+     * @param statements
+     *            An array of statements. Statement object or an array with the keys Effect, Action and Scope
+     *
+     * @return Created Privilege
+     *
+     * @see https://developers.onelogin.com/api-docs/1/privileges/create-privilege Create Privilege documentation
+     */
+    public function createPrivilege($name, $version, $statements)
+    {
+        $this->cleanError();
+        $this->prepareToken();
+
+        try {
+            $url = $this->getURL(Constants::CREATE_PRIVILEGE_URL);
+            $headers = $this->getAuthorizedHeader();
+
+            $statementData = array();
+            foreach ($statements as $statement) {
+                if (is_object($statement)) {
+                    $statementData[] = array(
+                        "Effect" => $statement->effect,
+                        "Action" => $statement->actions,
+                        "Scope" => $statement->scopes,
+                    );
+                } else if (is_array($statement) && array_key_exists("Effect", $statement) && array_key_exists("Action", $statement) && array_key_exists("Scope", $statement)) {
+                    $statementData[] = $statement;
+                } else {
+                    $this->error = 400;
+                    $this->errorDescription = "$statements is invalid. Provide an array of statements. The statement should be an Statement object or an Array with the keys Effect, Action and Scope";
+                }
+            }
+
+            $privilegeData = array(
+                "name" => $name,
+                "privilege" => array(
+                    "Version" => $version,
+                    "Statement" => $statementData
+                )
+            );
+
+            $response = $this->client->post(
+                $url,
+                array(
+                    'json' => $privilegeData,
+                    'headers' => $headers
+                )
+            );
+
+            $data = json_decode($response->getBody());
+            if (!empty($data) && property_exists($data, "id")) {
+                return new Privilege($data->id, $name, $version, $statements);
+            }
+        } catch (ClientException $e) {
+            $response = $e->getResponse();
+            $this->error = $response->getStatusCode();
+            $this->errorDescription = $this->extractErrorMessageFromResponse($response);
+            $this->errorAttribute = $this->extractErrorAttributeFromResponse($response);
+        } catch (\Exception $e) {
+            $this->error = 500;
+            $this->errorDescription = $e->getMessage();
+        }
+    }
+
+    /**
+     * Get a Privilege
+     *
+     * @param id
+     *            The id of the privilege you want to update.
+     *
+     * @return Privilege
+     *
+     * @see https://developers.onelogin.com/api-docs/1/privileges/get-privilege Get Privilege documentation
+     */
+    public function getPrivilege($id)
+    {
+        $this->cleanError();
+        $this->prepareToken();
+
+        try {
+            $url = $this->getURL(Constants::GET_PRIVILEGE_URL, $id);
+            $headers = $this->getAuthorizedHeader();
+
+            $response = $this->client->get(
+                $url,
+                array(
+                    'headers' => $headers
+                )
+            );
+
+            $data = json_decode($response->getBody());
+            if (!empty($data)) {
+                return new Privilege($data);
+            }
+        } catch (ClientException $e) {
+            $response = $e->getResponse();
+            $this->error = $response->getStatusCode();
+            $this->errorDescription = $this->extractErrorMessageFromResponse($response);
+            $this->errorAttribute = $this->extractErrorAttributeFromResponse($response);
+        } catch (\Exception $e) {
+            $this->error = 500;
+            $this->errorDescription = $e->getMessage();
+        }
+    }
+
+    /**
+     * Updates a Privilege
+     *
+     * @param id
+     *            The id of the privilege you want to update.
+     * @param name
+     *            The name of this privilege.
+     * @param version
+     *            The version for the privilege schema. Set to 2018-05-18.
+     * @param statements
+     *            An array of statements. Statement object or an array with the keys Effect, Action and Scope
+     *
+     * @return Updated Privilege
+     *
+     * @see https://developers.onelogin.com/api-docs/1/privileges/update-privilege Update Privilege documentation
+     */
+    public function updatePrivilege($id, $name, $version, $statements)
+    {
+        $this->cleanError();
+        $this->prepareToken();
+
+        try {
+            $url = $this->getURL(Constants::UPDATE_PRIVILEGE_URL, $id);
+            $headers = $this->getAuthorizedHeader();
+
+            $statementData = array();
+            foreach ($statements as $statement) {
+                if (is_object($statement)) {
+                    $statementData[] = array(
+                        "Effect" => $statement->effect,
+                        "Action" => $statement->actions,
+                        "Scope" => $statement->scopes,
+                    );
+                } else if (is_array($statement) && array_key_exists("Effect", $statement) && array_key_exists("Action", $statement) && array_key_exists("Scope", $statement)) {
+                    $statementData[] = $statement;
+                } else {
+                    $this->error = 400;
+                    $this->errorDescription = "$statements is invalid. Provide an array of statements. The statement should be an Statement object or an Array with the keys Effect, Action and Scope";
+                }
+            }
+
+            $privilegeData = array(
+                "name" => $name,
+                "privilege" => array(
+                    "Version" => $version,
+                    "Statement" => $statementData
+                )
+            );
+
+            $response = $this->client->put(
+                $url,
+                array(
+                    'json' => $privilegeData,
+                    'headers' => $headers
+                )
+            );
+
+            $data = json_decode($response->getBody());
+            if (!empty($data) && property_exists($data, "id")) {
+                return new Privilege($data->id, $name, $version, $statements);
+            }
+        } catch (ClientException $e) {
+            $response = $e->getResponse();
+            $this->error = $response->getStatusCode();
+            $this->errorDescription = $this->extractErrorMessageFromResponse($response);
+            $this->errorAttribute = $this->extractErrorAttributeFromResponse($response);
+        } catch (\Exception $e) {
+            $this->error = 500;
+            $this->errorDescription = $e->getMessage();
+        }
+    }
+
+    /**
+     * Deletes a Privilege
+     *
+     * @param id
+     *            The id of the privilege you want to delete.
+     *
+     * @return true if success
+     *
+     * @see https://developers.onelogin.com/api-docs/1/privileges/delete-privilege Delete Privilege documentation
+     */
+    public function deletePrivilege($id)
+    {
+        $this->cleanError();
+        $this->prepareToken();
+
+        try {
+            $url = $this->getURL(Constants::DELETE_PRIVILEGE_URL, $id);
+            $headers = $this->getAuthorizedHeader();
+
+            $response = $this->client->delete(
+                $url,
+                array(
+                    'headers' => $headers
+                )
+            );
+
+            return $this->handleOperationResponse($response);
+        } catch (ClientException $e) {
+            $response = $e->getResponse();
+            $this->error = $response->getStatusCode();
+            $this->errorDescription = $this->extractErrorMessageFromResponse($response);
+            $this->errorAttribute = $this->extractErrorAttributeFromResponse($response);
+        } catch (\Exception $e) {
+            $this->error = 500;
+            $this->errorDescription = $e->getMessage();
+        }
+    }
+
+    /**
+     * Gets a list of the roles assigned to a privilege.
+     *
+     * @param id
+     *            The id of the privilege.
+     * @param maxResults
+     *            Limit the number of roles returned (optional)
+     *
+     * @return Array
+     *
+     * @see https://developers.onelogin.com/api-docs/1/privileges/get-roles Get Assigned Roles documentation
+     */
+    public function getRolesAssignedToPrivilege($id, $maxResults=null)
+    {
+        $this->cleanError();
+        $this->prepareToken();
+
+        try {
+            $url = $this->getURL(Constants::GET_ROLES_ASSIGNED_TO_PRIVILEGE_URL, $id);
+            $headers = $this->getAuthorizedHeader();
+
+            $maxResults = empty($maxResults)? ($this->maxResults > 1000 ? $this->maxResults : 1000) : $maxResults;
+
+            $options = array(
+                'headers' => $headers
+            );
+
+            $roles = array();
+            $afterCursor = null;
+            while (!isset($response) || (count($roles) < $maxResults && !empty($afterCursor))) {
+                $response = $this->client->get(
+                    $url,
+                    $options
+                );
+                $data = json_decode($response->getBody());
+
+                if (isset($data) && property_exists($data, 'roles')) {
+                    if (count($roles) + count($data->roles) == $maxResults) {
+                        $roles = array_merge($roles, $data->roles);
+                        return $roles;
+                    } else if (count($roles) + count($data->roles) < $maxResults) {
+                        $roles = array_merge($roles, $data->roles);
+                    } else {
+                        foreach ($data->roles as $roleId) {
+                            if (count($users) < $maxResults) {
+                                $roles[] = $roleId;
+                            } else {
+                                return $roles;
+                            }
+                        }
+                    }
+                }
+
+                $afterCursor = $this->getAfterCursor($response);
+                if (!empty($afterCursor)) {
+                    if (!isset($options['query'])) {
+                        $options['query'] = array();
+                    }
+                    $options['query']['after_cursor'] = $afterCursor;
+                }
+            }
+            return $roles;
+
+        } catch (ClientException $e) {
+            $response = $e->getResponse();
+            $this->error = $this->extractStatusCodeFromResponse($response);
+            $this->errorDescription = $this->extractErrorMessageFromResponse($response);
+        } catch (\Exception $e) {
+            $this->error = 500;
+            $this->errorDescription = $e->getMessage();
+        }
+    }
+
+    /**
+     * Assign one or more roles to a privilege.
+     *
+     * @param id
+     *            The id of the privilege.
+     * @param roles
+     *            The ids of the roles to be assigned.
+     *
+     * @return true if success
+     *
+     * @see https://developers.onelogin.com/api-docs/1/privileges/assign-role Assign Roles documentation
+     */
+    public function assignRolesToPrivilege($id, $roles)
+    {
+        $this->cleanError();
+        $this->prepareToken();
+
+        try {
+            $url = $this->getURL(Constants::ASSIGN_ROLES_TO_PRIVILEGE_URL, $id);
+            $headers = $this->getAuthorizedHeader();
+
+            $data = array(
+                "roles" => $roles
+            );
+
+            $response = $this->client->post(
+                $url,
+                array(
+                    'json' => $data,
+                    'headers' => $headers
+                )
+            );
+
+            return $this->handleOperationResponse($response);
+        } catch (ClientException $e) {
+            $response = $e->getResponse();
+            $this->error = $response->getStatusCode();
+            $this->errorDescription = $this->extractErrorMessageFromResponse($response);
+            $this->errorAttribute = $this->extractErrorAttributeFromResponse($response);
+        } catch (\Exception $e) {
+            $this->error = 500;
+            $this->errorDescription = $e->getMessage();
+        }
+    }
+
+    /**
+     * Remove a role from a privilege.
+     *
+     * @param id
+     *            The id of the privilege.
+     * @param roleId
+     *            The id of the role to be removed.
+     *
+     * @return true if success
+     *
+     * @see https://developers.onelogin.com/api-docs/1/privileges/remove-role Remove Role documentation
+     */
+    public function removeRoleFromPrivilege($id, $roleId)
+    {
+        $this->cleanError();
+        $this->prepareToken();
+
+        try {
+            $url = $this->getURL(Constants::REMOVE_ROLE_FROM_PRIVILEGE_URL, $id, $roleId);
+            $headers = $this->getAuthorizedHeader();
+
+            $response = $this->client->delete(
+                $url,
+                array(
+                    'headers' => $headers
+                )
+            );
+
+            return $this->handleOperationResponse($response);
+        } catch (ClientException $e) {
+            $response = $e->getResponse();
+            $this->error = $response->getStatusCode();
+            $this->errorDescription = $this->extractErrorMessageFromResponse($response);
+            $this->errorAttribute = $this->extractErrorAttributeFromResponse($response);
+        } catch (\Exception $e) {
+            $this->error = 500;
+            $this->errorDescription = $e->getMessage();
+        }
+    }
+
+    /**
+     * Gets a list of the users assigned to a privilege.
+     *
+     * @param id
+     *            The id of the privilege.
+     * @param maxResults
+     *            Limit the number of users returned (optional)
+     *
+     * @return Array
+     *
+     * @see https://developers.onelogin.com/api-docs/1/privileges/get-users Get Assigned Users documentation
+     */
+    public function getUsersAssignedToPrivilege($id, $maxResults=null)
+    {
+        $this->cleanError();
+        $this->prepareToken();
+
+        try {
+            $url = $this->getURL(Constants::GET_USERS_ASSIGNED_TO_PRIVILEGE_URL, $id);
+            $headers = $this->getAuthorizedHeader();
+
+            $maxResults = empty($maxResults)? ($this->maxResults > 1000 ? $this->maxResults : 1000) : $maxResults;
+
+            $options = array(
+                'headers' => $headers
+            );
+
+            $users = array();
+            $afterCursor = null;
+            while (!isset($response) || (count($users) < $maxResults && !empty($afterCursor))) {
+                $response = $this->client->get(
+                    $url,
+                    $options
+                );
+                $data = json_decode($response->getBody());
+            
+                if (isset($data) && property_exists($data, 'users')) {
+                    if (count($users) + count($data->users) == $maxResults) {
+                        $users = array_merge($users, $data->users);
+                        return $users;
+                    } else if (count($users) + count($data->users) < $maxResults) {
+                        $users = array_merge($users, $data->users);
+                    } else {
+                        foreach ($data->users as $roleId) {
+                            if (count($users) < $maxResults) {
+                                $users[] = $roleId;
+                            } else {
+                                return $users;
+                            }
+                        }
+                    }
+                }
+
+                $afterCursor = $this->getAfterCursor($response);
+                if (!empty($afterCursor)) {
+                    if (!isset($options['query'])) {
+                        $options['query'] = array();
+                    }
+                    $options['query']['after_cursor'] = $afterCursor;
+                }
+            }
+            return $users;
+
+        } catch (ClientException $e) {
+            $response = $e->getResponse();
+            $this->error = $this->extractStatusCodeFromResponse($response);
+            $this->errorDescription = $this->extractErrorMessageFromResponse($response);
+        } catch (\Exception $e) {
+            $this->error = 500;
+            $this->errorDescription = $e->getMessage();
+        }
+    }
+
+    /**
+     * Assign one or more users to a privilege.
+     *
+     * @param id
+     *            The id of the privilege.
+     * @param users
+     *            The ids of the users to be assigned.
+     *
+     * @return true if success
+     *
+     * @see https://developers.onelogin.com/api-docs/1/privileges/assign-users Assign Users documentation
+     */
+    public function assignUsersToPrivilege($id, $users)
+    {
+        $this->cleanError();
+        $this->prepareToken();
+
+        try {
+            $url = $this->getURL(Constants::ASSIGN_USERS_TO_PRIVILEGE_URL, $id);
+            $headers = $this->getAuthorizedHeader();
+
+            $data = array(
+                "users" => $users
+            );
+
+            $response = $this->client->post(
+                $url,
+                array(
+                    'json' => $data,
+                    'headers' => $headers
+                )
+            );
+
+            return $this->handleOperationResponse($response);
+        } catch (ClientException $e) {
+            $response = $e->getResponse();
+            $this->error = $response->getStatusCode();
+            $this->errorDescription = $this->extractErrorMessageFromResponse($response);
+            $this->errorAttribute = $this->extractErrorAttributeFromResponse($response);
+        } catch (\Exception $e) {
+            $this->error = 500;
+            $this->errorDescription = $e->getMessage();
+        }
+    }
+
+    /**
+     * Remove a user from a privilege.
+     *
+     * @param id
+     *            The id of the privilege.
+     * @param userId
+     *            The id of the user to be removed.
+     *
+     * @return true if success
+     *
+     * @see https://developers.onelogin.com/api-docs/1/privileges/remove-user Remove User documentation
+     */
+    public function removeUserFromPrivilege($id, $userId)
+    {
+        $this->cleanError();
+        $this->prepareToken();
+
+        try {
+            $url = $this->getURL(Constants::REMOVE_USER_FROM_PRIVILEGE_URL, $id, $userId);
+            $headers = $this->getAuthorizedHeader();
+
+            $response = $this->client->delete(
+                $url,
+                array(
+                    'headers' => $headers
+                )
+            );
+
+            return $this->handleOperationResponse($response);
+        } catch (ClientException $e) {
+            $response = $e->getResponse();
+            $this->error = $response->getStatusCode();
+            $this->errorDescription = $this->extractErrorMessageFromResponse($response);
+            $this->errorAttribute = $this->extractErrorAttributeFromResponse($response);
         } catch (\Exception $e) {
             $this->error = 500;
             $this->errorDescription = $e->getMessage();
