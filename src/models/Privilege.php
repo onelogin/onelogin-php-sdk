@@ -59,8 +59,6 @@ class Privilege
                 $this->statements[] = new Statement($statement["Effect"], $statement["Action"], $statement["Scope"]);
             }
         }
-
-        $this->statements = $this->statements;
     }
 
     public static function getValidActions()
