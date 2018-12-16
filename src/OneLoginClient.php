@@ -2445,6 +2445,7 @@ class OneLoginClient
                 } else {
                     $this->error = 400;
                     $this->errorDescription = "$statements is invalid. Provide an array of statements. The statement should be an Statement object or an Array with the keys Effect, Action and Scope";
+                    return;
                 }
             }
 
@@ -2558,6 +2559,7 @@ class OneLoginClient
                 } else {
                     $this->error = 400;
                     $this->errorDescription = "$statements is invalid. Provide an array of statements. The statement should be an Statement object or an Array with the keys Effect, Action and Scope";
+                    return;
                 }
             }
 
