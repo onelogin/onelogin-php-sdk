@@ -2307,6 +2307,7 @@ class OneLoginClient
             $this->error = 500;
             $this->errorDescription = $e->getMessage();
         }
+        return false;
     }
 
     ///////////////////////////
@@ -2626,6 +2627,7 @@ class OneLoginClient
             $this->error = 500;
             $this->errorDescription = $e->getMessage();
         }
+        return false;
     }
 
     /**
@@ -2743,6 +2745,7 @@ class OneLoginClient
             $this->error = 500;
             $this->errorDescription = $e->getMessage();
         }
+        return false;
     }
 
     /**
@@ -2782,6 +2785,7 @@ class OneLoginClient
             $this->error = 500;
             $this->errorDescription = $e->getMessage();
         }
+        return false;
     }
 
     /**
@@ -2899,6 +2903,7 @@ class OneLoginClient
             $this->error = 500;
             $this->errorDescription = $e->getMessage();
         }
+        return false;
     }
 
     /**
@@ -2938,5 +2943,6 @@ class OneLoginClient
             $this->error = 500;
             $this->errorDescription = $e->getMessage();
         }
+        return false;
     }
 }
