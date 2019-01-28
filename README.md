@@ -272,6 +272,74 @@ $sent = $client->sendInviteLink("user@example.com");
 /* Get Apps to Embed for a User */
 $embedToken = "30e256c101cd0d2e731de1ec222e93c4be8a1578";
 $apps = $client->getEmbedApps($embedToken, "user@example.com");
+
+/* Get Privileges */
+$privileges = $client->getPrivileges();
+
+/* Create Privilege */
+$name = "privilege_example";
+$version = "2018-05-18";
+
+$statement1 = new Statement(
+    "Allow",
+    [
+        "users:List",
+        "users:Get",
+    ],
+    ["*"]
+);
+
+$statement2 = new Statement(
+    "Allow",
+    [
+        "apps:List",
+        "apps:Get",
+    ],
+    ["*"]
+);
+
+$statements = array(
+    $statement1,
+    $statement2
+);
+
+$privilege = $client->createPrivilege($name, $version, $statements);
+
+/* Update Privilege */
+$name = "privilege_example_updated";
+$statement2 = new Statement(
+    "Allow",
+    [
+        "apps:List",
+    ],
+    ["*"]
+);
+$privilege = $client->updatePrivilege($privilege->id, $name, $version, $statements);
+
+/* Get Privilege */
+$privilege = $client->getPrivilege($privilege->id);
+
+/* Delete Privilege */
+$result = $client->deletePrivilege($privilege->id);
+
+/* Gets a list of the roles assigned to a privilege */
+$assignedRoles = $client->getRolesAssignedToPrivilege($privilege->id);
+
+/* Assign roles to a privilege */
+$result = $client->assignRolesToPrivilege($privilege->id, array($role_id1, $role_id2));
+
+/* Remove role from a privilege */
+$result = $client->removeRoleFromPrivilege($privilege->id, $role_id1);
+
+/* Gets a list of the users assigned to a privilege */
+$assignedUsers = $client->getUsersAssignedToPrivilege($privilege->id);
+
+/* Assign users to a privilege */
+$result = $client->assignUsersToPrivilege($privilege->id, array($user_id1, $user_id2));
+
+/* Remove user from a privilege */
+$result = $client->removeUserFromPrivilege($privilege->id, $user_id2);
+
 ```
 
 ## Development
