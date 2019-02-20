@@ -34,6 +34,7 @@ class Constants
     const SET_CUSTOM_ATTRIBUTE_TO_USER_URL = "https://api.%s.onelogin.com/api/1/users/%s/set_custom_attributes";
     const LOG_USER_OUT_URL = "https://api.%s.onelogin.com/api/1/users/%s/logout";
     const LOCK_USER_URL = "https://api.%s.onelogin.com/api/1/users/%s/lock_user";
+    const GENERATE_MFA_TOKEN_URL = "https://api.%s.onelogin.com/api/1/users/%s/mfa_token";
 
     // Role URLs
     const GET_ROLES_URL = "https://api.%s.onelogin.com/api/1/roles";
