@@ -168,7 +168,10 @@ $userApps = $client->getUserApps($user->id);
 
 /* Get User Roles */
 $userRolesIds = $client->getUserRoles($user->id);
-        
+
+/* Generate MFA Token */
+$mfaToken = $client->generateMFAToken($user->id);
+
 /* Create user */
 $newUserParams = array(
     "email" => "testcreate_1@example.com",

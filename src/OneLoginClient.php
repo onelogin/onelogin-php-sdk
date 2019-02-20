@@ -15,6 +15,7 @@ use OneLogin\api\models\EventType;
 use OneLogin\api\models\FactorEnrollmentResponse;
 use OneLogin\api\models\Group;
 use OneLogin\api\models\MFA;
+use OneLogin\api\models\MFAToken;
 use OneLogin\api\models\OneLoginToken;
 use OneLogin\api\models\OTPDevice;
 use OneLogin\api\models\Privilege;
@@ -1239,6 +1240,58 @@ class OneLoginClient
             $this->errorDescription = $e->getMessage();
         }
         return false;
+    }
+
+    /**
+     * Generate an access token for a user
+     *
+     * @param userId
+     *            Id of the user
+     * @param expiresIn
+     *            Set the duration of the token in seconds. (default: 259200 seconds = 72h)
+     *            72 hours is the max value.)
+     * @param reusable
+     *            Defines if the token reusable. (default: false) If set to true, token can be used for multiple apps, until it expires.
+     *
+     * @return MFAToken
+     *
+     * @see https://developers.onelogin.com/api-docs/1/multi-factor-authentication/generate-mfa-token Generate MFA Token documentation
+     */
+    public function generateMFAToken($userId, $expiresIn = 259200, $reusable = false)
+    {
+        $this->cleanError();
+        $this->prepareToken();
+
+        $data = array(
+            'expires_in' => $expiresIn,
+            'reusable' => $reusable
+        );
+
+        try {
+            $url = $this->getURL(Constants::GENERATE_MFA_TOKEN_URL, $userId);
+            $headers = $this->getAuthorizedHeader();
+
+            $response = $this->client->post(
+                $url,
+                array(
+                    'json' => $data,
+                    'headers' => $headers
+                )
+            );
+
+            $data = json_decode($response->getBody());
+
+            if (!empty($data) && property_exists($data, 'mfa_token')) {
+                return new MFAToken($data);
+            }
+        } catch (ClientException $e) {
+            $response = $e->getResponse();
+            $this->error = $response->getStatusCode();
+            $this->errorDescription = $this->extractErrorMessageFromResponse($response);
+        } catch (\Exception $e) {
+            $this->error = 500;
+            $this->errorDescription = $e->getMessage();
+        }
     }
 
     //////////////////////////
@@ -2642,7 +2695,7 @@ class OneLoginClient
      *
      * @see https://developers.onelogin.com/api-docs/1/privileges/get-roles Get Assigned Roles documentation
      */
-    public function getRolesAssignedToPrivilege($id, $maxResults=null)
+    public function getRolesAssignedToPrivilege($id, $maxResults = null)
     {
         $this->cleanError();
         $this->prepareToken();
@@ -2800,7 +2853,7 @@ class OneLoginClient
      *
      * @see https://developers.onelogin.com/api-docs/1/privileges/get-users Get Assigned Users documentation
      */
-    public function getUsersAssignedToPrivilege($id, $maxResults=null)
+    public function getUsersAssignedToPrivilege($id, $maxResults = null)
     {
         $this->cleanError();
         $this->prepareToken();
