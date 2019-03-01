@@ -94,6 +94,21 @@ class Event
     /** @var string */
     public $errorDescription;
 
+    /** @var string */
+    public $proxyIp;
+
+    /** @var int */
+    public $riskScore;
+
+    /** @var string */
+    public $riskReasons;
+
+    /** @var string */
+    public $riskCookieId;
+
+    /** @var string */
+    public $browserFingerprint;
+
     /**
      * Create a new instance of Event.
      */
@@ -130,6 +145,11 @@ class Event
         $this->clientId = isset($data->client_id)? (int) $data->client_id : null;
         $this->resourceTypeId = isset($data->resource_type_id)? (int) $data->resource_type_id : null;
         $this->errorDescription = $data->error_description;
+        $this->proxyIp = $data->proxy_ip;
+        $this->riskScore = $data->risk_score;
+        $this->riskReasons = $data->risk_reasons;
+        $this->riskCookieId = $data->risk_cookie_id;
+        $this->browserFingerprint = $data->browser_fingerprint;
     }
 
     public function getRole()

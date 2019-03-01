@@ -11,7 +11,7 @@ class EventType
     protected $name;
 
     /** @var string */
-    protected $reference;
+    protected $description;
 
     /**
      * Create a new instance of EventType.
@@ -20,7 +20,7 @@ class EventType
     {
         $this->id = isset($data->id)? (int) $data->id : null;
         $this->name = $data->name;
-        $this->reference = $data->reference;
+        $this->description = $data->description;
     }
 
     public function getID()
@@ -33,8 +33,8 @@ class EventType
         return $this->name;
     }
 
-    public function getReference()
+    public function getDescription()
     {
-        return $this->reference;
+        return $this->description;
     }
 }
