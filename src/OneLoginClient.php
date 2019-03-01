@@ -31,7 +31,7 @@ use OneLogin\api\models\User;
  */
 class OneLoginClient
 {
-    const VERSION = "1.5.0";
+    const VERSION = "1.5.1";
 
     const CUSTOM_USER_AGENT = "onelogin-php-sdk ".OneLoginClient::VERSION;
 
