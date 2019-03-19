@@ -172,6 +172,9 @@ $userRolesIds = $client->getUserRoles($user->id);
 /* Generate MFA Token */
 $mfaToken = $client->generateMFAToken($user->id);
 
+/* Get all Apps in a OneLogin account */
+$apps = $client->getApps();
+
 /* Create user */
 $newUserParams = array(
     "email" => "testcreate_1@example.com",

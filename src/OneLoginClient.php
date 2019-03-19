@@ -16,6 +16,7 @@ use OneLogin\api\models\FactorEnrollmentResponse;
 use OneLogin\api\models\Group;
 use OneLogin\api\models\MFA;
 use OneLogin\api\models\MFAToken;
+use OneLogin\api\models\OneloginApp;
 use OneLogin\api\models\OneLoginToken;
 use OneLogin\api\models\OTPDevice;
 use OneLogin\api\models\Privilege;
@@ -1407,6 +1408,83 @@ class OneLoginClient
         }
     }
 
+    /////////////////////////////
+    //  Onelogin Apps Methods  //
+    /////////////////////////////
+
+    /**
+     * Gets a list of all Apps in a OneLogin account.
+     *
+     * @param queryParameters
+     *            Parameters to filter the result of the list
+     * @param maxResults
+     *            Limit the number of roles returned (optional)
+     *
+     * @return List of OneloginApp
+     *
+     * @see https://developers.onelogin.com/api-docs/1/apps/get-apps Get Apps documentation
+     */
+    public function getApps()
+    {
+        $this->cleanError();
+        $this->prepareToken();
+
+        $maxResults = empty($maxResults)? $this->maxResults : $maxResults;
+
+        try {
+            $url = $this->getURL(Constants::GET_APPS_URL);
+            $headers = $this->getAuthorizedHeader();
+
+            $options = array(
+                'headers' => $headers
+            );
+
+            if (!empty($queryParameters)) {
+                if (!is_array($queryParameters)) {
+                    new \Exception("Invalid value for queryParameters, must to be an indexed array");
+                }
+
+                $options['query'] = $queryParameters;
+            }
+
+            $apps = array();
+            $afterCursor = null;
+            while (!isset($response) || (count($apps) < $maxResults && !empty($afterCursor))) {
+                $response = $this->client->get(
+                    $url,
+                    $options
+                );
+                $data = $this->handleDataResponse($response);
+
+                if (isset($data)) {
+                    foreach ($data as $appData) {
+                        if (count($apps) < $maxResults) {
+                            $apps[] = new OneloginApp($appData);
+                        } else {
+                            return $apps;
+                        }
+                    }
+                }
+
+                $afterCursor = $this->getAfterCursor($response);
+                if (!empty($afterCursor)) {
+                    if (!isset($options['query'])) {
+                        $options['query'] = array();
+                    }
+                    $options['query']['after_cursor'] = $afterCursor;
+                }
+            }
+            return $apps;
+        } catch (ClientException $e) {
+            $response = $e->getResponse();
+            $this->error = $response->getStatusCode();
+            $this->errorDescription = $this->extractErrorMessageFromResponse($response);
+        } catch (\Exception $e) {
+            $this->error = 500;
+            $this->errorDescription = $e->getMessage();
+        }
+    }
+
     ////////////////////
     //  Role Methods  //
     ////////////////////
@@ -1423,7 +1501,7 @@ class OneLoginClient
      *
      * @see https://developers.onelogin.com/api-docs/1/roles/get-roles Get Roles documentation
      */
-    public function getRoles($queryParameters = null)
+    public function getRoles($queryParameters = null, $maxResults = null)
     {
         $this->cleanError();
         $this->prepareToken();
@@ -1454,7 +1532,7 @@ class OneLoginClient
                     $options
                 );
                 $data = $this->handleDataResponse($response);
-            
+
                 if (isset($data)) {
                     foreach ($data as $roleData) {
                         if (count($roles) < $maxResults) {

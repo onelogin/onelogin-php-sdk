@@ -36,6 +36,9 @@ class Constants
     const LOCK_USER_URL = "https://api.%s.onelogin.com/api/1/users/%s/lock_user";
     const GENERATE_MFA_TOKEN_URL = "https://api.%s.onelogin.com/api/1/users/%s/mfa_token";
 
+    // Apps URL
+    const GET_APPS_URL = "https://api.%s.onelogin.com/api/1/apps";
+
     // Role URLs
     const GET_ROLES_URL = "https://api.%s.onelogin.com/api/1/roles";
     const CREATE_ROLE_URL = "https://api.%s.onelogin.com/api/1/roles";
