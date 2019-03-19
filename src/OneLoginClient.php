@@ -1418,7 +1418,7 @@ class OneLoginClient
      * @param queryParameters
      *            Parameters to filter the result of the list
      * @param maxResults
-     *            Limit the number of roles returned (optional)
+     *            Limit the number of apps returned (optional)
      *
      * @return List of OneloginApp
      *
