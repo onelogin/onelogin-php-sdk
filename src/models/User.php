@@ -151,7 +151,7 @@ class User
         $this->managerAdId = isset($data->manager_ad_id)? (int) $data->manager_ad_id : null;
         $this->trustedIdPId = isset($data->trusted_idp_id)? (int) $data->trusted_idp_id : null;
         $this->managerUserId = isset($data->manager_user_id)? (int) $data->manager_user_id : null;
-        if (isset($data->activated)) {
+        if (isset($data->activated_at)) {
             $this->activatedAt = \DateTime::createFromFormat('Y-m-d\TH:i:s+', $data->activated_at, $utc);
         }
         if (isset($data->created_at)) {
