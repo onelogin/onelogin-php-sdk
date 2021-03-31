@@ -23,6 +23,7 @@ use OneLogin\api\models\Privilege;
 use OneLogin\api\models\RateLimit;
 use OneLogin\api\models\Role;
 use OneLogin\api\models\SAMLEndpointResponse;
+use OneLogin\api\models\SessionStatus;
 use OneLogin\api\models\SessionTokenInfo;
 use OneLogin\api\models\SessionTokenMFAInfo;
 use OneLogin\api\models\User;
@@ -183,13 +184,13 @@ class OneLoginClient
     {
         $sessionToken = null;
         $content = json_decode($response->getBody());
-        if (property_exists($content, 'status') && property_exists($content->status, 'message') && property_exists($content, 'data')) {
-            if ($content->status->message == "Success") {
+        if (property_exists($content, 'status') && property_exists($content->status, 'message')) {
+            if ($content->status->message == "Success" && property_exists($content, 'data')) {
                 $sessionToken = new SessionTokenInfo($content->data[0]);
-            } else if ($content->status->message == "MFA is required for this user") {
+            } else if ($content->status->message == "MFA is required for this user" && property_exists($content, 'data')) {
                 $sessionToken = new SessionTokenMFAInfo($content->data[0]);
             } else {
-                new Exception("Status Message type not reognized: ".$content->status->message);
+                $sessionToken = new SessionStatus($content->status);
             }
         }
         return $sessionToken;
@@ -546,7 +547,7 @@ class OneLoginClient
                     $options
                 );
                 $data = $this->handleDataResponse($response);
-            
+
                 if (isset($data)) {
                     foreach ($data as $userData) {
                         if (count($users) < $maxResults) {
@@ -1310,7 +1311,7 @@ class OneLoginClient
      *            Custom-Allowed-Origin-Header. Required for CORS requests only. Set to the Origin URI
      *            from which you are allowed to send a request using CORS.
      *
-     * @return SessionTokenInfo or SessionTokenMFAInfo object if success
+     * @return SessionTokenInfo|SessionTokenMFAInfo|SessionStatus object if success
      *
      * @see https://developers.onelogin.com/api-docs/1/users/create-session-login-token Create Session Login Token documentation
      */
@@ -1361,7 +1362,7 @@ class OneLoginClient
      * @param doNotNotify
      *            When verifying MFA via Protect Push, set this to true to stop additional push notifications being sent to the OneLogin Protect device.
      *
-     * @return Session Token
+     * @return SessionTokenInfo|SessionTokenMFAInfo|SessionStatus
      *
      * @see https://developers.onelogin.com/api-docs/1/users/verify-factor Verify Factor documentation
      */
@@ -1689,7 +1690,7 @@ class OneLoginClient
                 );
 
                 $data = $this->handleDataResponse($response);
-            
+
                 if (isset($data)) {
                     foreach ($data as $eventData) {
                         if (count($events) < $maxResults) {
@@ -1840,7 +1841,7 @@ class OneLoginClient
                     $options
                 );
                 $data = $this->handleDataResponse($response);
-            
+
                 if (isset($data)) {
                     foreach ($data as $groupData) {
                         if (count($groups) < $maxResults) {
@@ -2954,7 +2955,7 @@ class OneLoginClient
                     $options
                 );
                 $data = json_decode($response->getBody());
-            
+
                 if (isset($data) && property_exists($data, 'users')) {
                     if (count($users) + count($data->users) == $maxResults) {
                         $users = array_merge($users, $data->users);
