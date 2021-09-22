@@ -117,10 +117,10 @@ class User
         $utc = new \DateTimeZone("UTC");
         $this->id = isset($data->id)? (int) $data->id : null;
         $this->externalId = isset($data->external_id)? (int) $data->external_id : null;
-        $this->email = $data->email;
-        $this->username = $data->username;
-        $this->firstname = $data->firstname;
-        $this->lastname = $data->lastname;
+        $this->email = isset($data->email)? $data->email : null;
+        $this->username = isset($data->username)? $data->username : null;
+        $this->firstname = isset($data->firstname)? $data->firstname : null;
+        $this->lastname = isset($data->lastname)? $data->lastname : null;
         $this->distinguishedName = isset($data->distinguished_name)? $data->distinguished_name : null;
         $this->phone = isset($data->phone)? $data->phone : null;
         $this->company = isset($data->company)? $data->company : null;
