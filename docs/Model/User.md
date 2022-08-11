@@ -1,0 +1,45 @@
+# # User
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**id** | **int** |  | [optional]
+**username** | **string** | A username for the user. | [optional]
+**email** | **string** | A valid email for the user. | [optional]
+**firstname** | **string** | The user&#39;s first name. | [optional]
+**lastname** | **string** | The user&#39;s last name. | [optional]
+**title** | **string** | The user&#39;s job title. | [optional]
+**department** | **string** | The user&#39;s department. | [optional]
+**company** | **string** | The user&#39;s company. | [optional]
+**comment** | **string** | Free text related to the user. | [optional]
+**group_id** | **int** | The ID of the Group in OneLogin that the user is assigned to. | [optional]
+**role_ids** | **int[]** | A list of OneLogin Role IDs of the user | [optional]
+**phone** | **string** | The E.164 format phone number for a user. | [optional]
+**state** | **int** |  | [optional]
+**status** | **int** |  | [optional]
+**directory_id** | **int** | The ID of the OneLogin Directory of the user. | [optional]
+**trusted_idp_id** | **int** | The ID of the OneLogin Trusted IDP of the user. | [optional]
+**manager_ad_id** | **string** | The ID of the user&#39;s manager in Active Directory. | [optional]
+**manager_user_id** | **string** | The OneLogin User ID for the user&#39;s manager. | [optional]
+**samaccount_name** | **string** | The user&#39;s Active Directory username. | [optional]
+**member_of** | **string** | The user&#39;s directory membership. | [optional]
+**userprincipalname** | **string** | The principle name of the user. | [optional]
+**distinguished_name** | **string** | The distinguished name of the user. | [optional]
+**external_id** | **string** | The ID of the user in an external directory. | [optional]
+**activated_at** | **string** |  | [optional]
+**last_login** | **string** |  | [optional]
+**invitation_sent_at** | **string** |  | [optional]
+**updated_at** | **string** |  | [optional]
+**preferred_locale_code** | **string** |  | [optional]
+**created_at** | **string** |  | [optional]
+**custom_attributes** | **object** |  | [optional]
+**invalid_login_attempts** | **int** |  | [optional]
+**locked_until** | **string** |  | [optional]
+**password_changed_at** | **string** |  | [optional]
+**password** | **string** | The password to set for a user. | [optional]
+**password_confirmation** | **string** | Required if the password is being set. | [optional]
+**password_algorithm** | **string** | Use this when importing a password that&#39;s already hashed. Prepend the salt value to the cleartext password value before SHA-256-encoding it | [optional]
+**salt** | **string** | The salt value used with the password_algorithm. | [optional]
+
+[[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)
