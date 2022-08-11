@@ -1,4 +1,8 @@
 {
+    "name": "onelogin/api",
+    "type": "library",
+    "minimum-stability": "dev",
+    "version": "3.0.0-alpha.1",
     "keywords": [
         "onelogin",
         "php",
