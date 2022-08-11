@@ -50,14 +50,14 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $authorization = 'authorization_example'; // string
 $user_id = 56; // int | Set to the id of the user.
-$activate_factor_request = new \OpenAPI\Client\Model\ActivateFactorRequest(); // \OpenAPI\Client\Model\ActivateFactorRequest
+$activate_factor_request = new \onelogin/sdk\Model\ActivateFactorRequest(); // \onelogin/sdk\Model\ActivateFactorRequest
 
 try {
     $apiInstance->activateFactor($authorization, $user_id, $activate_factor_request);
@@ -73,107 +73,107 @@ All URIs are relative to *https://onelogininc.onelogin.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*DefaultApi* | [**activateFactor**](docs/Api/DefaultApi.md#activatefactor) | **POST** /api/2/mfa/users/{user_id}/verifications | 
-*DefaultApi* | [**addAccessTokenClaim**](docs/Api/DefaultApi.md#addaccesstokenclaim) | **POST** /api/2/api_authorizations/{id}/claims | 
-*DefaultApi* | [**addClientApp**](docs/Api/DefaultApi.md#addclientapp) | **POST** /api/2/api_authorizations/{id}/clients | 
-*DefaultApi* | [**addRoleAdmins**](docs/Api/DefaultApi.md#addroleadmins) | **POST** /api/2/roles/{role_id}/admins | 
-*DefaultApi* | [**addRoleUsers**](docs/Api/DefaultApi.md#addroleusers) | **POST** /api/2/roles/{role_id}/users | 
-*DefaultApi* | [**addScope**](docs/Api/DefaultApi.md#addscope) | **POST** /api/2/api_authorizations/{id}/scopes | 
-*DefaultApi* | [**bulkMappingSort**](docs/Api/DefaultApi.md#bulkmappingsort) | **PUT** /api/2/apps/mappings/sort | 
-*DefaultApi* | [**bulkSort**](docs/Api/DefaultApi.md#bulksort) | **PUT** /api/2/apps/{app_id}/rules/sort | 
-*DefaultApi* | [**createApp**](docs/Api/DefaultApi.md#createapp) | **POST** /api/2/apps | 
-*DefaultApi* | [**createAuthorizationServer**](docs/Api/DefaultApi.md#createauthorizationserver) | **POST** /api/2/api_authorizations | 
-*DefaultApi* | [**createEnvironmentVariable**](docs/Api/DefaultApi.md#createenvironmentvariable) | **POST** /api/2/hooks/envs | 
-*DefaultApi* | [**createHook**](docs/Api/DefaultApi.md#createhook) | **POST** /api/2/hooks | 
-*DefaultApi* | [**createMapping**](docs/Api/DefaultApi.md#createmapping) | **POST** /api/2/mappings | 
-*DefaultApi* | [**createRiskRule**](docs/Api/DefaultApi.md#createriskrule) | **POST** /api/2/risk/rules | 
-*DefaultApi* | [**createRoles**](docs/Api/DefaultApi.md#createroles) | **POST** /api/2/roles | 
-*DefaultApi* | [**createRule**](docs/Api/DefaultApi.md#createrule) | **POST** /api/2/apps/{app_id}/rules | 
-*DefaultApi* | [**createUser**](docs/Api/DefaultApi.md#createuser) | **POST** /api/2/users | 
-*DefaultApi* | [**deleteAccessTokenClaim**](docs/Api/DefaultApi.md#deleteaccesstokenclaim) | **DELETE** /api/2/api_authorizations/{id}/claims/{claim_id} | 
-*DefaultApi* | [**deleteApp**](docs/Api/DefaultApi.md#deleteapp) | **DELETE** /api/2/apps/{app_id} | 
-*DefaultApi* | [**deleteAppParameter**](docs/Api/DefaultApi.md#deleteappparameter) | **DELETE** /api/2/apps/{app_id}/parameters/{parameter_id} | 
-*DefaultApi* | [**deleteAuthorizationServer**](docs/Api/DefaultApi.md#deleteauthorizationserver) | **DELETE** /api/2/api_authorizations/{id} | 
-*DefaultApi* | [**deleteEnvironmentVariable**](docs/Api/DefaultApi.md#deleteenvironmentvariable) | **DELETE** /api/2/hooks/envs/{envvar_id} | 
-*DefaultApi* | [**deleteFactor**](docs/Api/DefaultApi.md#deletefactor) | **DELETE** /api/2/mfa/users/{user_id}/devices/{device_id} | 
-*DefaultApi* | [**deleteHook**](docs/Api/DefaultApi.md#deletehook) | **DELETE** /api/2/hooks/{hook_id} | 
-*DefaultApi* | [**deleteMapping**](docs/Api/DefaultApi.md#deletemapping) | **DELETE** /api/2/mappings/{mapping_id} | 
-*DefaultApi* | [**deleteRiskRule**](docs/Api/DefaultApi.md#deleteriskrule) | **DELETE** /api/2/risk/rules/{risk_rule_id} | 
-*DefaultApi* | [**deleteRole**](docs/Api/DefaultApi.md#deleterole) | **DELETE** /api/2/roles/{role_id} | 
-*DefaultApi* | [**deleteRule**](docs/Api/DefaultApi.md#deleterule) | **DELETE** /api/2/apps/{app_id}/rules/{rule_id} | 
-*DefaultApi* | [**deleteScope**](docs/Api/DefaultApi.md#deletescope) | **DELETE** /api/2/api_authorizations/{id}/scopes/{scope_id} | 
-*DefaultApi* | [**deleteUser**](docs/Api/DefaultApi.md#deleteuser) | **DELETE** /api/2/users/{user_id} | 
-*DefaultApi* | [**dryRunMapping**](docs/Api/DefaultApi.md#dryrunmapping) | **POST** /api/2/mappings/{mapping_id}/dryrun | 
-*DefaultApi* | [**enrollFactor**](docs/Api/DefaultApi.md#enrollfactor) | **POST** /api/2/mfa/users/{user_id}/registrations | 
-*DefaultApi* | [**generateMfaToken**](docs/Api/DefaultApi.md#generatemfatoken) | **POST** /api/2/mfs/users/{user_id}/mfa_token | 
-*DefaultApi* | [**generateSamlAssertion**](docs/Api/DefaultApi.md#generatesamlassertion) | **POST** /api/2/saml_assertion | 
-*DefaultApi* | [**generateToken**](docs/Api/DefaultApi.md#generatetoken) | **POST** /auth/oauth2/v2/token | 
-*DefaultApi* | [**getApp**](docs/Api/DefaultApi.md#getapp) | **GET** /api/2/apps/{app_id} | 
-*DefaultApi* | [**getAuthorizationServer**](docs/Api/DefaultApi.md#getauthorizationserver) | **GET** /api/2/api_authorizations/{id} | 
-*DefaultApi* | [**getAvailableFactors**](docs/Api/DefaultApi.md#getavailablefactors) | **GET** /api/2/mfa/users/{user_id}/factors | 
-*DefaultApi* | [**getClientApps**](docs/Api/DefaultApi.md#getclientapps) | **GET** /api/2/api_authorizations/{id}/clients | 
-*DefaultApi* | [**getEnrolledFactors**](docs/Api/DefaultApi.md#getenrolledfactors) | **GET** /api/2/mfa/users/{user_id}/devices | 
-*DefaultApi* | [**getEnvironmentVariable**](docs/Api/DefaultApi.md#getenvironmentvariable) | **GET** /api/2/hooks/envs/{envvar_id} | 
-*DefaultApi* | [**getHook**](docs/Api/DefaultApi.md#gethook) | **GET** /api/2/hooks/{hook_id} | 
-*DefaultApi* | [**getLogs**](docs/Api/DefaultApi.md#getlogs) | **GET** /api/2/hooks/{hook_id}/logs | 
-*DefaultApi* | [**getMapping**](docs/Api/DefaultApi.md#getmapping) | **GET** /api/2/mappings/{mapping_id} | 
-*DefaultApi* | [**getRateLimit**](docs/Api/DefaultApi.md#getratelimit) | **GET** /auth/rate_limit | 
-*DefaultApi* | [**getRiskRule**](docs/Api/DefaultApi.md#getriskrule) | **GET** /api/2/risk/rules/{risk_rule_id} | 
-*DefaultApi* | [**getRiskScore**](docs/Api/DefaultApi.md#getriskscore) | **POST** /api/2/risk/verify | 
-*DefaultApi* | [**getRole**](docs/Api/DefaultApi.md#getrole) | **GET** /api/2/roles/{role_id} | 
-*DefaultApi* | [**getRoleAdmins**](docs/Api/DefaultApi.md#getroleadmins) | **GET** /api/2/roles/{role_id}/admins | 
-*DefaultApi* | [**getRoleApps**](docs/Api/DefaultApi.md#getroleapps) | **GET** /api/2/roles/{role_id}/apps | 
-*DefaultApi* | [**getRoleUsers**](docs/Api/DefaultApi.md#getroleusers) | **GET** /api/2/roles/{role_id}/users | 
-*DefaultApi* | [**getRule**](docs/Api/DefaultApi.md#getrule) | **GET** /api/2/apps/{app_id}/rules/{rule_id} | 
-*DefaultApi* | [**getScoreInsights**](docs/Api/DefaultApi.md#getscoreinsights) | **GET** /api/2/risk/scores | 
-*DefaultApi* | [**getUser**](docs/Api/DefaultApi.md#getuser) | **GET** /api/2/users/{user_id} | 
-*DefaultApi* | [**getUserApps**](docs/Api/DefaultApi.md#getuserapps) | **GET** /api/2/users/{user_id}/apps | 
-*DefaultApi* | [**listAccessTokenClaims**](docs/Api/DefaultApi.md#listaccesstokenclaims) | **GET** /api/2/api_authorizations/{id}/claims | 
-*DefaultApi* | [**listActionValues**](docs/Api/DefaultApi.md#listactionvalues) | **GET** /api/2/apps/{app_id}/rules/actions/{actuion_value}/values | 
-*DefaultApi* | [**listActions**](docs/Api/DefaultApi.md#listactions) | **GET** /api/2/apps/{app_id}/rules/actions | 
-*DefaultApi* | [**listAppUsers**](docs/Api/DefaultApi.md#listappusers) | **GET** /api/2/apps/{app_id}/users | 
-*DefaultApi* | [**listApps**](docs/Api/DefaultApi.md#listapps) | **GET** /api/2/apps | 
-*DefaultApi* | [**listAuthorizationServers**](docs/Api/DefaultApi.md#listauthorizationservers) | **GET** /api/2/api_authorizations | 
-*DefaultApi* | [**listConditionOperators**](docs/Api/DefaultApi.md#listconditionoperators) | **GET** /api/2/apps/{app_id}/rules/conditions/{condition_value}/operators | 
-*DefaultApi* | [**listConditionValues**](docs/Api/DefaultApi.md#listconditionvalues) | **GET** /api/2/apps/{app_id}/rules/conditions/{condition_value}/values | 
-*DefaultApi* | [**listConditions**](docs/Api/DefaultApi.md#listconditions) | **GET** /api/2/apps/{app_id}/rules/conditions | 
-*DefaultApi* | [**listConnectors**](docs/Api/DefaultApi.md#listconnectors) | **GET** /api/2/connectors | 
-*DefaultApi* | [**listEnvironmentVariables**](docs/Api/DefaultApi.md#listenvironmentvariables) | **GET** /api/2/hooks/envs | 
-*DefaultApi* | [**listHooks**](docs/Api/DefaultApi.md#listhooks) | **GET** /api/2/hooks | 
-*DefaultApi* | [**listMappingActionValues**](docs/Api/DefaultApi.md#listmappingactionvalues) | **GET** /api/2/apps/mappings/actions/{actuion_value}/values | 
-*DefaultApi* | [**listMappingActions**](docs/Api/DefaultApi.md#listmappingactions) | **GET** /api/2/apps/mappings/actions | 
-*DefaultApi* | [**listMappingConditionOperators**](docs/Api/DefaultApi.md#listmappingconditionoperators) | **GET** /api/2/apps/mappings/conditions/{condition_value}/operators | 
-*DefaultApi* | [**listMappingConditionValues**](docs/Api/DefaultApi.md#listmappingconditionvalues) | **GET** /api/2/apps/mappings/conditions/{condition_value}/values | 
-*DefaultApi* | [**listMappingConditions**](docs/Api/DefaultApi.md#listmappingconditions) | **GET** /api/2/apps/mappings/conditions | 
-*DefaultApi* | [**listMappings**](docs/Api/DefaultApi.md#listmappings) | **GET** /api/2/mappings | 
-*DefaultApi* | [**listRiskRules**](docs/Api/DefaultApi.md#listriskrules) | **GET** /api/2/risk/rules | 
-*DefaultApi* | [**listRoles**](docs/Api/DefaultApi.md#listroles) | **GET** /api/2/roles | 
-*DefaultApi* | [**listRules**](docs/Api/DefaultApi.md#listrules) | **GET** /api/2/apps/{app_id}/rules | 
-*DefaultApi* | [**listScopes**](docs/Api/DefaultApi.md#listscopes) | **GET** /api/2/api_authorizations/{id}/scopes | 
-*DefaultApi* | [**listUsers**](docs/Api/DefaultApi.md#listusers) | **GET** /api/2/users | 
-*DefaultApi* | [**removeClientApp**](docs/Api/DefaultApi.md#removeclientapp) | **DELETE** /api/2/api_authorizations/{id}/clients/{client_app_id} | 
-*DefaultApi* | [**removeRoleAdmins**](docs/Api/DefaultApi.md#removeroleadmins) | **DELETE** /api/2/roles/{role_id}/admins | 
-*DefaultApi* | [**removeRoleUsers**](docs/Api/DefaultApi.md#removeroleusers) | **DELETE** /api/2/roles/{role_id}/users | 
-*DefaultApi* | [**revokeToken**](docs/Api/DefaultApi.md#revoketoken) | **POST** /auth/oauth2/revoke | 
-*DefaultApi* | [**setRoleApps**](docs/Api/DefaultApi.md#setroleapps) | **PUT** /api/2/roles/{role_id}/apps | 
-*DefaultApi* | [**trackEvent**](docs/Api/DefaultApi.md#trackevent) | **POST** /api/2/risk/events | 
-*DefaultApi* | [**updateAccessTokenClaim**](docs/Api/DefaultApi.md#updateaccesstokenclaim) | **PUT** /api/2/api_authorizations/{id}/claims/{claim_id} | 
-*DefaultApi* | [**updateApp**](docs/Api/DefaultApi.md#updateapp) | **PUT** /api/2/apps/{app_id} | 
-*DefaultApi* | [**updateAuthorizationServer**](docs/Api/DefaultApi.md#updateauthorizationserver) | **PUT** /api/2/api_authorizations/{id} | 
-*DefaultApi* | [**updateClientApp**](docs/Api/DefaultApi.md#updateclientapp) | **PUT** /api/2/api_authorizations/{id}/clients/{client_app_id} | 
-*DefaultApi* | [**updateEnvironmentVariable**](docs/Api/DefaultApi.md#updateenvironmentvariable) | **PUT** /api/2/hooks/envs/{envvar_id} | 
-*DefaultApi* | [**updateHook**](docs/Api/DefaultApi.md#updatehook) | **PUT** /api/2/hooks/{hook_id} | 
-*DefaultApi* | [**updateMapping**](docs/Api/DefaultApi.md#updatemapping) | **PUT** /api/2/mappings/{mapping_id} | 
-*DefaultApi* | [**updateRiskRule**](docs/Api/DefaultApi.md#updateriskrule) | **PUT** /api/2/risk/rules/{risk_rule_id} | 
-*DefaultApi* | [**updateRole**](docs/Api/DefaultApi.md#updaterole) | **PUT** /api/2/roles/{role_id} | 
-*DefaultApi* | [**updateRule**](docs/Api/DefaultApi.md#updaterule) | **PUT** /api/2/apps/{app_id}/rules/{rule_id} | 
-*DefaultApi* | [**updateScope**](docs/Api/DefaultApi.md#updatescope) | **PUT** /api/2/api_authorizations/{id}/scopes/{scope_id} | 
-*DefaultApi* | [**updateUser**](docs/Api/DefaultApi.md#updateuser) | **PUT** /api/2/users/{user_id} | 
-*DefaultApi* | [**verifyEnrollment**](docs/Api/DefaultApi.md#verifyenrollment) | **PUT** /api/2/mfa/users/{user_id}/registrations/{registration_id} | 
-*DefaultApi* | [**verifyEnrollmentVoiceProtect**](docs/Api/DefaultApi.md#verifyenrollmentvoiceprotect) | **GET** /api/2/mfa/users/{user_id}/registrations/{registration_id} | 
-*DefaultApi* | [**verifyFactor**](docs/Api/DefaultApi.md#verifyfactor) | **PUT** /api/2/mfa/users/{user_id}/verifications/{verification_id} | 
-*DefaultApi* | [**verifyFactorSaml**](docs/Api/DefaultApi.md#verifyfactorsaml) | **POST** /api/2/saml_assertion/verify_factor | 
-*DefaultApi* | [**verifyFactorVoice**](docs/Api/DefaultApi.md#verifyfactorvoice) | **GET** /api/2/mfa/users/{user_id}/verifications/{verification_id} | 
+*DefaultApi* | [**activateFactor**](docs/Api/DefaultApi.md#activatefactor) | **POST** /api/2/mfa/users/{user_id}/verifications |
+*DefaultApi* | [**addAccessTokenClaim**](docs/Api/DefaultApi.md#addaccesstokenclaim) | **POST** /api/2/api_authorizations/{id}/claims |
+*DefaultApi* | [**addClientApp**](docs/Api/DefaultApi.md#addclientapp) | **POST** /api/2/api_authorizations/{id}/clients |
+*DefaultApi* | [**addRoleAdmins**](docs/Api/DefaultApi.md#addroleadmins) | **POST** /api/2/roles/{role_id}/admins |
+*DefaultApi* | [**addRoleUsers**](docs/Api/DefaultApi.md#addroleusers) | **POST** /api/2/roles/{role_id}/users |
+*DefaultApi* | [**addScope**](docs/Api/DefaultApi.md#addscope) | **POST** /api/2/api_authorizations/{id}/scopes |
+*DefaultApi* | [**bulkMappingSort**](docs/Api/DefaultApi.md#bulkmappingsort) | **PUT** /api/2/apps/mappings/sort |
+*DefaultApi* | [**bulkSort**](docs/Api/DefaultApi.md#bulksort) | **PUT** /api/2/apps/{app_id}/rules/sort |
+*DefaultApi* | [**createApp**](docs/Api/DefaultApi.md#createapp) | **POST** /api/2/apps |
+*DefaultApi* | [**createAuthorizationServer**](docs/Api/DefaultApi.md#createauthorizationserver) | **POST** /api/2/api_authorizations |
+*DefaultApi* | [**createEnvironmentVariable**](docs/Api/DefaultApi.md#createenvironmentvariable) | **POST** /api/2/hooks/envs |
+*DefaultApi* | [**createHook**](docs/Api/DefaultApi.md#createhook) | **POST** /api/2/hooks |
+*DefaultApi* | [**createMapping**](docs/Api/DefaultApi.md#createmapping) | **POST** /api/2/mappings |
+*DefaultApi* | [**createRiskRule**](docs/Api/DefaultApi.md#createriskrule) | **POST** /api/2/risk/rules |
+*DefaultApi* | [**createRoles**](docs/Api/DefaultApi.md#createroles) | **POST** /api/2/roles |
+*DefaultApi* | [**createRule**](docs/Api/DefaultApi.md#createrule) | **POST** /api/2/apps/{app_id}/rules |
+*DefaultApi* | [**createUser**](docs/Api/DefaultApi.md#createuser) | **POST** /api/2/users |
+*DefaultApi* | [**deleteAccessTokenClaim**](docs/Api/DefaultApi.md#deleteaccesstokenclaim) | **DELETE** /api/2/api_authorizations/{id}/claims/{claim_id} |
+*DefaultApi* | [**deleteApp**](docs/Api/DefaultApi.md#deleteapp) | **DELETE** /api/2/apps/{app_id} |
+*DefaultApi* | [**deleteAppParameter**](docs/Api/DefaultApi.md#deleteappparameter) | **DELETE** /api/2/apps/{app_id}/parameters/{parameter_id} |
+*DefaultApi* | [**deleteAuthorizationServer**](docs/Api/DefaultApi.md#deleteauthorizationserver) | **DELETE** /api/2/api_authorizations/{id} |
+*DefaultApi* | [**deleteEnvironmentVariable**](docs/Api/DefaultApi.md#deleteenvironmentvariable) | **DELETE** /api/2/hooks/envs/{envvar_id} |
+*DefaultApi* | [**deleteFactor**](docs/Api/DefaultApi.md#deletefactor) | **DELETE** /api/2/mfa/users/{user_id}/devices/{device_id} |
+*DefaultApi* | [**deleteHook**](docs/Api/DefaultApi.md#deletehook) | **DELETE** /api/2/hooks/{hook_id} |
+*DefaultApi* | [**deleteMapping**](docs/Api/DefaultApi.md#deletemapping) | **DELETE** /api/2/mappings/{mapping_id} |
+*DefaultApi* | [**deleteRiskRule**](docs/Api/DefaultApi.md#deleteriskrule) | **DELETE** /api/2/risk/rules/{risk_rule_id} |
+*DefaultApi* | [**deleteRole**](docs/Api/DefaultApi.md#deleterole) | **DELETE** /api/2/roles/{role_id} |
+*DefaultApi* | [**deleteRule**](docs/Api/DefaultApi.md#deleterule) | **DELETE** /api/2/apps/{app_id}/rules/{rule_id} |
+*DefaultApi* | [**deleteScope**](docs/Api/DefaultApi.md#deletescope) | **DELETE** /api/2/api_authorizations/{id}/scopes/{scope_id} |
+*DefaultApi* | [**deleteUser**](docs/Api/DefaultApi.md#deleteuser) | **DELETE** /api/2/users/{user_id} |
+*DefaultApi* | [**dryRunMapping**](docs/Api/DefaultApi.md#dryrunmapping) | **POST** /api/2/mappings/{mapping_id}/dryrun |
+*DefaultApi* | [**enrollFactor**](docs/Api/DefaultApi.md#enrollfactor) | **POST** /api/2/mfa/users/{user_id}/registrations |
+*DefaultApi* | [**generateMfaToken**](docs/Api/DefaultApi.md#generatemfatoken) | **POST** /api/2/mfs/users/{user_id}/mfa_token |
+*DefaultApi* | [**generateSamlAssertion**](docs/Api/DefaultApi.md#generatesamlassertion) | **POST** /api/2/saml_assertion |
+*DefaultApi* | [**generateToken**](docs/Api/DefaultApi.md#generatetoken) | **POST** /auth/oauth2/v2/token |
+*DefaultApi* | [**getApp**](docs/Api/DefaultApi.md#getapp) | **GET** /api/2/apps/{app_id} |
+*DefaultApi* | [**getAuthorizationServer**](docs/Api/DefaultApi.md#getauthorizationserver) | **GET** /api/2/api_authorizations/{id} |
+*DefaultApi* | [**getAvailableFactors**](docs/Api/DefaultApi.md#getavailablefactors) | **GET** /api/2/mfa/users/{user_id}/factors |
+*DefaultApi* | [**getClientApps**](docs/Api/DefaultApi.md#getclientapps) | **GET** /api/2/api_authorizations/{id}/clients |
+*DefaultApi* | [**getEnrolledFactors**](docs/Api/DefaultApi.md#getenrolledfactors) | **GET** /api/2/mfa/users/{user_id}/devices |
+*DefaultApi* | [**getEnvironmentVariable**](docs/Api/DefaultApi.md#getenvironmentvariable) | **GET** /api/2/hooks/envs/{envvar_id} |
+*DefaultApi* | [**getHook**](docs/Api/DefaultApi.md#gethook) | **GET** /api/2/hooks/{hook_id} |
+*DefaultApi* | [**getLogs**](docs/Api/DefaultApi.md#getlogs) | **GET** /api/2/hooks/{hook_id}/logs |
+*DefaultApi* | [**getMapping**](docs/Api/DefaultApi.md#getmapping) | **GET** /api/2/mappings/{mapping_id} |
+*DefaultApi* | [**getRateLimit**](docs/Api/DefaultApi.md#getratelimit) | **GET** /auth/rate_limit |
+*DefaultApi* | [**getRiskRule**](docs/Api/DefaultApi.md#getriskrule) | **GET** /api/2/risk/rules/{risk_rule_id} |
+*DefaultApi* | [**getRiskScore**](docs/Api/DefaultApi.md#getriskscore) | **POST** /api/2/risk/verify |
+*DefaultApi* | [**getRole**](docs/Api/DefaultApi.md#getrole) | **GET** /api/2/roles/{role_id} |
+*DefaultApi* | [**getRoleAdmins**](docs/Api/DefaultApi.md#getroleadmins) | **GET** /api/2/roles/{role_id}/admins |
+*DefaultApi* | [**getRoleApps**](docs/Api/DefaultApi.md#getroleapps) | **GET** /api/2/roles/{role_id}/apps |
+*DefaultApi* | [**getRoleUsers**](docs/Api/DefaultApi.md#getroleusers) | **GET** /api/2/roles/{role_id}/users |
+*DefaultApi* | [**getRule**](docs/Api/DefaultApi.md#getrule) | **GET** /api/2/apps/{app_id}/rules/{rule_id} |
+*DefaultApi* | [**getScoreInsights**](docs/Api/DefaultApi.md#getscoreinsights) | **GET** /api/2/risk/scores |
+*DefaultApi* | [**getUser**](docs/Api/DefaultApi.md#getuser) | **GET** /api/2/users/{user_id} |
+*DefaultApi* | [**getUserApps**](docs/Api/DefaultApi.md#getuserapps) | **GET** /api/2/users/{user_id}/apps |
+*DefaultApi* | [**listAccessTokenClaims**](docs/Api/DefaultApi.md#listaccesstokenclaims) | **GET** /api/2/api_authorizations/{id}/claims |
+*DefaultApi* | [**listActionValues**](docs/Api/DefaultApi.md#listactionvalues) | **GET** /api/2/apps/{app_id}/rules/actions/{actuion_value}/values |
+*DefaultApi* | [**listActions**](docs/Api/DefaultApi.md#listactions) | **GET** /api/2/apps/{app_id}/rules/actions |
+*DefaultApi* | [**listAppUsers**](docs/Api/DefaultApi.md#listappusers) | **GET** /api/2/apps/{app_id}/users |
+*DefaultApi* | [**listApps**](docs/Api/DefaultApi.md#listapps) | **GET** /api/2/apps |
+*DefaultApi* | [**listAuthorizationServers**](docs/Api/DefaultApi.md#listauthorizationservers) | **GET** /api/2/api_authorizations |
+*DefaultApi* | [**listConditionOperators**](docs/Api/DefaultApi.md#listconditionoperators) | **GET** /api/2/apps/{app_id}/rules/conditions/{condition_value}/operators |
+*DefaultApi* | [**listConditionValues**](docs/Api/DefaultApi.md#listconditionvalues) | **GET** /api/2/apps/{app_id}/rules/conditions/{condition_value}/values |
+*DefaultApi* | [**listConditions**](docs/Api/DefaultApi.md#listconditions) | **GET** /api/2/apps/{app_id}/rules/conditions |
+*DefaultApi* | [**listConnectors**](docs/Api/DefaultApi.md#listconnectors) | **GET** /api/2/connectors |
+*DefaultApi* | [**listEnvironmentVariables**](docs/Api/DefaultApi.md#listenvironmentvariables) | **GET** /api/2/hooks/envs |
+*DefaultApi* | [**listHooks**](docs/Api/DefaultApi.md#listhooks) | **GET** /api/2/hooks |
+*DefaultApi* | [**listMappingActionValues**](docs/Api/DefaultApi.md#listmappingactionvalues) | **GET** /api/2/apps/mappings/actions/{actuion_value}/values |
+*DefaultApi* | [**listMappingActions**](docs/Api/DefaultApi.md#listmappingactions) | **GET** /api/2/apps/mappings/actions |
+*DefaultApi* | [**listMappingConditionOperators**](docs/Api/DefaultApi.md#listmappingconditionoperators) | **GET** /api/2/apps/mappings/conditions/{condition_value}/operators |
+*DefaultApi* | [**listMappingConditionValues**](docs/Api/DefaultApi.md#listmappingconditionvalues) | **GET** /api/2/apps/mappings/conditions/{condition_value}/values |
+*DefaultApi* | [**listMappingConditions**](docs/Api/DefaultApi.md#listmappingconditions) | **GET** /api/2/apps/mappings/conditions |
+*DefaultApi* | [**listMappings**](docs/Api/DefaultApi.md#listmappings) | **GET** /api/2/mappings |
+*DefaultApi* | [**listRiskRules**](docs/Api/DefaultApi.md#listriskrules) | **GET** /api/2/risk/rules |
+*DefaultApi* | [**listRoles**](docs/Api/DefaultApi.md#listroles) | **GET** /api/2/roles |
+*DefaultApi* | [**listRules**](docs/Api/DefaultApi.md#listrules) | **GET** /api/2/apps/{app_id}/rules |
+*DefaultApi* | [**listScopes**](docs/Api/DefaultApi.md#listscopes) | **GET** /api/2/api_authorizations/{id}/scopes |
+*DefaultApi* | [**listUsers**](docs/Api/DefaultApi.md#listusers) | **GET** /api/2/users |
+*DefaultApi* | [**removeClientApp**](docs/Api/DefaultApi.md#removeclientapp) | **DELETE** /api/2/api_authorizations/{id}/clients/{client_app_id} |
+*DefaultApi* | [**removeRoleAdmins**](docs/Api/DefaultApi.md#removeroleadmins) | **DELETE** /api/2/roles/{role_id}/admins |
+*DefaultApi* | [**removeRoleUsers**](docs/Api/DefaultApi.md#removeroleusers) | **DELETE** /api/2/roles/{role_id}/users |
+*DefaultApi* | [**revokeToken**](docs/Api/DefaultApi.md#revoketoken) | **POST** /auth/oauth2/revoke |
+*DefaultApi* | [**setRoleApps**](docs/Api/DefaultApi.md#setroleapps) | **PUT** /api/2/roles/{role_id}/apps |
+*DefaultApi* | [**trackEvent**](docs/Api/DefaultApi.md#trackevent) | **POST** /api/2/risk/events |
+*DefaultApi* | [**updateAccessTokenClaim**](docs/Api/DefaultApi.md#updateaccesstokenclaim) | **PUT** /api/2/api_authorizations/{id}/claims/{claim_id} |
+*DefaultApi* | [**updateApp**](docs/Api/DefaultApi.md#updateapp) | **PUT** /api/2/apps/{app_id} |
+*DefaultApi* | [**updateAuthorizationServer**](docs/Api/DefaultApi.md#updateauthorizationserver) | **PUT** /api/2/api_authorizations/{id} |
+*DefaultApi* | [**updateClientApp**](docs/Api/DefaultApi.md#updateclientapp) | **PUT** /api/2/api_authorizations/{id}/clients/{client_app_id} |
+*DefaultApi* | [**updateEnvironmentVariable**](docs/Api/DefaultApi.md#updateenvironmentvariable) | **PUT** /api/2/hooks/envs/{envvar_id} |
+*DefaultApi* | [**updateHook**](docs/Api/DefaultApi.md#updatehook) | **PUT** /api/2/hooks/{hook_id} |
+*DefaultApi* | [**updateMapping**](docs/Api/DefaultApi.md#updatemapping) | **PUT** /api/2/mappings/{mapping_id} |
+*DefaultApi* | [**updateRiskRule**](docs/Api/DefaultApi.md#updateriskrule) | **PUT** /api/2/risk/rules/{risk_rule_id} |
+*DefaultApi* | [**updateRole**](docs/Api/DefaultApi.md#updaterole) | **PUT** /api/2/roles/{role_id} |
+*DefaultApi* | [**updateRule**](docs/Api/DefaultApi.md#updaterule) | **PUT** /api/2/apps/{app_id}/rules/{rule_id} |
+*DefaultApi* | [**updateScope**](docs/Api/DefaultApi.md#updatescope) | **PUT** /api/2/api_authorizations/{id}/scopes/{scope_id} |
+*DefaultApi* | [**updateUser**](docs/Api/DefaultApi.md#updateuser) | **PUT** /api/2/users/{user_id} |
+*DefaultApi* | [**verifyEnrollment**](docs/Api/DefaultApi.md#verifyenrollment) | **PUT** /api/2/mfa/users/{user_id}/registrations/{registration_id} |
+*DefaultApi* | [**verifyEnrollmentVoiceProtect**](docs/Api/DefaultApi.md#verifyenrollmentvoiceprotect) | **GET** /api/2/mfa/users/{user_id}/registrations/{registration_id} |
+*DefaultApi* | [**verifyFactor**](docs/Api/DefaultApi.md#verifyfactor) | **PUT** /api/2/mfa/users/{user_id}/verifications/{verification_id} |
+*DefaultApi* | [**verifyFactorSaml**](docs/Api/DefaultApi.md#verifyfactorsaml) | **POST** /api/2/saml_assertion/verify_factor |
+*DefaultApi* | [**verifyFactorVoice**](docs/Api/DefaultApi.md#verifyfactorvoice) | **GET** /api/2/mfa/users/{user_id}/verifications/{verification_id} |
 
 ## Models
 
@@ -285,7 +285,7 @@ vendor/bin/phpunit
 
 ## About this package
 
-This PHP package is automatically generated by the [OpenAPI Generator](https://openapi-generator.tech) project:
+This PHP package is automatically generated by the [OpenAPI Generator](https://onelogin.com) project:
 
 - API version: `3.0.0-alpha.1`
 - Build package: `org.openapitools.codegen.languages.PhpClientCodegen`

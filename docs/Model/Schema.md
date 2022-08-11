@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 **updated_at** | **string** | The date the app was last updated. | [optional]
 **role_ids** | **int[]** | List of Role IDs that are assigned to the app. On App Create or Update the entire array is replaced with the values provided. | [optional]
 **allow_assumed_signin** | **bool** | Indicates whether or not administrators can access the app as a user that they have assumed control over. | [optional]
-**provisioning** | [**\OpenAPI\Client\Model\SchemaProvisioning**](SchemaProvisioning.md) |  | [optional]
+**provisioning** | [**\onelogin/sdk\Model\SchemaProvisioning**](SchemaProvisioning.md) |  | [optional]
 **sso** | **object** |  | [optional]
 **configuration** | **object** |  | [optional]
 **parameters** | **object** |  | [optional]

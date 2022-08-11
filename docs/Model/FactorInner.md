@@ -11,6 +11,6 @@ Name | Type | Description | Notes
 **type_display_name** | **string** | Authentication factor display name as it appears to users upon initial registration, as defined by admins at Settings &gt; Authentication Factors. | [optional]
 **user_display_name** | **string** | Authentication factor display name assigned by users when they enroll the device. | [optional]
 **expires_at** | **string** | A short lived token that is required to Verify the Factor. This token expires based on the expires_in parameter passed in. | [optional]
-**factor_data** | [**\OpenAPI\Client\Model\FactorInnerFactorData**](FactorInnerFactorData.md) |  | [optional]
+**factor_data** | [**\onelogin/sdk\Model\FactorInnerFactorData**](FactorInnerFactorData.md) |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

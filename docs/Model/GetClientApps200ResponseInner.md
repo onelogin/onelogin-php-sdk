@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**scopes** | [**\OpenAPI\Client\Model\GetClientApps200ResponseInnerScopesInner[]**](GetClientApps200ResponseInnerScopesInner.md) |  | [optional]
+**scopes** | [**\onelogin/sdk\Model\GetClientApps200ResponseInnerScopesInner[]**](GetClientApps200ResponseInnerScopesInner.md) |  | [optional]
 **app_id** | **int** |  | [optional]
 **name** | **string** |  | [optional]
 **api_auth_id** | **int** |  | [optional]

@@ -7,10 +7,10 @@ Name | Type | Description | Notes
 **verb** | **string** | Verbs are used to distinguish between different types of events. |
 **ip** | **string** | The IP address of the User&#39;s request. |
 **user_agent** | **string** | The user agent of the User&#39;s request. |
-**user** | [**\OpenAPI\Client\Model\RiskUser**](RiskUser.md) |  |
-**source** | [**\OpenAPI\Client\Model\Source**](Source.md) |  | [optional]
-**session** | [**\OpenAPI\Client\Model\Session**](Session.md) |  | [optional]
-**device** | [**\OpenAPI\Client\Model\RiskDevice**](RiskDevice.md) |  | [optional]
+**user** | [**\onelogin/sdk\Model\RiskUser**](RiskUser.md) |  |
+**source** | [**\onelogin/sdk\Model\Source**](Source.md) |  | [optional]
+**session** | [**\onelogin/sdk\Model\Session**](Session.md) |  | [optional]
+**device** | [**\onelogin/sdk\Model\RiskDevice**](RiskDevice.md) |  | [optional]
 **fp** | **string** | Set to the value of the __tdli_fp cookie. | [optional]
 **published** | **string** | Date and time of the event in IS08601 format. Useful for preloading old events. Defaults to date time this API request is received. | [optional]
 

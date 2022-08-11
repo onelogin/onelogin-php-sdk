@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **id** | **int** |  | [optional]
 **name** | **string** |  | [optional]
 **username** | **string** |  | [optional]
-**added_by** | [**\OpenAPI\Client\Model\Schema1AddedBy**](Schema1AddedBy.md) |  | [optional]
+**added_by** | [**\onelogin/sdk\Model\Schema1AddedBy**](Schema1AddedBy.md) |  | [optional]
 **added_at** | **string** |  | [optional]
 **assigned** | **bool** | Indicates if assigned to role or not. Defaults to true. | [optional]
 

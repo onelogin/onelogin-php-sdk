@@ -1,4 +1,4 @@
-# OpenAPI\Client\DefaultApi
+# onelogin/sdk\DefaultApi
 
 All URIs are relative to https://onelogininc.onelogin.com.
 
@@ -123,14 +123,14 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $authorization = 'authorization_example'; // string
 $user_id = 56; // int | Set to the id of the user.
-$activate_factor_request = new \OpenAPI\Client\Model\ActivateFactorRequest(); // \OpenAPI\Client\Model\ActivateFactorRequest
+$activate_factor_request = new \onelogin/sdk\Model\ActivateFactorRequest(); // \onelogin/sdk\Model\ActivateFactorRequest
 
 try {
     $apiInstance->activateFactor($authorization, $user_id, $activate_factor_request);
@@ -145,7 +145,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **authorization** | **string**|  |
  **user_id** | **int**| Set to the id of the user. |
- **activate_factor_request** | [**\OpenAPI\Client\Model\ActivateFactorRequest**](../Model/ActivateFactorRequest.md)|  |
+ **activate_factor_request** | [**\onelogin/sdk\Model\ActivateFactorRequest**](../Model/ActivateFactorRequest.md)|  |
 
 ### Return type
 
@@ -167,7 +167,7 @@ No authorization required
 ## `addAccessTokenClaim()`
 
 ```php
-addAccessTokenClaim($authorization, $id, $add_access_token_claim_request): \OpenAPI\Client\Model\Id
+addAccessTokenClaim($authorization, $id, $add_access_token_claim_request): \onelogin/sdk\Model\Id
 ```
 
 
@@ -180,14 +180,14 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $authorization = 'authorization_example'; // string
 $id = 56; // int
-$add_access_token_claim_request = new \OpenAPI\Client\Model\AddAccessTokenClaimRequest(); // \OpenAPI\Client\Model\AddAccessTokenClaimRequest
+$add_access_token_claim_request = new \onelogin/sdk\Model\AddAccessTokenClaimRequest(); // \onelogin/sdk\Model\AddAccessTokenClaimRequest
 
 try {
     $result = $apiInstance->addAccessTokenClaim($authorization, $id, $add_access_token_claim_request);
@@ -203,11 +203,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **authorization** | **string**|  |
  **id** | **int**|  |
- **add_access_token_claim_request** | [**\OpenAPI\Client\Model\AddAccessTokenClaimRequest**](../Model/AddAccessTokenClaimRequest.md)|  |
+ **add_access_token_claim_request** | [**\onelogin/sdk\Model\AddAccessTokenClaimRequest**](../Model/AddAccessTokenClaimRequest.md)|  |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\Id**](../Model/Id.md)
+[**\onelogin/sdk\Model\Id**](../Model/Id.md)
 
 ### Authorization
 
@@ -225,7 +225,7 @@ No authorization required
 ## `addClientApp()`
 
 ```php
-addClientApp($authorization, $id, $add_client_app_request): \OpenAPI\Client\Model\ClientApp
+addClientApp($authorization, $id, $add_client_app_request): \onelogin/sdk\Model\ClientApp
 ```
 
 
@@ -238,14 +238,14 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $authorization = 'authorization_example'; // string
 $id = 56; // int
-$add_client_app_request = new \OpenAPI\Client\Model\AddClientAppRequest(); // \OpenAPI\Client\Model\AddClientAppRequest
+$add_client_app_request = new \onelogin/sdk\Model\AddClientAppRequest(); // \onelogin/sdk\Model\AddClientAppRequest
 
 try {
     $result = $apiInstance->addClientApp($authorization, $id, $add_client_app_request);
@@ -261,11 +261,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **authorization** | **string**|  |
  **id** | **int**|  |
- **add_client_app_request** | [**\OpenAPI\Client\Model\AddClientAppRequest**](../Model/AddClientAppRequest.md)|  |
+ **add_client_app_request** | [**\onelogin/sdk\Model\AddClientAppRequest**](../Model/AddClientAppRequest.md)|  |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\ClientApp**](../Model/ClientApp.md)
+[**\onelogin/sdk\Model\ClientApp**](../Model/ClientApp.md)
 
 ### Authorization
 
@@ -283,7 +283,7 @@ No authorization required
 ## `addRoleAdmins()`
 
 ```php
-addRoleAdmins($authorization, $role_id, $request_body): \OpenAPI\Client\Model\AddRoleUsers200ResponseInner[]
+addRoleAdmins($authorization, $role_id, $request_body): \onelogin/sdk\Model\AddRoleUsers200ResponseInner[]
 ```
 
 
@@ -296,7 +296,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -323,7 +323,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\OpenAPI\Client\Model\AddRoleUsers200ResponseInner[]**](../Model/AddRoleUsers200ResponseInner.md)
+[**\onelogin/sdk\Model\AddRoleUsers200ResponseInner[]**](../Model/AddRoleUsers200ResponseInner.md)
 
 ### Authorization
 
@@ -341,7 +341,7 @@ No authorization required
 ## `addRoleUsers()`
 
 ```php
-addRoleUsers($authorization, $role_id, $request_body): \OpenAPI\Client\Model\AddRoleUsers200ResponseInner[]
+addRoleUsers($authorization, $role_id, $request_body): \onelogin/sdk\Model\AddRoleUsers200ResponseInner[]
 ```
 
 
@@ -354,7 +354,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -381,7 +381,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\OpenAPI\Client\Model\AddRoleUsers200ResponseInner[]**](../Model/AddRoleUsers200ResponseInner.md)
+[**\onelogin/sdk\Model\AddRoleUsers200ResponseInner[]**](../Model/AddRoleUsers200ResponseInner.md)
 
 ### Authorization
 
@@ -399,7 +399,7 @@ No authorization required
 ## `addScope()`
 
 ```php
-addScope($authorization, $id, $add_scope_request): \OpenAPI\Client\Model\Id
+addScope($authorization, $id, $add_scope_request): \onelogin/sdk\Model\Id
 ```
 
 
@@ -412,14 +412,14 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $authorization = 'authorization_example'; // string
 $id = 56; // int
-$add_scope_request = new \OpenAPI\Client\Model\AddScopeRequest(); // \OpenAPI\Client\Model\AddScopeRequest
+$add_scope_request = new \onelogin/sdk\Model\AddScopeRequest(); // \onelogin/sdk\Model\AddScopeRequest
 
 try {
     $result = $apiInstance->addScope($authorization, $id, $add_scope_request);
@@ -435,11 +435,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **authorization** | **string**|  |
  **id** | **int**|  |
- **add_scope_request** | [**\OpenAPI\Client\Model\AddScopeRequest**](../Model/AddScopeRequest.md)|  |
+ **add_scope_request** | [**\onelogin/sdk\Model\AddScopeRequest**](../Model/AddScopeRequest.md)|  |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\Id**](../Model/Id.md)
+[**\onelogin/sdk\Model\Id**](../Model/Id.md)
 
 ### Authorization
 
@@ -470,7 +470,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -526,7 +526,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -571,7 +571,7 @@ No authorization required
 ## `createApp()`
 
 ```php
-createApp($authorization, $schema): \OpenAPI\Client\Model\Schema
+createApp($authorization, $schema): \onelogin/sdk\Model\Schema
 ```
 
 
@@ -584,13 +584,13 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $authorization = 'authorization_example'; // string
-$schema = new \OpenAPI\Client\Model\Schema(); // \OpenAPI\Client\Model\Schema
+$schema = new \onelogin/sdk\Model\Schema(); // \onelogin/sdk\Model\Schema
 
 try {
     $result = $apiInstance->createApp($authorization, $schema);
@@ -605,11 +605,11 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **authorization** | **string**|  |
- **schema** | [**\OpenAPI\Client\Model\Schema**](../Model/Schema.md)|  |
+ **schema** | [**\onelogin/sdk\Model\Schema**](../Model/Schema.md)|  |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\Schema**](../Model/Schema.md)
+[**\onelogin/sdk\Model\Schema**](../Model/Schema.md)
 
 ### Authorization
 
@@ -627,7 +627,7 @@ No authorization required
 ## `createAuthorizationServer()`
 
 ```php
-createAuthorizationServer($authorization, $create_authorization_server_request): \OpenAPI\Client\Model\Id
+createAuthorizationServer($authorization, $create_authorization_server_request): \onelogin/sdk\Model\Id
 ```
 
 
@@ -640,13 +640,13 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $authorization = 'authorization_example'; // string
-$create_authorization_server_request = new \OpenAPI\Client\Model\CreateAuthorizationServerRequest(); // \OpenAPI\Client\Model\CreateAuthorizationServerRequest
+$create_authorization_server_request = new \onelogin/sdk\Model\CreateAuthorizationServerRequest(); // \onelogin/sdk\Model\CreateAuthorizationServerRequest
 
 try {
     $result = $apiInstance->createAuthorizationServer($authorization, $create_authorization_server_request);
@@ -661,11 +661,11 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **authorization** | **string**|  |
- **create_authorization_server_request** | [**\OpenAPI\Client\Model\CreateAuthorizationServerRequest**](../Model/CreateAuthorizationServerRequest.md)|  |
+ **create_authorization_server_request** | [**\onelogin/sdk\Model\CreateAuthorizationServerRequest**](../Model/CreateAuthorizationServerRequest.md)|  |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\Id**](../Model/Id.md)
+[**\onelogin/sdk\Model\Id**](../Model/Id.md)
 
 ### Authorization
 
@@ -683,7 +683,7 @@ No authorization required
 ## `createEnvironmentVariable()`
 
 ```php
-createEnvironmentVariable($authorization, $create_environment_variable_request): \OpenAPI\Client\Model\Envvar
+createEnvironmentVariable($authorization, $create_environment_variable_request): \onelogin/sdk\Model\Envvar
 ```
 
 
@@ -696,13 +696,13 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $authorization = 'authorization_example'; // string
-$create_environment_variable_request = new \OpenAPI\Client\Model\CreateEnvironmentVariableRequest(); // \OpenAPI\Client\Model\CreateEnvironmentVariableRequest
+$create_environment_variable_request = new \onelogin/sdk\Model\CreateEnvironmentVariableRequest(); // \onelogin/sdk\Model\CreateEnvironmentVariableRequest
 
 try {
     $result = $apiInstance->createEnvironmentVariable($authorization, $create_environment_variable_request);
@@ -717,11 +717,11 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **authorization** | **string**|  |
- **create_environment_variable_request** | [**\OpenAPI\Client\Model\CreateEnvironmentVariableRequest**](../Model/CreateEnvironmentVariableRequest.md)|  |
+ **create_environment_variable_request** | [**\onelogin/sdk\Model\CreateEnvironmentVariableRequest**](../Model/CreateEnvironmentVariableRequest.md)|  |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\Envvar**](../Model/Envvar.md)
+[**\onelogin/sdk\Model\Envvar**](../Model/Envvar.md)
 
 ### Authorization
 
@@ -752,13 +752,13 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $authorization = 'authorization_example'; // string
-$hook = new \OpenAPI\Client\Model\Hook(); // \OpenAPI\Client\Model\Hook
+$hook = new \onelogin/sdk\Model\Hook(); // \onelogin/sdk\Model\Hook
 
 try {
     $apiInstance->createHook($authorization, $hook);
@@ -772,7 +772,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **authorization** | **string**|  |
- **hook** | [**\OpenAPI\Client\Model\Hook**](../Model/Hook.md)|  |
+ **hook** | [**\onelogin/sdk\Model\Hook**](../Model/Hook.md)|  |
 
 ### Return type
 
@@ -807,13 +807,13 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $authorization = 'authorization_example'; // string
-$mapping = new \OpenAPI\Client\Model\Mapping(); // \OpenAPI\Client\Model\Mapping
+$mapping = new \onelogin/sdk\Model\Mapping(); // \onelogin/sdk\Model\Mapping
 
 try {
     $result = $apiInstance->createMapping($authorization, $mapping);
@@ -828,7 +828,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **authorization** | **string**|  |
- **mapping** | [**\OpenAPI\Client\Model\Mapping**](../Model/Mapping.md)|  |
+ **mapping** | [**\onelogin/sdk\Model\Mapping**](../Model/Mapping.md)|  |
 
 ### Return type
 
@@ -863,13 +863,13 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $authorization = 'authorization_example'; // string
-$risk_rule = new \OpenAPI\Client\Model\RiskRule(); // \OpenAPI\Client\Model\RiskRule
+$risk_rule = new \onelogin/sdk\Model\RiskRule(); // \onelogin/sdk\Model\RiskRule
 
 try {
     $apiInstance->createRiskRule($authorization, $risk_rule);
@@ -883,7 +883,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **authorization** | **string**|  |
- **risk_rule** | [**\OpenAPI\Client\Model\RiskRule**](../Model/RiskRule.md)|  |
+ **risk_rule** | [**\onelogin/sdk\Model\RiskRule**](../Model/RiskRule.md)|  |
 
 ### Return type
 
@@ -905,7 +905,7 @@ No authorization required
 ## `createRoles()`
 
 ```php
-createRoles($authorization): \OpenAPI\Client\Model\CreateRoles201ResponseInner[]
+createRoles($authorization): \onelogin/sdk\Model\CreateRoles201ResponseInner[]
 ```
 
 
@@ -918,7 +918,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -941,7 +941,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\OpenAPI\Client\Model\CreateRoles201ResponseInner[]**](../Model/CreateRoles201ResponseInner.md)
+[**\onelogin/sdk\Model\CreateRoles201ResponseInner[]**](../Model/CreateRoles201ResponseInner.md)
 
 ### Authorization
 
@@ -959,7 +959,7 @@ No authorization required
 ## `createRule()`
 
 ```php
-createRule($authorization, $app_id, $rule): \OpenAPI\Client\Model\RuleId
+createRule($authorization, $app_id, $rule): \onelogin/sdk\Model\RuleId
 ```
 
 
@@ -972,14 +972,14 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $authorization = 'authorization_example'; // string
 $app_id = 56; // int
-$rule = new \OpenAPI\Client\Model\Rule(); // \OpenAPI\Client\Model\Rule
+$rule = new \onelogin/sdk\Model\Rule(); // \onelogin/sdk\Model\Rule
 
 try {
     $result = $apiInstance->createRule($authorization, $app_id, $rule);
@@ -995,11 +995,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **authorization** | **string**|  |
  **app_id** | **int**|  |
- **rule** | [**\OpenAPI\Client\Model\Rule**](../Model/Rule.md)|  |
+ **rule** | [**\onelogin/sdk\Model\Rule**](../Model/Rule.md)|  |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\RuleId**](../Model/RuleId.md)
+[**\onelogin/sdk\Model\RuleId**](../Model/RuleId.md)
 
 ### Authorization
 
@@ -1017,7 +1017,7 @@ No authorization required
 ## `createUser()`
 
 ```php
-createUser($authorization, $user, $mappings, $validate_policy): \OpenAPI\Client\Model\User
+createUser($authorization, $user, $mappings, $validate_policy): \onelogin/sdk\Model\User
 ```
 
 
@@ -1030,13 +1030,13 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $authorization = 'authorization_example'; // string
-$user = new \OpenAPI\Client\Model\User(); // \OpenAPI\Client\Model\User
+$user = new \onelogin/sdk\Model\User(); // \onelogin/sdk\Model\User
 $mappings = 'mappings_example'; // string | Controls how mappings will be applied to the user on creation. Defaults to async.
 $validate_policy = True; // bool | Will passwords validate against the User Policy? Defaults to true.
 
@@ -1053,13 +1053,13 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **authorization** | **string**|  |
- **user** | [**\OpenAPI\Client\Model\User**](../Model/User.md)|  |
+ **user** | [**\onelogin/sdk\Model\User**](../Model/User.md)|  |
  **mappings** | **string**| Controls how mappings will be applied to the user on creation. Defaults to async. | [optional]
  **validate_policy** | **bool**| Will passwords validate against the User Policy? Defaults to true. | [optional]
 
 ### Return type
 
-[**\OpenAPI\Client\Model\User**](../Model/User.md)
+[**\onelogin/sdk\Model\User**](../Model/User.md)
 
 ### Authorization
 
@@ -1090,7 +1090,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -1147,7 +1147,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -1202,7 +1202,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -1259,7 +1259,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -1314,7 +1314,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -1369,7 +1369,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -1426,7 +1426,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -1481,7 +1481,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -1523,7 +1523,7 @@ No authorization required
 ## `deleteRiskRule()`
 
 ```php
-deleteRiskRule($authorization, $risk_rule_id): \OpenAPI\Client\Model\RiskRule
+deleteRiskRule($authorization, $risk_rule_id): \onelogin/sdk\Model\RiskRule
 ```
 
 
@@ -1536,7 +1536,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -1561,7 +1561,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\OpenAPI\Client\Model\RiskRule**](../Model/RiskRule.md)
+[**\onelogin/sdk\Model\RiskRule**](../Model/RiskRule.md)
 
 ### Authorization
 
@@ -1592,7 +1592,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -1647,7 +1647,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -1704,7 +1704,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -1761,7 +1761,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -1816,7 +1816,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -1874,14 +1874,14 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $authorization = 'authorization_example'; // string
 $user_id = 56; // int | Set to the id of the user.
-$enroll_factor_request = new \OpenAPI\Client\Model\EnrollFactorRequest(); // \OpenAPI\Client\Model\EnrollFactorRequest
+$enroll_factor_request = new \onelogin/sdk\Model\EnrollFactorRequest(); // \onelogin/sdk\Model\EnrollFactorRequest
 
 try {
     $result = $apiInstance->enrollFactor($authorization, $user_id, $enroll_factor_request);
@@ -1897,7 +1897,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **authorization** | **string**|  |
  **user_id** | **int**| Set to the id of the user. |
- **enroll_factor_request** | [**\OpenAPI\Client\Model\EnrollFactorRequest**](../Model/EnrollFactorRequest.md)|  |
+ **enroll_factor_request** | [**\onelogin/sdk\Model\EnrollFactorRequest**](../Model/EnrollFactorRequest.md)|  |
 
 ### Return type
 
@@ -1919,7 +1919,7 @@ No authorization required
 ## `generateMfaToken()`
 
 ```php
-generateMfaToken($authorization, $generate_mfa_token_request): \OpenAPI\Client\Model\GenerateMfaToken200Response
+generateMfaToken($authorization, $generate_mfa_token_request): \onelogin/sdk\Model\GenerateMfaToken200Response
 ```
 
 
@@ -1932,13 +1932,13 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $authorization = 'authorization_example'; // string
-$generate_mfa_token_request = new \OpenAPI\Client\Model\GenerateMfaTokenRequest(); // \OpenAPI\Client\Model\GenerateMfaTokenRequest
+$generate_mfa_token_request = new \onelogin/sdk\Model\GenerateMfaTokenRequest(); // \onelogin/sdk\Model\GenerateMfaTokenRequest
 
 try {
     $result = $apiInstance->generateMfaToken($authorization, $generate_mfa_token_request);
@@ -1953,11 +1953,11 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **authorization** | **string**|  |
- **generate_mfa_token_request** | [**\OpenAPI\Client\Model\GenerateMfaTokenRequest**](../Model/GenerateMfaTokenRequest.md)|  |
+ **generate_mfa_token_request** | [**\onelogin/sdk\Model\GenerateMfaTokenRequest**](../Model/GenerateMfaTokenRequest.md)|  |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\GenerateMfaToken200Response**](../Model/GenerateMfaToken200Response.md)
+[**\onelogin/sdk\Model\GenerateMfaToken200Response**](../Model/GenerateMfaToken200Response.md)
 
 ### Authorization
 
@@ -1988,13 +1988,13 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $authorization = 'authorization_example'; // string
-$generate_saml_assertion_request = new \OpenAPI\Client\Model\GenerateSamlAssertionRequest(); // \OpenAPI\Client\Model\GenerateSamlAssertionRequest
+$generate_saml_assertion_request = new \onelogin/sdk\Model\GenerateSamlAssertionRequest(); // \onelogin/sdk\Model\GenerateSamlAssertionRequest
 
 try {
     $apiInstance->generateSamlAssertion($authorization, $generate_saml_assertion_request);
@@ -2008,7 +2008,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **authorization** | **string**|  |
- **generate_saml_assertion_request** | [**\OpenAPI\Client\Model\GenerateSamlAssertionRequest**](../Model/GenerateSamlAssertionRequest.md)|  |
+ **generate_saml_assertion_request** | [**\onelogin/sdk\Model\GenerateSamlAssertionRequest**](../Model/GenerateSamlAssertionRequest.md)|  |
 
 ### Return type
 
@@ -2030,7 +2030,7 @@ No authorization required
 ## `generateToken()`
 
 ```php
-generateToken($authorization, $generate_token_request): \OpenAPI\Client\Model\GenerateToken200Response
+generateToken($authorization, $generate_token_request): \onelogin/sdk\Model\GenerateToken200Response
 ```
 
 
@@ -2043,13 +2043,13 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $authorization = 'authorization_example'; // string
-$generate_token_request = new \OpenAPI\Client\Model\GenerateTokenRequest(); // \OpenAPI\Client\Model\GenerateTokenRequest
+$generate_token_request = new \onelogin/sdk\Model\GenerateTokenRequest(); // \onelogin/sdk\Model\GenerateTokenRequest
 
 try {
     $result = $apiInstance->generateToken($authorization, $generate_token_request);
@@ -2064,11 +2064,11 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **authorization** | **string**|  |
- **generate_token_request** | [**\OpenAPI\Client\Model\GenerateTokenRequest**](../Model/GenerateTokenRequest.md)|  |
+ **generate_token_request** | [**\onelogin/sdk\Model\GenerateTokenRequest**](../Model/GenerateTokenRequest.md)|  |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\GenerateToken200Response**](../Model/GenerateToken200Response.md)
+[**\onelogin/sdk\Model\GenerateToken200Response**](../Model/GenerateToken200Response.md)
 
 ### Authorization
 
@@ -2086,7 +2086,7 @@ No authorization required
 ## `getApp()`
 
 ```php
-getApp($authorization, $app_id): \OpenAPI\Client\Model\Schema
+getApp($authorization, $app_id): \onelogin/sdk\Model\Schema
 ```
 
 
@@ -2099,7 +2099,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -2124,7 +2124,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\OpenAPI\Client\Model\Schema**](../Model/Schema.md)
+[**\onelogin/sdk\Model\Schema**](../Model/Schema.md)
 
 ### Authorization
 
@@ -2142,7 +2142,7 @@ No authorization required
 ## `getAuthorizationServer()`
 
 ```php
-getAuthorizationServer($authorization, $id): \OpenAPI\Client\Model\GetAuthorizationServer200Response
+getAuthorizationServer($authorization, $id): \onelogin/sdk\Model\GetAuthorizationServer200Response
 ```
 
 
@@ -2155,7 +2155,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -2180,7 +2180,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\OpenAPI\Client\Model\GetAuthorizationServer200Response**](../Model/GetAuthorizationServer200Response.md)
+[**\onelogin/sdk\Model\GetAuthorizationServer200Response**](../Model/GetAuthorizationServer200Response.md)
 
 ### Authorization
 
@@ -2198,7 +2198,7 @@ No authorization required
 ## `getAvailableFactors()`
 
 ```php
-getAvailableFactors($authorization, $user_id): \OpenAPI\Client\Model\GetAvailableFactors200ResponseInner[]
+getAvailableFactors($authorization, $user_id): \onelogin/sdk\Model\GetAvailableFactors200ResponseInner[]
 ```
 
 
@@ -2211,7 +2211,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -2236,7 +2236,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\OpenAPI\Client\Model\GetAvailableFactors200ResponseInner[]**](../Model/GetAvailableFactors200ResponseInner.md)
+[**\onelogin/sdk\Model\GetAvailableFactors200ResponseInner[]**](../Model/GetAvailableFactors200ResponseInner.md)
 
 ### Authorization
 
@@ -2254,7 +2254,7 @@ No authorization required
 ## `getClientApps()`
 
 ```php
-getClientApps($authorization, $id): \OpenAPI\Client\Model\GetClientApps200ResponseInner[]
+getClientApps($authorization, $id): \onelogin/sdk\Model\GetClientApps200ResponseInner[]
 ```
 
 
@@ -2267,7 +2267,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -2292,7 +2292,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\OpenAPI\Client\Model\GetClientApps200ResponseInner[]**](../Model/GetClientApps200ResponseInner.md)
+[**\onelogin/sdk\Model\GetClientApps200ResponseInner[]**](../Model/GetClientApps200ResponseInner.md)
 
 ### Authorization
 
@@ -2310,7 +2310,7 @@ No authorization required
 ## `getEnrolledFactors()`
 
 ```php
-getEnrolledFactors($authorization, $user_id): \OpenAPI\Client\Model\Device[]
+getEnrolledFactors($authorization, $user_id): \onelogin/sdk\Model\Device[]
 ```
 
 
@@ -2323,7 +2323,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -2348,7 +2348,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\OpenAPI\Client\Model\Device[]**](../Model/Device.md)
+[**\onelogin/sdk\Model\Device[]**](../Model/Device.md)
 
 ### Authorization
 
@@ -2366,7 +2366,7 @@ No authorization required
 ## `getEnvironmentVariable()`
 
 ```php
-getEnvironmentVariable($authorization, $envvar_id): \OpenAPI\Client\Model\Envvar
+getEnvironmentVariable($authorization, $envvar_id): \onelogin/sdk\Model\Envvar
 ```
 
 
@@ -2379,7 +2379,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -2404,7 +2404,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\OpenAPI\Client\Model\Envvar**](../Model/Envvar.md)
+[**\onelogin/sdk\Model\Envvar**](../Model/Envvar.md)
 
 ### Authorization
 
@@ -2422,7 +2422,7 @@ No authorization required
 ## `getHook()`
 
 ```php
-getHook($authorization, $hook_id): \OpenAPI\Client\Model\Hook
+getHook($authorization, $hook_id): \onelogin/sdk\Model\Hook
 ```
 
 
@@ -2435,7 +2435,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -2460,7 +2460,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\OpenAPI\Client\Model\Hook**](../Model/Hook.md)
+[**\onelogin/sdk\Model\Hook**](../Model/Hook.md)
 
 ### Authorization
 
@@ -2478,7 +2478,7 @@ No authorization required
 ## `getLogs()`
 
 ```php
-getLogs($authorization, $hook_id, $limit, $page, $cursor, $request_id, $correlation_id): \OpenAPI\Client\Model\Log[]
+getLogs($authorization, $hook_id, $limit, $page, $cursor, $request_id, $correlation_id): \onelogin/sdk\Model\Log[]
 ```
 
 
@@ -2491,7 +2491,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -2526,7 +2526,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\OpenAPI\Client\Model\Log[]**](../Model/Log.md)
+[**\onelogin/sdk\Model\Log[]**](../Model/Log.md)
 
 ### Authorization
 
@@ -2544,7 +2544,7 @@ No authorization required
 ## `getMapping()`
 
 ```php
-getMapping($authorization, $mapping_id): \OpenAPI\Client\Model\Mapping
+getMapping($authorization, $mapping_id): \onelogin/sdk\Model\Mapping
 ```
 
 
@@ -2557,7 +2557,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -2582,7 +2582,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\OpenAPI\Client\Model\Mapping**](../Model/Mapping.md)
+[**\onelogin/sdk\Model\Mapping**](../Model/Mapping.md)
 
 ### Authorization
 
@@ -2600,7 +2600,7 @@ No authorization required
 ## `getRateLimit()`
 
 ```php
-getRateLimit($authorization): \OpenAPI\Client\Model\GetRateLimit200Response
+getRateLimit($authorization): \onelogin/sdk\Model\GetRateLimit200Response
 ```
 
 
@@ -2613,7 +2613,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -2636,7 +2636,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\OpenAPI\Client\Model\GetRateLimit200Response**](../Model/GetRateLimit200Response.md)
+[**\onelogin/sdk\Model\GetRateLimit200Response**](../Model/GetRateLimit200Response.md)
 
 ### Authorization
 
@@ -2667,7 +2667,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -2709,7 +2709,7 @@ No authorization required
 ## `getRiskScore()`
 
 ```php
-getRiskScore($authorization, $get_risk_score_request): \OpenAPI\Client\Model\GetRiskScore200Response
+getRiskScore($authorization, $get_risk_score_request): \onelogin/sdk\Model\GetRiskScore200Response
 ```
 
 
@@ -2722,13 +2722,13 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $authorization = 'authorization_example'; // string
-$get_risk_score_request = new \OpenAPI\Client\Model\GetRiskScoreRequest(); // \OpenAPI\Client\Model\GetRiskScoreRequest
+$get_risk_score_request = new \onelogin/sdk\Model\GetRiskScoreRequest(); // \onelogin/sdk\Model\GetRiskScoreRequest
 
 try {
     $result = $apiInstance->getRiskScore($authorization, $get_risk_score_request);
@@ -2743,11 +2743,11 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **authorization** | **string**|  |
- **get_risk_score_request** | [**\OpenAPI\Client\Model\GetRiskScoreRequest**](../Model/GetRiskScoreRequest.md)|  |
+ **get_risk_score_request** | [**\onelogin/sdk\Model\GetRiskScoreRequest**](../Model/GetRiskScoreRequest.md)|  |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\GetRiskScore200Response**](../Model/GetRiskScore200Response.md)
+[**\onelogin/sdk\Model\GetRiskScore200Response**](../Model/GetRiskScore200Response.md)
 
 ### Authorization
 
@@ -2765,7 +2765,7 @@ No authorization required
 ## `getRole()`
 
 ```php
-getRole($authorization, $role_id): \OpenAPI\Client\Model\Role
+getRole($authorization, $role_id): \onelogin/sdk\Model\Role
 ```
 
 
@@ -2778,7 +2778,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -2803,7 +2803,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\OpenAPI\Client\Model\Role**](../Model/Role.md)
+[**\onelogin/sdk\Model\Role**](../Model/Role.md)
 
 ### Authorization
 
@@ -2821,7 +2821,7 @@ No authorization required
 ## `getRoleAdmins()`
 
 ```php
-getRoleAdmins($authorization, $role_id, $limit, $page, $cursor, $name, $include_unassigned): \OpenAPI\Client\Model\Schema1[]
+getRoleAdmins($authorization, $role_id, $limit, $page, $cursor, $name, $include_unassigned): \onelogin/sdk\Model\Schema1[]
 ```
 
 
@@ -2834,7 +2834,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -2869,7 +2869,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\OpenAPI\Client\Model\Schema1[]**](../Model/Schema1.md)
+[**\onelogin/sdk\Model\Schema1[]**](../Model/Schema1.md)
 
 ### Authorization
 
@@ -2887,7 +2887,7 @@ No authorization required
 ## `getRoleApps()`
 
 ```php
-getRoleApps($authorization, $role_id, $limit, $page, $cursor, $assigned): \OpenAPI\Client\Model\Schema[]
+getRoleApps($authorization, $role_id, $limit, $page, $cursor, $assigned): \onelogin/sdk\Model\Schema[]
 ```
 
 
@@ -2900,7 +2900,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -2933,7 +2933,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\OpenAPI\Client\Model\Schema[]**](../Model/Schema.md)
+[**\onelogin/sdk\Model\Schema[]**](../Model/Schema.md)
 
 ### Authorization
 
@@ -2951,7 +2951,7 @@ No authorization required
 ## `getRoleUsers()`
 
 ```php
-getRoleUsers($authorization, $role_id, $limit, $page, $cursor, $name, $include_unassigned): \OpenAPI\Client\Model\Schema1[]
+getRoleUsers($authorization, $role_id, $limit, $page, $cursor, $name, $include_unassigned): \onelogin/sdk\Model\Schema1[]
 ```
 
 
@@ -2964,7 +2964,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -2999,7 +2999,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\OpenAPI\Client\Model\Schema1[]**](../Model/Schema1.md)
+[**\onelogin/sdk\Model\Schema1[]**](../Model/Schema1.md)
 
 ### Authorization
 
@@ -3017,7 +3017,7 @@ No authorization required
 ## `getRule()`
 
 ```php
-getRule($authorization, $app_id, $rule_id): \OpenAPI\Client\Model\Rule
+getRule($authorization, $app_id, $rule_id): \onelogin/sdk\Model\Rule
 ```
 
 
@@ -3030,7 +3030,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -3057,7 +3057,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\OpenAPI\Client\Model\Rule**](../Model/Rule.md)
+[**\onelogin/sdk\Model\Rule**](../Model/Rule.md)
 
 ### Authorization
 
@@ -3075,7 +3075,7 @@ No authorization required
 ## `getScoreInsights()`
 
 ```php
-getScoreInsights($authorization, $before, $after): \OpenAPI\Client\Model\GetScoreInsights200Response
+getScoreInsights($authorization, $before, $after): \onelogin/sdk\Model\GetScoreInsights200Response
 ```
 
 
@@ -3088,7 +3088,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -3115,7 +3115,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\OpenAPI\Client\Model\GetScoreInsights200Response**](../Model/GetScoreInsights200Response.md)
+[**\onelogin/sdk\Model\GetScoreInsights200Response**](../Model/GetScoreInsights200Response.md)
 
 ### Authorization
 
@@ -3133,7 +3133,7 @@ No authorization required
 ## `getUser()`
 
 ```php
-getUser($authorization, $user_id): \OpenAPI\Client\Model\User
+getUser($authorization, $user_id): \onelogin/sdk\Model\User
 ```
 
 
@@ -3146,7 +3146,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -3171,7 +3171,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\OpenAPI\Client\Model\User**](../Model/User.md)
+[**\onelogin/sdk\Model\User**](../Model/User.md)
 
 ### Authorization
 
@@ -3189,7 +3189,7 @@ No authorization required
 ## `getUserApps()`
 
 ```php
-getUserApps($authorization, $user_id, $ignore_visibility): \OpenAPI\Client\Model\GetUserApps200ResponseInner[]
+getUserApps($authorization, $user_id, $ignore_visibility): \onelogin/sdk\Model\GetUserApps200ResponseInner[]
 ```
 
 
@@ -3202,7 +3202,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -3229,7 +3229,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\OpenAPI\Client\Model\GetUserApps200ResponseInner[]**](../Model/GetUserApps200ResponseInner.md)
+[**\onelogin/sdk\Model\GetUserApps200ResponseInner[]**](../Model/GetUserApps200ResponseInner.md)
 
 ### Authorization
 
@@ -3247,7 +3247,7 @@ No authorization required
 ## `listAccessTokenClaims()`
 
 ```php
-listAccessTokenClaims($authorization, $id): \OpenAPI\Client\Model\ListAccessTokenClaims200ResponseInner[]
+listAccessTokenClaims($authorization, $id): \onelogin/sdk\Model\ListAccessTokenClaims200ResponseInner[]
 ```
 
 
@@ -3260,7 +3260,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -3285,7 +3285,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\OpenAPI\Client\Model\ListAccessTokenClaims200ResponseInner[]**](../Model/ListAccessTokenClaims200ResponseInner.md)
+[**\onelogin/sdk\Model\ListAccessTokenClaims200ResponseInner[]**](../Model/ListAccessTokenClaims200ResponseInner.md)
 
 ### Authorization
 
@@ -3303,7 +3303,7 @@ No authorization required
 ## `listActionValues()`
 
 ```php
-listActionValues($authorization, $app_id, $action_value): \OpenAPI\Client\Model\ListConditionValues200ResponseInner[]
+listActionValues($authorization, $app_id, $action_value): \onelogin/sdk\Model\ListConditionValues200ResponseInner[]
 ```
 
 
@@ -3316,7 +3316,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -3343,7 +3343,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\OpenAPI\Client\Model\ListConditionValues200ResponseInner[]**](../Model/ListConditionValues200ResponseInner.md)
+[**\onelogin/sdk\Model\ListConditionValues200ResponseInner[]**](../Model/ListConditionValues200ResponseInner.md)
 
 ### Authorization
 
@@ -3361,7 +3361,7 @@ No authorization required
 ## `listActions()`
 
 ```php
-listActions($authorization, $app_id): \OpenAPI\Client\Model\ListActions200ResponseInner[]
+listActions($authorization, $app_id): \onelogin/sdk\Model\ListActions200ResponseInner[]
 ```
 
 
@@ -3374,7 +3374,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -3399,7 +3399,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\OpenAPI\Client\Model\ListActions200ResponseInner[]**](../Model/ListActions200ResponseInner.md)
+[**\onelogin/sdk\Model\ListActions200ResponseInner[]**](../Model/ListActions200ResponseInner.md)
 
 ### Authorization
 
@@ -3417,7 +3417,7 @@ No authorization required
 ## `listAppUsers()`
 
 ```php
-listAppUsers($authorization, $app_id, $limit, $page, $cursor): \OpenAPI\Client\Model\ListAppUsers200ResponseInner[]
+listAppUsers($authorization, $app_id, $limit, $page, $cursor): \onelogin/sdk\Model\ListAppUsers200ResponseInner[]
 ```
 
 
@@ -3430,7 +3430,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -3461,7 +3461,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\OpenAPI\Client\Model\ListAppUsers200ResponseInner[]**](../Model/ListAppUsers200ResponseInner.md)
+[**\onelogin/sdk\Model\ListAppUsers200ResponseInner[]**](../Model/ListAppUsers200ResponseInner.md)
 
 ### Authorization
 
@@ -3479,7 +3479,7 @@ No authorization required
 ## `listApps()`
 
 ```php
-listApps($authorization, $limit, $page, $cursor, $name, $connector_id, $auth_method): \OpenAPI\Client\Model\Schema[]
+listApps($authorization, $limit, $page, $cursor, $name, $connector_id, $auth_method): \onelogin/sdk\Model\Schema[]
 ```
 
 
@@ -3492,7 +3492,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -3503,7 +3503,7 @@ $page = 56; // int | The page number of results to return.
 $cursor = 'cursor_example'; // string | Set to the value extracted from Before-Cursor or After-Cursor headers to return the previous or next page.
 $name = 'name_example'; // string | The name or partial name of the app to search for. When using a partial name you must append a wildcard `*`
 $connector_id = 56; // int | Returns all apps based off a specific connector. See List Connectors for a complete list of Connector IDs.
-$auth_method = new \OpenAPI\Client\Model\AuthMethod(); // AuthMethod | Returns all apps based of a given type.
+$auth_method = new \onelogin/sdk\Model\AuthMethod(); // AuthMethod | Returns all apps based of a given type.
 
 try {
     $result = $apiInstance->listApps($authorization, $limit, $page, $cursor, $name, $connector_id, $auth_method);
@@ -3527,7 +3527,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\OpenAPI\Client\Model\Schema[]**](../Model/Schema.md)
+[**\onelogin/sdk\Model\Schema[]**](../Model/Schema.md)
 
 ### Authorization
 
@@ -3545,7 +3545,7 @@ No authorization required
 ## `listAuthorizationServers()`
 
 ```php
-listAuthorizationServers($authorization): \OpenAPI\Client\Model\ListAuthorizationServers200ResponseInner[]
+listAuthorizationServers($authorization): \onelogin/sdk\Model\ListAuthorizationServers200ResponseInner[]
 ```
 
 
@@ -3558,7 +3558,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -3581,7 +3581,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\OpenAPI\Client\Model\ListAuthorizationServers200ResponseInner[]**](../Model/ListAuthorizationServers200ResponseInner.md)
+[**\onelogin/sdk\Model\ListAuthorizationServers200ResponseInner[]**](../Model/ListAuthorizationServers200ResponseInner.md)
 
 ### Authorization
 
@@ -3599,7 +3599,7 @@ No authorization required
 ## `listConditionOperators()`
 
 ```php
-listConditionOperators($authorization, $app_id, $condition_value): \OpenAPI\Client\Model\ListConditionOperators200ResponseInner[]
+listConditionOperators($authorization, $app_id, $condition_value): \onelogin/sdk\Model\ListConditionOperators200ResponseInner[]
 ```
 
 
@@ -3612,7 +3612,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -3639,7 +3639,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\OpenAPI\Client\Model\ListConditionOperators200ResponseInner[]**](../Model/ListConditionOperators200ResponseInner.md)
+[**\onelogin/sdk\Model\ListConditionOperators200ResponseInner[]**](../Model/ListConditionOperators200ResponseInner.md)
 
 ### Authorization
 
@@ -3657,7 +3657,7 @@ No authorization required
 ## `listConditionValues()`
 
 ```php
-listConditionValues($authorization, $app_id, $condition_value): \OpenAPI\Client\Model\ListConditionValues200ResponseInner[]
+listConditionValues($authorization, $app_id, $condition_value): \onelogin/sdk\Model\ListConditionValues200ResponseInner[]
 ```
 
 
@@ -3670,7 +3670,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -3697,7 +3697,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\OpenAPI\Client\Model\ListConditionValues200ResponseInner[]**](../Model/ListConditionValues200ResponseInner.md)
+[**\onelogin/sdk\Model\ListConditionValues200ResponseInner[]**](../Model/ListConditionValues200ResponseInner.md)
 
 ### Authorization
 
@@ -3715,7 +3715,7 @@ No authorization required
 ## `listConditions()`
 
 ```php
-listConditions($authorization, $app_id): \OpenAPI\Client\Model\ListConditions200ResponseInner[]
+listConditions($authorization, $app_id): \onelogin/sdk\Model\ListConditions200ResponseInner[]
 ```
 
 
@@ -3728,7 +3728,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -3753,7 +3753,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\OpenAPI\Client\Model\ListConditions200ResponseInner[]**](../Model/ListConditions200ResponseInner.md)
+[**\onelogin/sdk\Model\ListConditions200ResponseInner[]**](../Model/ListConditions200ResponseInner.md)
 
 ### Authorization
 
@@ -3771,7 +3771,7 @@ No authorization required
 ## `listConnectors()`
 
 ```php
-listConnectors($authorization, $limit, $page, $cursor, $name, $auth_method): \OpenAPI\Client\Model\Connector[]
+listConnectors($authorization, $limit, $page, $cursor, $name, $auth_method): \onelogin/sdk\Model\Connector[]
 ```
 
 
@@ -3784,7 +3784,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -3794,7 +3794,7 @@ $limit = 56; // int | The total number of items returned per page. The maximum l
 $page = 56; // int | The page number of results to return.
 $cursor = 'cursor_example'; // string | Set to the value extracted from Before-Cursor or After-Cursor headers to return the previous or next page.
 $name = 'name_example'; // string | The name or partial name of the connector to search for. When using a partial name you must append a wildcard `*`
-$auth_method = new \OpenAPI\Client\Model\AuthMethod(); // AuthMethod | Returns all connectors of a given type.
+$auth_method = new \onelogin/sdk\Model\AuthMethod(); // AuthMethod | Returns all connectors of a given type.
 
 try {
     $result = $apiInstance->listConnectors($authorization, $limit, $page, $cursor, $name, $auth_method);
@@ -3817,7 +3817,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\OpenAPI\Client\Model\Connector[]**](../Model/Connector.md)
+[**\onelogin/sdk\Model\Connector[]**](../Model/Connector.md)
 
 ### Authorization
 
@@ -3835,7 +3835,7 @@ No authorization required
 ## `listEnvironmentVariables()`
 
 ```php
-listEnvironmentVariables($authorization, $limit, $page, $cursor): \OpenAPI\Client\Model\Envvar[]
+listEnvironmentVariables($authorization, $limit, $page, $cursor): \onelogin/sdk\Model\Envvar[]
 ```
 
 
@@ -3848,7 +3848,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -3877,7 +3877,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\OpenAPI\Client\Model\Envvar[]**](../Model/Envvar.md)
+[**\onelogin/sdk\Model\Envvar[]**](../Model/Envvar.md)
 
 ### Authorization
 
@@ -3895,7 +3895,7 @@ No authorization required
 ## `listHooks()`
 
 ```php
-listHooks($authorization, $limit, $page, $cursor): \OpenAPI\Client\Model\Hook[]
+listHooks($authorization, $limit, $page, $cursor): \onelogin/sdk\Model\Hook[]
 ```
 
 
@@ -3908,7 +3908,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -3937,7 +3937,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\OpenAPI\Client\Model\Hook[]**](../Model/Hook.md)
+[**\onelogin/sdk\Model\Hook[]**](../Model/Hook.md)
 
 ### Authorization
 
@@ -3955,7 +3955,7 @@ No authorization required
 ## `listMappingActionValues()`
 
 ```php
-listMappingActionValues($authorization, $action_value): \OpenAPI\Client\Model\ListConditionValues200ResponseInner[]
+listMappingActionValues($authorization, $action_value): \onelogin/sdk\Model\ListConditionValues200ResponseInner[]
 ```
 
 
@@ -3968,7 +3968,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -3993,7 +3993,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\OpenAPI\Client\Model\ListConditionValues200ResponseInner[]**](../Model/ListConditionValues200ResponseInner.md)
+[**\onelogin/sdk\Model\ListConditionValues200ResponseInner[]**](../Model/ListConditionValues200ResponseInner.md)
 
 ### Authorization
 
@@ -4011,7 +4011,7 @@ No authorization required
 ## `listMappingActions()`
 
 ```php
-listMappingActions($authorization): \OpenAPI\Client\Model\ListActions200ResponseInner[]
+listMappingActions($authorization): \onelogin/sdk\Model\ListActions200ResponseInner[]
 ```
 
 
@@ -4024,7 +4024,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -4047,7 +4047,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\OpenAPI\Client\Model\ListActions200ResponseInner[]**](../Model/ListActions200ResponseInner.md)
+[**\onelogin/sdk\Model\ListActions200ResponseInner[]**](../Model/ListActions200ResponseInner.md)
 
 ### Authorization
 
@@ -4065,7 +4065,7 @@ No authorization required
 ## `listMappingConditionOperators()`
 
 ```php
-listMappingConditionOperators($authorization, $condition_value): \OpenAPI\Client\Model\ListMappingConditionOperators200ResponseInner[]
+listMappingConditionOperators($authorization, $condition_value): \onelogin/sdk\Model\ListMappingConditionOperators200ResponseInner[]
 ```
 
 
@@ -4078,7 +4078,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -4103,7 +4103,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\OpenAPI\Client\Model\ListMappingConditionOperators200ResponseInner[]**](../Model/ListMappingConditionOperators200ResponseInner.md)
+[**\onelogin/sdk\Model\ListMappingConditionOperators200ResponseInner[]**](../Model/ListMappingConditionOperators200ResponseInner.md)
 
 ### Authorization
 
@@ -4121,7 +4121,7 @@ No authorization required
 ## `listMappingConditionValues()`
 
 ```php
-listMappingConditionValues($authorization, $condition_value): \OpenAPI\Client\Model\ListConditionValues200ResponseInner[]
+listMappingConditionValues($authorization, $condition_value): \onelogin/sdk\Model\ListConditionValues200ResponseInner[]
 ```
 
 
@@ -4134,7 +4134,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -4159,7 +4159,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\OpenAPI\Client\Model\ListConditionValues200ResponseInner[]**](../Model/ListConditionValues200ResponseInner.md)
+[**\onelogin/sdk\Model\ListConditionValues200ResponseInner[]**](../Model/ListConditionValues200ResponseInner.md)
 
 ### Authorization
 
@@ -4177,7 +4177,7 @@ No authorization required
 ## `listMappingConditions()`
 
 ```php
-listMappingConditions($authorization): \OpenAPI\Client\Model\ListMappingConditions200ResponseInner[]
+listMappingConditions($authorization): \onelogin/sdk\Model\ListMappingConditions200ResponseInner[]
 ```
 
 
@@ -4190,7 +4190,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -4213,7 +4213,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\OpenAPI\Client\Model\ListMappingConditions200ResponseInner[]**](../Model/ListMappingConditions200ResponseInner.md)
+[**\onelogin/sdk\Model\ListMappingConditions200ResponseInner[]**](../Model/ListMappingConditions200ResponseInner.md)
 
 ### Authorization
 
@@ -4231,7 +4231,7 @@ No authorization required
 ## `listMappings()`
 
 ```php
-listMappings($authorization, $enabled, $has_condition, $has_condition_type, $has_action, $has_action_type): \OpenAPI\Client\Model\Mapping[]
+listMappings($authorization, $enabled, $has_condition, $has_condition_type, $has_action, $has_action_type): \onelogin/sdk\Model\Mapping[]
 ```
 
 
@@ -4244,7 +4244,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -4277,7 +4277,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\OpenAPI\Client\Model\Mapping[]**](../Model/Mapping.md)
+[**\onelogin/sdk\Model\Mapping[]**](../Model/Mapping.md)
 
 ### Authorization
 
@@ -4308,7 +4308,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -4348,7 +4348,7 @@ No authorization required
 ## `listRoles()`
 
 ```php
-listRoles($authorization, $limit, $page, $cursor, $name, $app_id, $fields): \OpenAPI\Client\Model\Role[]
+listRoles($authorization, $limit, $page, $cursor, $name, $app_id, $fields): \onelogin/sdk\Model\Role[]
 ```
 
 
@@ -4361,7 +4361,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -4396,7 +4396,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\OpenAPI\Client\Model\Role[]**](../Model/Role.md)
+[**\onelogin/sdk\Model\Role[]**](../Model/Role.md)
 
 ### Authorization
 
@@ -4414,7 +4414,7 @@ No authorization required
 ## `listRules()`
 
 ```php
-listRules($authorization, $app_id, $enabled, $has_condition, $has_condition_type, $has_action, $has_action_type): \OpenAPI\Client\Model\Rule[]
+listRules($authorization, $app_id, $enabled, $has_condition, $has_condition_type, $has_action, $has_action_type): \onelogin/sdk\Model\Rule[]
 ```
 
 
@@ -4427,7 +4427,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -4462,7 +4462,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\OpenAPI\Client\Model\Rule[]**](../Model/Rule.md)
+[**\onelogin/sdk\Model\Rule[]**](../Model/Rule.md)
 
 ### Authorization
 
@@ -4480,7 +4480,7 @@ No authorization required
 ## `listScopes()`
 
 ```php
-listScopes($authorization, $id): \OpenAPI\Client\Model\ListScopes200ResponseInner[]
+listScopes($authorization, $id): \onelogin/sdk\Model\ListScopes200ResponseInner[]
 ```
 
 
@@ -4493,7 +4493,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -4518,7 +4518,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\OpenAPI\Client\Model\ListScopes200ResponseInner[]**](../Model/ListScopes200ResponseInner.md)
+[**\onelogin/sdk\Model\ListScopes200ResponseInner[]**](../Model/ListScopes200ResponseInner.md)
 
 ### Authorization
 
@@ -4536,7 +4536,7 @@ No authorization required
 ## `listUsers()`
 
 ```php
-listUsers($authorization, $limit, $page, $cursor, $created_since, $created_until, $updated_since, $updated_until, $last_login_since, $last_login_until, $firstname, $lastname, $email, $username, $samaccountname, $directory_id, $external_id, $app_id, $user_ids, $custom_attributes_attribute_name, $fields): \OpenAPI\Client\Model\User[]
+listUsers($authorization, $limit, $page, $cursor, $created_since, $created_until, $updated_since, $updated_until, $last_login_since, $last_login_until, $firstname, $lastname, $email, $username, $samaccountname, $directory_id, $external_id, $app_id, $user_ids, $custom_attributes_attribute_name, $fields): \onelogin/sdk\Model\User[]
 ```
 
 
@@ -4549,7 +4549,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -4612,7 +4612,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\OpenAPI\Client\Model\User[]**](../Model/User.md)
+[**\onelogin/sdk\Model\User[]**](../Model/User.md)
 
 ### Authorization
 
@@ -4643,7 +4643,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -4700,14 +4700,14 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $authorization = 'authorization_example'; // string
 $role_id = 56; // int | Set to the id of the role you want to return.
-$remove_role_users_request = new \OpenAPI\Client\Model\RemoveRoleUsersRequest(); // \OpenAPI\Client\Model\RemoveRoleUsersRequest
+$remove_role_users_request = new \onelogin/sdk\Model\RemoveRoleUsersRequest(); // \onelogin/sdk\Model\RemoveRoleUsersRequest
 
 try {
     $apiInstance->removeRoleAdmins($authorization, $role_id, $remove_role_users_request);
@@ -4722,7 +4722,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **authorization** | **string**|  |
  **role_id** | **int**| Set to the id of the role you want to return. |
- **remove_role_users_request** | [**\OpenAPI\Client\Model\RemoveRoleUsersRequest**](../Model/RemoveRoleUsersRequest.md)|  |
+ **remove_role_users_request** | [**\onelogin/sdk\Model\RemoveRoleUsersRequest**](../Model/RemoveRoleUsersRequest.md)|  |
 
 ### Return type
 
@@ -4757,14 +4757,14 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $authorization = 'authorization_example'; // string
 $role_id = 56; // int | Set to the id of the role you want to return.
-$remove_role_users_request = new \OpenAPI\Client\Model\RemoveRoleUsersRequest(); // \OpenAPI\Client\Model\RemoveRoleUsersRequest
+$remove_role_users_request = new \onelogin/sdk\Model\RemoveRoleUsersRequest(); // \onelogin/sdk\Model\RemoveRoleUsersRequest
 
 try {
     $apiInstance->removeRoleUsers($authorization, $role_id, $remove_role_users_request);
@@ -4779,7 +4779,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **authorization** | **string**|  |
  **role_id** | **int**| Set to the id of the role you want to return. |
- **remove_role_users_request** | [**\OpenAPI\Client\Model\RemoveRoleUsersRequest**](../Model/RemoveRoleUsersRequest.md)|  |
+ **remove_role_users_request** | [**\onelogin/sdk\Model\RemoveRoleUsersRequest**](../Model/RemoveRoleUsersRequest.md)|  |
 
 ### Return type
 
@@ -4801,7 +4801,7 @@ No authorization required
 ## `revokeToken()`
 
 ```php
-revokeToken($authorization, $revoke_token_request): \OpenAPI\Client\Model\GenerateToken400Response
+revokeToken($authorization, $revoke_token_request): \onelogin/sdk\Model\GenerateToken400Response
 ```
 
 
@@ -4814,13 +4814,13 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $authorization = 'authorization_example'; // string
-$revoke_token_request = new \OpenAPI\Client\Model\RevokeTokenRequest(); // \OpenAPI\Client\Model\RevokeTokenRequest
+$revoke_token_request = new \onelogin/sdk\Model\RevokeTokenRequest(); // \onelogin/sdk\Model\RevokeTokenRequest
 
 try {
     $result = $apiInstance->revokeToken($authorization, $revoke_token_request);
@@ -4835,11 +4835,11 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **authorization** | **string**|  |
- **revoke_token_request** | [**\OpenAPI\Client\Model\RevokeTokenRequest**](../Model/RevokeTokenRequest.md)|  | [optional]
+ **revoke_token_request** | [**\onelogin/sdk\Model\RevokeTokenRequest**](../Model/RevokeTokenRequest.md)|  | [optional]
 
 ### Return type
 
-[**\OpenAPI\Client\Model\GenerateToken400Response**](../Model/GenerateToken400Response.md)
+[**\onelogin/sdk\Model\GenerateToken400Response**](../Model/GenerateToken400Response.md)
 
 ### Authorization
 
@@ -4857,7 +4857,7 @@ No authorization required
 ## `setRoleApps()`
 
 ```php
-setRoleApps($authorization, $role_id, $request_body): \OpenAPI\Client\Model\SetRoleApps200ResponseInner[]
+setRoleApps($authorization, $role_id, $request_body): \onelogin/sdk\Model\SetRoleApps200ResponseInner[]
 ```
 
 
@@ -4870,7 +4870,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -4897,7 +4897,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\OpenAPI\Client\Model\SetRoleApps200ResponseInner[]**](../Model/SetRoleApps200ResponseInner.md)
+[**\onelogin/sdk\Model\SetRoleApps200ResponseInner[]**](../Model/SetRoleApps200ResponseInner.md)
 
 ### Authorization
 
@@ -4928,13 +4928,13 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $authorization = 'authorization_example'; // string
-$track_event_request = new \OpenAPI\Client\Model\TrackEventRequest(); // \OpenAPI\Client\Model\TrackEventRequest
+$track_event_request = new \onelogin/sdk\Model\TrackEventRequest(); // \onelogin/sdk\Model\TrackEventRequest
 
 try {
     $apiInstance->trackEvent($authorization, $track_event_request);
@@ -4948,7 +4948,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **authorization** | **string**|  |
- **track_event_request** | [**\OpenAPI\Client\Model\TrackEventRequest**](../Model/TrackEventRequest.md)|  |
+ **track_event_request** | [**\onelogin/sdk\Model\TrackEventRequest**](../Model/TrackEventRequest.md)|  |
 
 ### Return type
 
@@ -4970,7 +4970,7 @@ No authorization required
 ## `updateAccessTokenClaim()`
 
 ```php
-updateAccessTokenClaim($authorization, $id, $claim_id, $add_access_token_claim_request): \OpenAPI\Client\Model\Id
+updateAccessTokenClaim($authorization, $id, $claim_id, $add_access_token_claim_request): \onelogin/sdk\Model\Id
 ```
 
 
@@ -4983,7 +4983,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -4991,7 +4991,7 @@ $apiInstance = new OpenAPI\Client\Api\DefaultApi(
 $authorization = 'authorization_example'; // string
 $id = 56; // int
 $claim_id = 56; // int
-$add_access_token_claim_request = new \OpenAPI\Client\Model\AddAccessTokenClaimRequest(); // \OpenAPI\Client\Model\AddAccessTokenClaimRequest
+$add_access_token_claim_request = new \onelogin/sdk\Model\AddAccessTokenClaimRequest(); // \onelogin/sdk\Model\AddAccessTokenClaimRequest
 
 try {
     $result = $apiInstance->updateAccessTokenClaim($authorization, $id, $claim_id, $add_access_token_claim_request);
@@ -5008,11 +5008,11 @@ Name | Type | Description  | Notes
  **authorization** | **string**|  |
  **id** | **int**|  |
  **claim_id** | **int**|  |
- **add_access_token_claim_request** | [**\OpenAPI\Client\Model\AddAccessTokenClaimRequest**](../Model/AddAccessTokenClaimRequest.md)|  |
+ **add_access_token_claim_request** | [**\onelogin/sdk\Model\AddAccessTokenClaimRequest**](../Model/AddAccessTokenClaimRequest.md)|  |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\Id**](../Model/Id.md)
+[**\onelogin/sdk\Model\Id**](../Model/Id.md)
 
 ### Authorization
 
@@ -5030,7 +5030,7 @@ No authorization required
 ## `updateApp()`
 
 ```php
-updateApp($authorization, $app_id, $schema): \OpenAPI\Client\Model\Schema
+updateApp($authorization, $app_id, $schema): \onelogin/sdk\Model\Schema
 ```
 
 
@@ -5043,14 +5043,14 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $authorization = 'authorization_example'; // string
 $app_id = 56; // int
-$schema = new \OpenAPI\Client\Model\Schema(); // \OpenAPI\Client\Model\Schema
+$schema = new \onelogin/sdk\Model\Schema(); // \onelogin/sdk\Model\Schema
 
 try {
     $result = $apiInstance->updateApp($authorization, $app_id, $schema);
@@ -5066,11 +5066,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **authorization** | **string**|  |
  **app_id** | **int**|  |
- **schema** | [**\OpenAPI\Client\Model\Schema**](../Model/Schema.md)|  |
+ **schema** | [**\onelogin/sdk\Model\Schema**](../Model/Schema.md)|  |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\Schema**](../Model/Schema.md)
+[**\onelogin/sdk\Model\Schema**](../Model/Schema.md)
 
 ### Authorization
 
@@ -5088,7 +5088,7 @@ No authorization required
 ## `updateAuthorizationServer()`
 
 ```php
-updateAuthorizationServer($authorization, $id, $create_authorization_server_request): \OpenAPI\Client\Model\Id
+updateAuthorizationServer($authorization, $id, $create_authorization_server_request): \onelogin/sdk\Model\Id
 ```
 
 
@@ -5101,14 +5101,14 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $authorization = 'authorization_example'; // string
 $id = 56; // int
-$create_authorization_server_request = new \OpenAPI\Client\Model\CreateAuthorizationServerRequest(); // \OpenAPI\Client\Model\CreateAuthorizationServerRequest
+$create_authorization_server_request = new \onelogin/sdk\Model\CreateAuthorizationServerRequest(); // \onelogin/sdk\Model\CreateAuthorizationServerRequest
 
 try {
     $result = $apiInstance->updateAuthorizationServer($authorization, $id, $create_authorization_server_request);
@@ -5124,11 +5124,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **authorization** | **string**|  |
  **id** | **int**|  |
- **create_authorization_server_request** | [**\OpenAPI\Client\Model\CreateAuthorizationServerRequest**](../Model/CreateAuthorizationServerRequest.md)|  |
+ **create_authorization_server_request** | [**\onelogin/sdk\Model\CreateAuthorizationServerRequest**](../Model/CreateAuthorizationServerRequest.md)|  |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\Id**](../Model/Id.md)
+[**\onelogin/sdk\Model\Id**](../Model/Id.md)
 
 ### Authorization
 
@@ -5146,7 +5146,7 @@ No authorization required
 ## `updateClientApp()`
 
 ```php
-updateClientApp($authorization, $id, $client_app_id, $update_client_app_request): \OpenAPI\Client\Model\ClientApp
+updateClientApp($authorization, $id, $client_app_id, $update_client_app_request): \onelogin/sdk\Model\ClientApp
 ```
 
 
@@ -5159,7 +5159,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -5167,7 +5167,7 @@ $apiInstance = new OpenAPI\Client\Api\DefaultApi(
 $authorization = 'authorization_example'; // string
 $id = 56; // int
 $client_app_id = 56; // int
-$update_client_app_request = new \OpenAPI\Client\Model\UpdateClientAppRequest(); // \OpenAPI\Client\Model\UpdateClientAppRequest
+$update_client_app_request = new \onelogin/sdk\Model\UpdateClientAppRequest(); // \onelogin/sdk\Model\UpdateClientAppRequest
 
 try {
     $result = $apiInstance->updateClientApp($authorization, $id, $client_app_id, $update_client_app_request);
@@ -5184,11 +5184,11 @@ Name | Type | Description  | Notes
  **authorization** | **string**|  |
  **id** | **int**|  |
  **client_app_id** | **int**|  |
- **update_client_app_request** | [**\OpenAPI\Client\Model\UpdateClientAppRequest**](../Model/UpdateClientAppRequest.md)|  |
+ **update_client_app_request** | [**\onelogin/sdk\Model\UpdateClientAppRequest**](../Model/UpdateClientAppRequest.md)|  |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\ClientApp**](../Model/ClientApp.md)
+[**\onelogin/sdk\Model\ClientApp**](../Model/ClientApp.md)
 
 ### Authorization
 
@@ -5206,7 +5206,7 @@ No authorization required
 ## `updateEnvironmentVariable()`
 
 ```php
-updateEnvironmentVariable($authorization, $envvar_id, $update_environment_variable_request): \OpenAPI\Client\Model\Envvar
+updateEnvironmentVariable($authorization, $envvar_id, $update_environment_variable_request): \onelogin/sdk\Model\Envvar
 ```
 
 
@@ -5219,14 +5219,14 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $authorization = 'authorization_example'; // string
 $envvar_id = 'envvar_id_example'; // string | Set to the id of the Hook Environment Variable that you want to fetch.
-$update_environment_variable_request = new \OpenAPI\Client\Model\UpdateEnvironmentVariableRequest(); // \OpenAPI\Client\Model\UpdateEnvironmentVariableRequest
+$update_environment_variable_request = new \onelogin/sdk\Model\UpdateEnvironmentVariableRequest(); // \onelogin/sdk\Model\UpdateEnvironmentVariableRequest
 
 try {
     $result = $apiInstance->updateEnvironmentVariable($authorization, $envvar_id, $update_environment_variable_request);
@@ -5242,11 +5242,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **authorization** | **string**|  |
  **envvar_id** | **string**| Set to the id of the Hook Environment Variable that you want to fetch. |
- **update_environment_variable_request** | [**\OpenAPI\Client\Model\UpdateEnvironmentVariableRequest**](../Model/UpdateEnvironmentVariableRequest.md)|  |
+ **update_environment_variable_request** | [**\onelogin/sdk\Model\UpdateEnvironmentVariableRequest**](../Model/UpdateEnvironmentVariableRequest.md)|  |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\Envvar**](../Model/Envvar.md)
+[**\onelogin/sdk\Model\Envvar**](../Model/Envvar.md)
 
 ### Authorization
 
@@ -5264,7 +5264,7 @@ No authorization required
 ## `updateHook()`
 
 ```php
-updateHook($authorization, $hook_id, $hook): \OpenAPI\Client\Model\Hook
+updateHook($authorization, $hook_id, $hook): \onelogin/sdk\Model\Hook
 ```
 
 
@@ -5277,14 +5277,14 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $authorization = 'authorization_example'; // string
 $hook_id = 'hook_id_example'; // string | Set to the id of the Hook that you want to return.
-$hook = new \OpenAPI\Client\Model\Hook(); // \OpenAPI\Client\Model\Hook
+$hook = new \onelogin/sdk\Model\Hook(); // \onelogin/sdk\Model\Hook
 
 try {
     $result = $apiInstance->updateHook($authorization, $hook_id, $hook);
@@ -5300,11 +5300,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **authorization** | **string**|  |
  **hook_id** | **string**| Set to the id of the Hook that you want to return. |
- **hook** | [**\OpenAPI\Client\Model\Hook**](../Model/Hook.md)|  |
+ **hook** | [**\onelogin/sdk\Model\Hook**](../Model/Hook.md)|  |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\Hook**](../Model/Hook.md)
+[**\onelogin/sdk\Model\Hook**](../Model/Hook.md)
 
 ### Authorization
 
@@ -5335,14 +5335,14 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $authorization = 'authorization_example'; // string
 $mapping_id = 56; // int | The id of the user mapping to locate.
-$mapping = new \OpenAPI\Client\Model\Mapping(); // \OpenAPI\Client\Model\Mapping
+$mapping = new \onelogin/sdk\Model\Mapping(); // \onelogin/sdk\Model\Mapping
 
 try {
     $result = $apiInstance->updateMapping($authorization, $mapping_id, $mapping);
@@ -5358,7 +5358,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **authorization** | **string**|  |
  **mapping_id** | **int**| The id of the user mapping to locate. |
- **mapping** | [**\OpenAPI\Client\Model\Mapping**](../Model/Mapping.md)|  |
+ **mapping** | [**\onelogin/sdk\Model\Mapping**](../Model/Mapping.md)|  |
 
 ### Return type
 
@@ -5380,7 +5380,7 @@ No authorization required
 ## `updateRiskRule()`
 
 ```php
-updateRiskRule($authorization, $risk_rule_id, $risk_rule): \OpenAPI\Client\Model\RiskRule
+updateRiskRule($authorization, $risk_rule_id, $risk_rule): \onelogin/sdk\Model\RiskRule
 ```
 
 
@@ -5393,14 +5393,14 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $authorization = 'authorization_example'; // string
 $risk_rule_id = 'risk_rule_id_example'; // string
-$risk_rule = new \OpenAPI\Client\Model\RiskRule(); // \OpenAPI\Client\Model\RiskRule
+$risk_rule = new \onelogin/sdk\Model\RiskRule(); // \onelogin/sdk\Model\RiskRule
 
 try {
     $result = $apiInstance->updateRiskRule($authorization, $risk_rule_id, $risk_rule);
@@ -5416,11 +5416,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **authorization** | **string**|  |
  **risk_rule_id** | **string**|  |
- **risk_rule** | [**\OpenAPI\Client\Model\RiskRule**](../Model/RiskRule.md)|  |
+ **risk_rule** | [**\onelogin/sdk\Model\RiskRule**](../Model/RiskRule.md)|  |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\RiskRule**](../Model/RiskRule.md)
+[**\onelogin/sdk\Model\RiskRule**](../Model/RiskRule.md)
 
 ### Authorization
 
@@ -5438,7 +5438,7 @@ No authorization required
 ## `updateRole()`
 
 ```php
-updateRole($authorization, $role_id, $role): \OpenAPI\Client\Model\UpdateRole200Response
+updateRole($authorization, $role_id, $role): \onelogin/sdk\Model\UpdateRole200Response
 ```
 
 
@@ -5451,14 +5451,14 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $authorization = 'authorization_example'; // string
 $role_id = 56; // int | Set to the id of the role you want to return.
-$role = new \OpenAPI\Client\Model\Role(); // \OpenAPI\Client\Model\Role
+$role = new \onelogin/sdk\Model\Role(); // \onelogin/sdk\Model\Role
 
 try {
     $result = $apiInstance->updateRole($authorization, $role_id, $role);
@@ -5474,11 +5474,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **authorization** | **string**|  |
  **role_id** | **int**| Set to the id of the role you want to return. |
- **role** | [**\OpenAPI\Client\Model\Role**](../Model/Role.md)|  |
+ **role** | [**\onelogin/sdk\Model\Role**](../Model/Role.md)|  |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\UpdateRole200Response**](../Model/UpdateRole200Response.md)
+[**\onelogin/sdk\Model\UpdateRole200Response**](../Model/UpdateRole200Response.md)
 
 ### Authorization
 
@@ -5496,7 +5496,7 @@ No authorization required
 ## `updateRule()`
 
 ```php
-updateRule($authorization, $app_id, $rule_id, $rule): \OpenAPI\Client\Model\RuleId
+updateRule($authorization, $app_id, $rule_id, $rule): \onelogin/sdk\Model\RuleId
 ```
 
 
@@ -5509,7 +5509,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -5517,7 +5517,7 @@ $apiInstance = new OpenAPI\Client\Api\DefaultApi(
 $authorization = 'authorization_example'; // string
 $app_id = 56; // int
 $rule_id = 56; // int | The id of the app rule to locate.
-$rule = new \OpenAPI\Client\Model\Rule(); // \OpenAPI\Client\Model\Rule
+$rule = new \onelogin/sdk\Model\Rule(); // \onelogin/sdk\Model\Rule
 
 try {
     $result = $apiInstance->updateRule($authorization, $app_id, $rule_id, $rule);
@@ -5534,11 +5534,11 @@ Name | Type | Description  | Notes
  **authorization** | **string**|  |
  **app_id** | **int**|  |
  **rule_id** | **int**| The id of the app rule to locate. |
- **rule** | [**\OpenAPI\Client\Model\Rule**](../Model/Rule.md)|  |
+ **rule** | [**\onelogin/sdk\Model\Rule**](../Model/Rule.md)|  |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\RuleId**](../Model/RuleId.md)
+[**\onelogin/sdk\Model\RuleId**](../Model/RuleId.md)
 
 ### Authorization
 
@@ -5556,7 +5556,7 @@ No authorization required
 ## `updateScope()`
 
 ```php
-updateScope($authorization, $id, $scope_id, $add_scope_request): \OpenAPI\Client\Model\Id
+updateScope($authorization, $id, $scope_id, $add_scope_request): \onelogin/sdk\Model\Id
 ```
 
 
@@ -5569,7 +5569,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -5577,7 +5577,7 @@ $apiInstance = new OpenAPI\Client\Api\DefaultApi(
 $authorization = 'authorization_example'; // string
 $id = 56; // int
 $scope_id = 56; // int
-$add_scope_request = new \OpenAPI\Client\Model\AddScopeRequest(); // \OpenAPI\Client\Model\AddScopeRequest
+$add_scope_request = new \onelogin/sdk\Model\AddScopeRequest(); // \onelogin/sdk\Model\AddScopeRequest
 
 try {
     $result = $apiInstance->updateScope($authorization, $id, $scope_id, $add_scope_request);
@@ -5594,11 +5594,11 @@ Name | Type | Description  | Notes
  **authorization** | **string**|  |
  **id** | **int**|  |
  **scope_id** | **int**|  |
- **add_scope_request** | [**\OpenAPI\Client\Model\AddScopeRequest**](../Model/AddScopeRequest.md)|  |
+ **add_scope_request** | [**\onelogin/sdk\Model\AddScopeRequest**](../Model/AddScopeRequest.md)|  |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\Id**](../Model/Id.md)
+[**\onelogin/sdk\Model\Id**](../Model/Id.md)
 
 ### Authorization
 
@@ -5616,7 +5616,7 @@ No authorization required
 ## `updateUser()`
 
 ```php
-updateUser($authorization, $user_id, $user, $mappings, $validate_policy): \OpenAPI\Client\Model\User
+updateUser($authorization, $user_id, $user, $mappings, $validate_policy): \onelogin/sdk\Model\User
 ```
 
 
@@ -5629,14 +5629,14 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $authorization = 'authorization_example'; // string
 $user_id = 56; // int | Set to the id of the user that you want to return.
-$user = new \OpenAPI\Client\Model\User(); // \OpenAPI\Client\Model\User
+$user = new \onelogin/sdk\Model\User(); // \onelogin/sdk\Model\User
 $mappings = 'mappings_example'; // string | Controls how mappings will be applied to the user on creation. Defaults to async.
 $validate_policy = True; // bool | Will passwords validate against the User Policy? Defaults to true.
 
@@ -5654,13 +5654,13 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **authorization** | **string**|  |
  **user_id** | **int**| Set to the id of the user that you want to return. |
- **user** | [**\OpenAPI\Client\Model\User**](../Model/User.md)|  |
+ **user** | [**\onelogin/sdk\Model\User**](../Model/User.md)|  |
  **mappings** | **string**| Controls how mappings will be applied to the user on creation. Defaults to async. | [optional]
  **validate_policy** | **bool**| Will passwords validate against the User Policy? Defaults to true. | [optional]
 
 ### Return type
 
-[**\OpenAPI\Client\Model\User**](../Model/User.md)
+[**\onelogin/sdk\Model\User**](../Model/User.md)
 
 ### Authorization
 
@@ -5678,7 +5678,7 @@ No authorization required
 ## `verifyEnrollment()`
 
 ```php
-verifyEnrollment($authorization, $user_id, $registration_id, $verify_enrollment_request): \OpenAPI\Client\Model\Registration[]
+verifyEnrollment($authorization, $user_id, $registration_id, $verify_enrollment_request): \onelogin/sdk\Model\Registration[]
 ```
 
 
@@ -5691,7 +5691,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -5699,7 +5699,7 @@ $apiInstance = new OpenAPI\Client\Api\DefaultApi(
 $authorization = 'authorization_example'; // string
 $user_id = 56; // int | Set to the id of the user.
 $registration_id = 56; // int | Set to the uuid of the registration. This was included in the response as part of the initial request in Enroll Factor.
-$verify_enrollment_request = new \OpenAPI\Client\Model\VerifyEnrollmentRequest(); // \OpenAPI\Client\Model\VerifyEnrollmentRequest
+$verify_enrollment_request = new \onelogin/sdk\Model\VerifyEnrollmentRequest(); // \onelogin/sdk\Model\VerifyEnrollmentRequest
 
 try {
     $result = $apiInstance->verifyEnrollment($authorization, $user_id, $registration_id, $verify_enrollment_request);
@@ -5716,11 +5716,11 @@ Name | Type | Description  | Notes
  **authorization** | **string**|  |
  **user_id** | **int**| Set to the id of the user. |
  **registration_id** | **int**| Set to the uuid of the registration. This was included in the response as part of the initial request in Enroll Factor. |
- **verify_enrollment_request** | [**\OpenAPI\Client\Model\VerifyEnrollmentRequest**](../Model/VerifyEnrollmentRequest.md)|  |
+ **verify_enrollment_request** | [**\onelogin/sdk\Model\VerifyEnrollmentRequest**](../Model/VerifyEnrollmentRequest.md)|  |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\Registration[]**](../Model/Registration.md)
+[**\onelogin/sdk\Model\Registration[]**](../Model/Registration.md)
 
 ### Authorization
 
@@ -5738,7 +5738,7 @@ No authorization required
 ## `verifyEnrollmentVoiceProtect()`
 
 ```php
-verifyEnrollmentVoiceProtect($authorization, $user_id, $registration_id): \OpenAPI\Client\Model\Registration[]
+verifyEnrollmentVoiceProtect($authorization, $user_id, $registration_id): \onelogin/sdk\Model\Registration[]
 ```
 
 
@@ -5751,7 +5751,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -5778,7 +5778,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\OpenAPI\Client\Model\Registration[]**](../Model/Registration.md)
+[**\onelogin/sdk\Model\Registration[]**](../Model/Registration.md)
 
 ### Authorization
 
@@ -5796,7 +5796,7 @@ No authorization required
 ## `verifyFactor()`
 
 ```php
-verifyFactor($authorization, $user_id, $verification_id, $verify_factor_request): \OpenAPI\Client\Model\Status2
+verifyFactor($authorization, $user_id, $verification_id, $verify_factor_request): \onelogin/sdk\Model\Status2
 ```
 
 
@@ -5809,7 +5809,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -5817,7 +5817,7 @@ $apiInstance = new OpenAPI\Client\Api\DefaultApi(
 $authorization = 'authorization_example'; // string
 $user_id = 56; // int | Set to the id of the user.
 $verification_id = 56; // int | The verification_id is returned on activation of the factor or you can get the device_id using the Activate Factor API call.
-$verify_factor_request = new \OpenAPI\Client\Model\VerifyFactorRequest(); // \OpenAPI\Client\Model\VerifyFactorRequest
+$verify_factor_request = new \onelogin/sdk\Model\VerifyFactorRequest(); // \onelogin/sdk\Model\VerifyFactorRequest
 
 try {
     $result = $apiInstance->verifyFactor($authorization, $user_id, $verification_id, $verify_factor_request);
@@ -5834,11 +5834,11 @@ Name | Type | Description  | Notes
  **authorization** | **string**|  |
  **user_id** | **int**| Set to the id of the user. |
  **verification_id** | **int**| The verification_id is returned on activation of the factor or you can get the device_id using the Activate Factor API call. |
- **verify_factor_request** | [**\OpenAPI\Client\Model\VerifyFactorRequest**](../Model/VerifyFactorRequest.md)|  |
+ **verify_factor_request** | [**\onelogin/sdk\Model\VerifyFactorRequest**](../Model/VerifyFactorRequest.md)|  |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\Status2**](../Model/Status2.md)
+[**\onelogin/sdk\Model\Status2**](../Model/Status2.md)
 
 ### Authorization
 
@@ -5856,7 +5856,7 @@ No authorization required
 ## `verifyFactorSaml()`
 
 ```php
-verifyFactorSaml($authorization, $verify_factor_saml_request): \OpenAPI\Client\Model\VerifyFactorSaml200Response
+verifyFactorSaml($authorization, $verify_factor_saml_request): \onelogin/sdk\Model\VerifyFactorSaml200Response
 ```
 
 
@@ -5869,13 +5869,13 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $authorization = 'authorization_example'; // string
-$verify_factor_saml_request = new \OpenAPI\Client\Model\VerifyFactorSamlRequest(); // \OpenAPI\Client\Model\VerifyFactorSamlRequest
+$verify_factor_saml_request = new \onelogin/sdk\Model\VerifyFactorSamlRequest(); // \onelogin/sdk\Model\VerifyFactorSamlRequest
 
 try {
     $result = $apiInstance->verifyFactorSaml($authorization, $verify_factor_saml_request);
@@ -5890,11 +5890,11 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **authorization** | **string**|  |
- **verify_factor_saml_request** | [**\OpenAPI\Client\Model\VerifyFactorSamlRequest**](../Model/VerifyFactorSamlRequest.md)|  |
+ **verify_factor_saml_request** | [**\onelogin/sdk\Model\VerifyFactorSamlRequest**](../Model/VerifyFactorSamlRequest.md)|  |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\VerifyFactorSaml200Response**](../Model/VerifyFactorSaml200Response.md)
+[**\onelogin/sdk\Model\VerifyFactorSaml200Response**](../Model/VerifyFactorSaml200Response.md)
 
 ### Authorization
 
@@ -5912,7 +5912,7 @@ No authorization required
 ## `verifyFactorVoice()`
 
 ```php
-verifyFactorVoice($authorization, $user_id, $verification_id): \OpenAPI\Client\Model\VerifyFactorVoice200ResponseInner[]
+verifyFactorVoice($authorization, $user_id, $verification_id): \onelogin/sdk\Model\VerifyFactorVoice200ResponseInner[]
 ```
 
 
@@ -5925,7 +5925,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new OpenAPI\Client\Api\DefaultApi(
+$apiInstance = new onelogin/sdk\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -5952,7 +5952,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\OpenAPI\Client\Model\VerifyFactorVoice200ResponseInner[]**](../Model/VerifyFactorVoice200ResponseInner.md)
+[**\onelogin/sdk\Model\VerifyFactorVoice200ResponseInner[]**](../Model/VerifyFactorVoice200ResponseInner.md)
 
 ### Authorization
 

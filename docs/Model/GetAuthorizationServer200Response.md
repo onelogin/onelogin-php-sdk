@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**configuration** | [**\OpenAPI\Client\Model\AuthServerConfiguration**](AuthServerConfiguration.md) |  | [optional]
+**configuration** | [**\onelogin/sdk\Model\AuthServerConfiguration**](AuthServerConfiguration.md) |  | [optional]
 **id** | **int** |  | [optional]
 **description** | **string** |  | [optional]
 **name** | **string** |  | [optional]

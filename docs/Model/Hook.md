@@ -15,8 +15,8 @@ Name | Type | Description | Notes
 **function** | **string** | A base64 encoded string containing the javascript function code. |
 **context_version** | **string** | The semantic version of the content that will be injected into this hook. | [optional]
 **status** | **string** | String describing the state of the hook function. When a hook is ready and disabled is false it will be executed. | [optional]
-**options** | [**\OpenAPI\Client\Model\HookOptions**](HookOptions.md) |  | [optional]
-**conditions** | [**\OpenAPI\Client\Model\HookConditionsInner[]**](HookConditionsInner.md) | An array of objects that let you limit the execution of a hook to users in specific roles. | [optional]
+**options** | [**\onelogin/sdk\Model\HookOptions**](HookOptions.md) |  | [optional]
+**conditions** | [**\onelogin/sdk\Model\HookConditionsInner[]**](HookConditionsInner.md) | An array of objects that let you limit the execution of a hook to users in specific roles. | [optional]
 **created_at** | **string** | ISO8601 format date that they hook function was created. | [optional]
 **updated_at** | **string** | ISO8601 format date that they hook function was last updated. | [optional]
 
