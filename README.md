@@ -45,7 +45,7 @@ use \OneLogin\api\OneLoginClient;
 $client = new OneLoginClient($clientId, $clientSecret, $region);
 
 #Now you can make requests 
-client.getUsers()
+$client->getUsers();
 ``` 
 
 For all methods see PHPdoc of this SDK published at:
