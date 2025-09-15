@@ -32,7 +32,7 @@ class App
     {
         $this->id = isset($data->id)? (int) $data->id : null;
         $this->name = $data->name;
-        $this->icon = $data->icon;
+        $this->icon = isset($data->icon) ? $data->icon : null;
         $this->provisioned = $data->provisioned;
         $this->extension = $data->extension;
         $this->loginId = $data->login_id;

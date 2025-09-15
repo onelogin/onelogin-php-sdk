@@ -18,7 +18,7 @@ class Constants
     // User URLs
     const GET_USERS_URL = "https://api.%s.onelogin.com/api/1/users";
     const GET_USER_URL = "https://api.%s.onelogin.com/api/1/users/%s";
-    const GET_APPS_FOR_USER_URL = "https://api.%s.onelogin.com/api/1/users/%s/apps";
+    const GET_APPS_FOR_USER_URL = "https://api.%s.onelogin.com/api/2/users/%s/apps";
     const GET_ROLES_FOR_USER_URL = "https://api.%s.onelogin.com/api/1/users/%s/roles";
     const GET_CUSTOM_ATTRIBUTES_URL = "https://api.%s.onelogin.com/api/1/users/custom_attributes";
     const CREATE_USER_URL = "https://api.%s.onelogin.com/api/1/users";
