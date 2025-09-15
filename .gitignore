@@ -1,2 +1,9 @@
+# Composer
 /vendor/
 composer.lock
+
+# Temporary files
+*.tmp
+*.temp
+*~
+.DS_Store
