@@ -30,9 +30,9 @@ The SDK has the following dependencies:
 
 ## Getting started
 
-### Version 1.7.0 - Exception Handling Support 🎉
+### Version 1.8.0 - Exception Handling Support & Bug Fixes 🎉
 
-Starting with version 1.7.0, the OneLogin PHP SDK supports exception-based error handling alongside the traditional manual error checking approach. This provides a more modern, cleaner way to handle API errors while maintaining full backward compatibility.
+Starting with version 1.7.0, the OneLogin PHP SDK supports exception-based error handling alongside the traditional manual error checking approach. Version 1.8.0 includes additional bug fixes and improvements while maintaining full backward compatibility.
 
 **New Features:**
 - Optional exception throwing for API errors
