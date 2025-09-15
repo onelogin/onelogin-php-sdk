@@ -3,6 +3,9 @@
 This SDK will let you execute all the API methods, version/1, described
 at https://developers.onelogin.com/api-docs/1/getting-started/dev-overview.
 
+## Support
+OneLogin by One Identity open source projects are supported through [OneLogin GitHub issues](https://github.com/onelogin/onelogin-php-sdk/issues). This includes all scripts, plugins, SDKs, modules, code snippets or other solutions. For assistance with any OneLogin by One Identity GitHub project, please raise a new Issue on the [OneLogin GitHub issues](https://github.com/onelogin/onelogin-php-sdk/issues) page. Requests for assistance made through official One Identity Support will be referred back to GitHub where those requests can benefit all users.
+
 ## Installation
 ### Hosting
 #### Github
