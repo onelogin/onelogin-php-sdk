@@ -55,9 +55,66 @@ https://onelogin.github.io/onelogin-php-sdk/index.html
 
 ### Errors and exceptions
 
+#### Traditional Error Handling (Backward Compatible)
+
 OneLogin's API can return 400, 401, 403 or 404 when there was any issue executing the action. When that happens, the methods of the SDK will include error and errorMessage in the OneLoginClient. Use the getError() and the getErrorDescription() to retrieve them.
 
 In some scenarios there is an attribute not provided or invalid that causes the error on the execution of the API call, when that happens at the OneLoginClient there is available a getErrorAttribute() method that contains the name of the attribute that caused the issue. See the API documentation to verify when this data is provided by the API.
+
+```php
+$users = $client->getUsers();
+if ($client->getError()) {
+    echo "Error: " . $client->getErrorDescription();
+    if ($client->getErrorAttribute()) {
+        echo " (Attribute: " . $client->getErrorAttribute() . ")";
+    }
+}
+```
+
+#### Exception-Based Error Handling (Recommended)
+
+For a more modern approach, you can enable exception throwing when creating the client or by using the `setThrowExceptions()` method. When exceptions are enabled, API errors will throw appropriate exceptions instead of requiring manual error checking.
+
+```php
+// Enable exceptions during client creation
+$client = new OneLoginClient($clientId, $clientSecret, $region, 1000, true);
+
+// Or enable on existing client
+$client->setThrowExceptions(true);
+
+try {
+    $users = $client->getUsers();
+    // Process users...
+} catch (AuthenticationException $e) {
+    // Handle authentication errors (401, 403)
+    echo "Authentication failed: " . $e->getMessage();
+} catch (ValidationException $e) {
+    // Handle validation errors (400)
+    echo "Validation error: " . $e->getMessage();
+    if ($e->getErrorAttribute()) {
+        echo " (Field: " . $e->getErrorAttribute() . ")";
+    }
+} catch (RateLimitException $e) {
+    // Handle rate limit errors (429)
+    echo "Rate limit exceeded: " . $e->getMessage();
+} catch (ServerException $e) {
+    // Handle server errors (5xx)
+    echo "Server error: " . $e->getMessage();
+} catch (OneLoginException $e) {
+    // Handle any other API errors
+    echo "API error: " . $e->getMessage();
+}
+```
+
+#### Available Exception Classes
+
+- `OneLoginException` - Base exception for all OneLogin API errors
+- `AuthenticationException` - Authentication/authorization failures (HTTP 401, 403)
+- `ValidationException` - Request validation errors (HTTP 400)  
+- `RateLimitException` - Rate limit exceeded (HTTP 429)
+- `ServerException` - Server errors (HTTP 5xx)
+
+All exceptions include the HTTP status code via `getErrorCode()` and may include the problematic attribute via `getErrorAttribute()`.
 
 
 ### Authentication
