@@ -287,8 +287,14 @@ class OneLoginClient
         }
         
         // Handle case where API returns object instead of array (e.g., otp_devices endpoint)
+        // Convert object properties to array to maintain consistent return type
         if (is_object($data)) {
-            return $data;
+            // For otp_devices endpoint, extract the array from the object
+            if (property_exists($data, 'otp_devices') && is_array($data->otp_devices)) {
+                return $data->otp_devices;
+            }
+            // For other object-based responses, convert to array
+            return (array) $data;
         }
         
         if (is_array($data) && count($data) == 1 && empty($data[0])) {
