@@ -285,7 +285,13 @@ class OneLoginClient
         if (property_exists($content, 'data')) {
             $data = $content->data;
         }
-        if (count($data) == 1 && empty($data[0])) {
+        
+        // Handle case where API returns object instead of array (e.g., otp_devices endpoint)
+        if (is_object($data)) {
+            return $data;
+        }
+        
+        if (is_array($data) && count($data) == 1 && empty($data[0])) {
             return [];
         }
 

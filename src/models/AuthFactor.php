@@ -16,7 +16,7 @@ class AuthFactor
     public function __construct($data)
     {
         $this->id = isset($data->factor_id)? (int) $data->factor_id : null;
-        $this->name = $data->name;
+        $this->name = $data->name ?? '';
     }
 
     public function getId()
