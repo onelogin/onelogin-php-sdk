@@ -27,13 +27,18 @@ use OneLogin\api\models\SessionStatus;
 use OneLogin\api\models\SessionTokenInfo;
 use OneLogin\api\models\SessionTokenMFAInfo;
 use OneLogin\api\models\User;
+use OneLogin\api\exceptions\OneLoginException;
+use OneLogin\api\exceptions\AuthenticationException;
+use OneLogin\api\exceptions\ValidationException;
+use OneLogin\api\exceptions\RateLimitException;
+use OneLogin\api\exceptions\ServerException;
 
 /**
  * OneLogin client implementation
  */
 class OneLoginClient
 {
-    const VERSION = "1.6.0";
+    const VERSION = "1.7.0";
 
     const CUSTOM_USER_AGENT = "onelogin-php-sdk ".OneLoginClient::VERSION;
 
@@ -73,10 +78,13 @@ class OneLoginClient
     /** @var int $maxResults Limit the number of elements returned in a search */
     public $maxResults;
 
+    /** @var bool $throwExceptions Whether to throw exceptions on API errors */
+    protected $throwExceptions;
+
     /**
      * Create a new instance of Client.
      */
-    public function __construct($clientId, $clientSecret, $region = "us", $maxResults = 1000)
+    public function __construct($clientId, $clientSecret, $region = "us", $maxResults = 1000, $throwExceptions = false)
     {
         $this->client = new Client();
         $this->clientId = $clientId;
@@ -84,6 +92,7 @@ class OneLoginClient
         $this->urlBuilder = new UrlBuilder($region);
         $this->userAgent = OneLoginClient::CUSTOM_USER_AGENT;
         $this->maxResults = $maxResults;
+        $this->throwExceptions = $throwExceptions;
     }
 
     /**
@@ -114,6 +123,58 @@ class OneLoginClient
     public function getErrorAttribute()
     {
         return $this->errorAttribute;
+    }
+
+    /**
+     * Enable or disable throwing exceptions on API errors
+     *
+     * @param bool $enabled
+     */
+    public function setThrowExceptions($enabled)
+    {
+        $this->throwExceptions = $enabled;
+    }
+
+    /**
+     * Check if exception throwing is enabled
+     *
+     * @return bool
+     */
+    public function isThrowExceptionsEnabled()
+    {
+        return $this->throwExceptions;
+    }
+
+    /**
+     * Throw appropriate exception based on status code and error details
+     *
+     * @param int $statusCode
+     * @param string $errorMessage
+     * @param string|null $errorAttribute
+     * @throws OneLoginException
+     */
+    protected function throwAppropriateException($statusCode, $errorMessage, $errorAttribute = null)
+    {
+        if (!$this->throwExceptions) {
+            return;
+        }
+
+        switch ($statusCode) {
+            case 400:
+                throw new ValidationException($errorMessage, $statusCode, $errorAttribute);
+            case 401:
+            case 403:
+                throw new AuthenticationException($errorMessage, $statusCode, $errorAttribute);
+            case 429:
+                throw new RateLimitException($errorMessage, $statusCode, $errorAttribute);
+            case 500:
+            case 502:
+            case 503:
+            case 504:
+                throw new ServerException($errorMessage, $statusCode, $errorAttribute);
+            default:
+                throw new OneLoginException($errorMessage, $statusCode, $errorAttribute);
+        }
     }
 
     protected function extractErrorMessageFromResponse($response)
@@ -374,9 +435,11 @@ class OneLoginClient
             $response = $e->getResponse();
             $this->error = $response->getStatusCode();
             $this->errorDescription = $this->extractErrorMessageFromResponse($response);
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         } catch (\Exception $e) {
             $this->error = 500;
             $this->errorDescription = $e->getMessage();
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         }
     }
 
@@ -413,9 +476,11 @@ class OneLoginClient
             $response = $e->getResponse();
             $this->error = $response->getStatusCode();
             $this->errorDescription = $this->extractErrorMessageFromResponse($response);
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         } catch (\Exception $e) {
             $this->error = 500;
             $this->errorDescription = $e->getMessage();
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         }
     }
 
@@ -456,9 +521,11 @@ class OneLoginClient
             $response = $e->getResponse();
             $this->error = $response->getStatusCode();
             $this->errorDescription = $this->extractErrorMessageFromResponse($response);
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         } catch (\Exception $e) {
             $this->error = 500;
             $this->errorDescription = $e->getMessage();
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         }
         return false;
     }
@@ -493,9 +560,11 @@ class OneLoginClient
             $response = $e->getResponse();
             $this->error = $response->getStatusCode();
             $this->errorDescription = $this->extractErrorMessageFromResponse($response);
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         } catch (\Exception $e) {
             $this->error = 500;
             $this->errorDescription = $e->getMessage();
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         }
     }
 
@@ -571,9 +640,11 @@ class OneLoginClient
             $response = $e->getResponse();
             $this->error = $response->getStatusCode();
             $this->errorDescription = $this->extractErrorMessageFromResponse($response);
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         } catch (\Exception $e) {
             $this->error = 500;
             $this->errorDescription = $e->getMessage();
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         }
     }
 
@@ -610,9 +681,11 @@ class OneLoginClient
             $response = $e->getResponse();
             $this->error = $response->getStatusCode();
             $this->errorDescription = $this->extractErrorMessageFromResponse($response);
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         } catch (\Exception $e) {
             $this->error = 500;
             $this->errorDescription = $e->getMessage();
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         }
     }
 
@@ -653,9 +726,11 @@ class OneLoginClient
             $response = $e->getResponse();
             $this->error = $response->getStatusCode();
             $this->errorDescription = $this->extractErrorMessageFromResponse($response);
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         } catch (\Exception $e) {
             $this->error = 500;
             $this->errorDescription = $e->getMessage();
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         }
     }
 
@@ -695,9 +770,11 @@ class OneLoginClient
             $response = $e->getResponse();
             $this->error = $response->getStatusCode();
             $this->errorDescription = $this->extractErrorMessageFromResponse($response);
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         } catch (\Exception $e) {
             $this->error = 500;
             $this->errorDescription = $e->getMessage();
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         }
     }
 
@@ -733,9 +810,11 @@ class OneLoginClient
             $response = $e->getResponse();
             $this->error = $response->getStatusCode();
             $this->errorDescription = $this->extractErrorMessageFromResponse($response);
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         } catch (\Exception $e) {
             $this->error = 500;
             $this->errorDescription = $e->getMessage();
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         }
     }
 
@@ -779,10 +858,13 @@ class OneLoginClient
             $response = $e->getResponse();
             $this->error = $response->getStatusCode();
             $this->errorDescription = $this->extractErrorMessageFromResponse($response);
+            $this->throwAppropriateException($this->error, $this->errorDescription);
             $this->errorAttribute = $this->extractErrorAttributeFromResponse($response);
+            $this->throwAppropriateException($this->error, $this->errorDescription, $this->errorAttribute);
         } catch (\Exception $e) {
             $this->error = 500;
             $this->errorDescription = $e->getMessage();
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         }
     }
 
@@ -828,10 +910,13 @@ class OneLoginClient
             $response = $e->getResponse();
             $this->error = $response->getStatusCode();
             $this->errorDescription = $this->extractErrorMessageFromResponse($response);
+            $this->throwAppropriateException($this->error, $this->errorDescription);
             $this->errorAttribute = $this->extractErrorAttributeFromResponse($response);
+            $this->throwAppropriateException($this->error, $this->errorDescription, $this->errorAttribute);
         } catch (\Exception $e) {
             $this->error = 500;
             $this->errorDescription = $e->getMessage();
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         }
     }
 
@@ -872,10 +957,13 @@ class OneLoginClient
             $response = $e->getResponse();
             $this->error = $response->getStatusCode();
             $this->errorDescription = $this->extractErrorMessageFromResponse($response);
+            $this->throwAppropriateException($this->error, $this->errorDescription);
             $this->errorAttribute = $this->extractErrorAttributeFromResponse($response);
+            $this->throwAppropriateException($this->error, $this->errorDescription, $this->errorAttribute);
         } catch (\Exception $e) {
             $this->error = 500;
             $this->errorDescription = $e->getMessage();
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         }
         return false;
     }
@@ -917,10 +1005,13 @@ class OneLoginClient
             $response = $e->getResponse();
             $this->error = $response->getStatusCode();
             $this->errorDescription = $this->extractErrorMessageFromResponse($response);
+            $this->throwAppropriateException($this->error, $this->errorDescription);
             $this->errorAttribute = $this->extractErrorAttributeFromResponse($response);
+            $this->throwAppropriateException($this->error, $this->errorDescription, $this->errorAttribute);
         } catch (\Exception $e) {
             $this->error = 500;
             $this->errorDescription = $e->getMessage();
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         }
         return false;
     }
@@ -965,10 +1056,13 @@ class OneLoginClient
             $response = $e->getResponse();
             $this->error = $response->getStatusCode();
             $this->errorDescription = $this->extractErrorMessageFromResponse($response);
+            $this->throwAppropriateException($this->error, $this->errorDescription);
             $this->errorAttribute = $this->extractErrorAttributeFromResponse($response);
+            $this->throwAppropriateException($this->error, $this->errorDescription, $this->errorAttribute);
         } catch (\Exception $e) {
             $this->error = 500;
             $this->errorDescription = $e->getMessage();
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         }
         return false;
     }
@@ -1022,10 +1116,13 @@ class OneLoginClient
             $response = $e->getResponse();
             $this->error = $response->getStatusCode();
             $this->errorDescription = $this->extractErrorMessageFromResponse($response);
+            $this->throwAppropriateException($this->error, $this->errorDescription);
             $this->errorAttribute = $this->extractErrorAttributeFromResponse($response);
+            $this->throwAppropriateException($this->error, $this->errorDescription, $this->errorAttribute);
         } catch (\Exception $e) {
             $this->error = 500;
             $this->errorDescription = $e->getMessage();
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         }
         return false;
     }
@@ -1067,10 +1164,13 @@ class OneLoginClient
             $response = $e->getResponse();
             $this->error = $response->getStatusCode();
             $this->errorDescription = $this->extractErrorMessageFromResponse($response);
+            $this->throwAppropriateException($this->error, $this->errorDescription);
             $this->errorAttribute = $this->extractErrorAttributeFromResponse($response);
+            $this->throwAppropriateException($this->error, $this->errorDescription, $this->errorAttribute);
         } catch (\Exception $e) {
             $this->error = 500;
             $this->errorDescription = $e->getMessage();
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         }
         return false;
     }
@@ -1112,10 +1212,13 @@ class OneLoginClient
             $response = $e->getResponse();
             $this->error = $response->getStatusCode();
             $this->errorDescription = $this->extractErrorMessageFromResponse($response);
+            $this->throwAppropriateException($this->error, $this->errorDescription);
             $this->errorAttribute = $this->extractErrorAttributeFromResponse($response);
+            $this->throwAppropriateException($this->error, $this->errorDescription, $this->errorAttribute);
         } catch (\Exception $e) {
             $this->error = 500;
             $this->errorDescription = $e->getMessage();
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         }
         return false;
     }
@@ -1150,10 +1253,13 @@ class OneLoginClient
             $response = $e->getResponse();
             $this->error = $response->getStatusCode();
             $this->errorDescription = $this->extractErrorMessageFromResponse($response);
+            $this->throwAppropriateException($this->error, $this->errorDescription);
             $this->errorAttribute = $this->extractErrorAttributeFromResponse($response);
+            $this->throwAppropriateException($this->error, $this->errorDescription, $this->errorAttribute);
         } catch (\Exception $e) {
             $this->error = 500;
             $this->errorDescription = $e->getMessage();
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         }
         return false;
     }
@@ -1197,10 +1303,13 @@ class OneLoginClient
             $response = $e->getResponse();
             $this->error = $response->getStatusCode();
             $this->errorDescription = $this->extractErrorMessageFromResponse($response);
+            $this->throwAppropriateException($this->error, $this->errorDescription);
             $this->errorAttribute = $this->extractErrorAttributeFromResponse($response);
+            $this->throwAppropriateException($this->error, $this->errorDescription, $this->errorAttribute);
         } catch (\Exception $e) {
             $this->error = 500;
             $this->errorDescription = $e->getMessage();
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         }
         return false;
     }
@@ -1236,10 +1345,13 @@ class OneLoginClient
             $response = $e->getResponse();
             $this->error = $response->getStatusCode();
             $this->errorDescription = $this->extractErrorMessageFromResponse($response);
+            $this->throwAppropriateException($this->error, $this->errorDescription);
             $this->errorAttribute = $this->extractErrorAttributeFromResponse($response);
+            $this->throwAppropriateException($this->error, $this->errorDescription, $this->errorAttribute);
         } catch (\Exception $e) {
             $this->error = 500;
             $this->errorDescription = $e->getMessage();
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         }
         return false;
     }
@@ -1290,9 +1402,11 @@ class OneLoginClient
             $response = $e->getResponse();
             $this->error = $response->getStatusCode();
             $this->errorDescription = $this->extractErrorMessageFromResponse($response);
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         } catch (\Exception $e) {
             $this->error = 500;
             $this->errorDescription = $e->getMessage();
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         }
     }
 
@@ -1342,9 +1456,11 @@ class OneLoginClient
             $response = $e->getResponse();
             $this->error = $response->getStatusCode();
             $this->errorDescription = $this->extractErrorMessageFromResponse($response);
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         } catch (\Exception $e) {
             $this->error = 500;
             $this->errorDescription = $e->getMessage();
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         }
     }
 
@@ -1403,9 +1519,11 @@ class OneLoginClient
             $response = $e->getResponse();
             $this->error = $response->getStatusCode();
             $this->errorDescription = $this->extractErrorMessageFromResponse($response);
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         } catch (\Exception $e) {
             $this->error = 500;
             $this->errorDescription = $e->getMessage();
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         }
     }
 
@@ -1480,9 +1598,11 @@ class OneLoginClient
             $response = $e->getResponse();
             $this->error = $response->getStatusCode();
             $this->errorDescription = $this->extractErrorMessageFromResponse($response);
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         } catch (\Exception $e) {
             $this->error = 500;
             $this->errorDescription = $e->getMessage();
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         }
     }
 
@@ -1557,9 +1677,11 @@ class OneLoginClient
             $response = $e->getResponse();
             $this->error = $response->getStatusCode();
             $this->errorDescription = $this->extractErrorMessageFromResponse($response);
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         } catch (\Exception $e) {
             $this->error = 500;
             $this->errorDescription = $e->getMessage();
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         }
     }
 
@@ -1596,9 +1718,11 @@ class OneLoginClient
             $response = $e->getResponse();
             $this->error = $response->getStatusCode();
             $this->errorDescription = $this->extractErrorMessageFromResponse($response);
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         } catch (\Exception $e) {
             $this->error = 500;
             $this->errorDescription = $e->getMessage();
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         }
     }
 
@@ -1640,9 +1764,11 @@ class OneLoginClient
             $response = $e->getResponse();
             $this->error = $response->getStatusCode();
             $this->errorDescription = $this->extractErrorMessageFromResponse($response);
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         } catch (\Exception $e) {
             $this->error = 500;
             $this->errorDescription = $e->getMessage();
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         }
     }
 
@@ -1715,9 +1841,11 @@ class OneLoginClient
             $response = $e->getResponse();
             $this->error = $response->getStatusCode();
             $this->errorDescription = $this->extractErrorMessageFromResponse($response);
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         } catch (\Exception $e) {
             $this->error = 500;
             $this->errorDescription = $e->getMessage();
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         }
     }
 
@@ -1754,9 +1882,11 @@ class OneLoginClient
             $response = $e->getResponse();
             $this->error = $response->getStatusCode();
             $this->errorDescription = $this->extractErrorMessageFromResponse($response);
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         } catch (\Exception $e) {
             $this->error = 500;
             $this->errorDescription = $e->getMessage();
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         }
     }
 
@@ -1796,10 +1926,13 @@ class OneLoginClient
             $response = $e->getResponse();
             $this->error = $response->getStatusCode();
             $this->errorDescription = $this->extractErrorMessageFromResponse($response);
+            $this->throwAppropriateException($this->error, $this->errorDescription);
             $this->errorAttribute = $this->extractErrorAttributeFromResponse($response);
+            $this->throwAppropriateException($this->error, $this->errorDescription, $this->errorAttribute);
         } catch (\Exception $e) {
             $this->error = 500;
             $this->errorDescription = $e->getMessage();
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         }
         return false;
     }
@@ -1865,9 +1998,11 @@ class OneLoginClient
             $response = $e->getResponse();
             $this->error = $response->getStatusCode();
             $this->errorDescription = $this->extractErrorMessageFromResponse($response);
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         } catch (\Exception $e) {
             $this->error = 500;
             $this->errorDescription = $e->getMessage();
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         }
     }
 
@@ -1904,9 +2039,11 @@ class OneLoginClient
             $response = $e->getResponse();
             $this->error = $response->getStatusCode();
             $this->errorDescription = $this->extractErrorMessageFromResponse($response);
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         } catch (\Exception $e) {
             $this->error = 500;
             $this->errorDescription = $e->getMessage();
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         }
     }
 
@@ -1965,9 +2102,11 @@ class OneLoginClient
             $response = $e->getResponse();
             $this->error = $response->getStatusCode();
             $this->errorDescription = $this->extractErrorMessageFromResponse($response);
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         } catch (\Exception $e) {
             $this->error = 500;
             $this->errorDescription = $e->getMessage();
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         }
     }
 
@@ -2030,9 +2169,11 @@ class OneLoginClient
             $response = $e->getResponse();
             $this->error = $response->getStatusCode();
             $this->errorDescription = $this->extractErrorMessageFromResponse($response);
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         } catch (\Exception $e) {
             $this->error = 500;
             $this->errorDescription = $e->getMessage();
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         }
     }
 
@@ -2082,9 +2223,11 @@ class OneLoginClient
             $response = $e->getResponse();
             $this->error = $response->getStatusCode();
             $this->errorDescription = $this->extractErrorMessageFromResponse($response);
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         } catch (\Exception $e) {
             $this->error = 500;
             $this->errorDescription = $e->getMessage();
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         }
     }
 
@@ -2136,9 +2279,11 @@ class OneLoginClient
             $response = $e->getResponse();
             $this->error = $response->getStatusCode();
             $this->errorDescription = $this->extractErrorMessageFromResponse($response);
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         } catch (\Exception $e) {
             $this->error = 500;
             $this->errorDescription = $e->getMessage();
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         }
     }
 
@@ -2184,9 +2329,11 @@ class OneLoginClient
             $response = $e->getResponse();
             $this->error = $response->getStatusCode();
             $this->errorDescription = $this->extractErrorMessageFromResponse($response);
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         } catch (\Exception $e) {
             $this->error = 500;
             $this->errorDescription = $e->getMessage();
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         }
     }
 
@@ -2228,9 +2375,11 @@ class OneLoginClient
             $response = $e->getResponse();
             $this->error = $response->getStatusCode();
             $this->errorDescription = $this->extractErrorMessageFromResponse($response);
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         } catch (\Exception $e) {
             $this->error = 500;
             $this->errorDescription = $e->getMessage();
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         }
         return false;
     }
@@ -2296,9 +2445,11 @@ class OneLoginClient
             $response = $e->getResponse();
             $this->error = $response->getStatusCode();
             $this->errorDescription = $this->extractErrorMessageFromResponse($response);
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         } catch (\Exception $e) {
             $this->error = 500;
             $this->errorDescription = $e->getMessage();
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         }
         return false;
     }
@@ -2335,9 +2486,11 @@ class OneLoginClient
             $response = $e->getResponse();
             $this->error = $response->getStatusCode();
             $this->errorDescription = $this->extractErrorMessageFromResponse($response);
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         } catch (\Exception $e) {
             $this->error = 500;
             $this->errorDescription = $e->getMessage();
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         }
         return false;
     }
@@ -2385,9 +2538,11 @@ class OneLoginClient
             $response = $e->getResponse();
             $this->error = $response->getStatusCode();
             $this->errorDescription = $this->extractErrorMessageFromResponse($response);
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         } catch (\Exception $e) {
             $this->error = 500;
             $this->errorDescription = $e->getMessage();
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         }
     }
 
@@ -2435,9 +2590,11 @@ class OneLoginClient
             $response = $e->getResponse();
             $this->error = $response->getStatusCode();
             $this->errorDescription = $this->extractErrorMessageFromResponse($response);
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         } catch (\Exception $e) {
             $this->error = 500;
             $this->errorDescription = $e->getMessage();
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         }
         return false;
     }
@@ -2491,9 +2648,11 @@ class OneLoginClient
             $response = $e->getResponse();
             $this->error = $response->getStatusCode();
             $this->errorDescription = $this->extractErrorMessageFromResponse($response);
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         } catch (\Exception $e) {
             $this->error = 500;
             $this->errorDescription = $e->getMessage();
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         }
     }
 
@@ -2536,9 +2695,11 @@ class OneLoginClient
             $response = $e->getResponse();
             $this->error = $this->extractStatusCodeFromResponse($response);
             $this->errorDescription = $this->extractErrorMessageFromResponse($response);
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         } catch (\Exception $e) {
             $this->error = 500;
             $this->errorDescription = $e->getMessage();
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         }
     }
 
@@ -2606,9 +2767,11 @@ class OneLoginClient
             $response = $e->getResponse();
             $this->error = $response->getStatusCode();
             $this->errorDescription = $this->extractErrorMessageFromResponse($response);
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         } catch (\Exception $e) {
             $this->error = 500;
             $this->errorDescription = $e->getMessage();
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         }
     }
 
@@ -2646,9 +2809,11 @@ class OneLoginClient
             $response = $e->getResponse();
             $this->error = $response->getStatusCode();
             $this->errorDescription = $this->extractErrorMessageFromResponse($response);
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         } catch (\Exception $e) {
             $this->error = 500;
             $this->errorDescription = $e->getMessage();
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         }
     }
 
@@ -2718,9 +2883,11 @@ class OneLoginClient
             $response = $e->getResponse();
             $this->error = $response->getStatusCode();
             $this->errorDescription = $this->extractErrorMessageFromResponse($response);
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         } catch (\Exception $e) {
             $this->error = 500;
             $this->errorDescription = $e->getMessage();
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         }
     }
 
@@ -2755,9 +2922,11 @@ class OneLoginClient
             $response = $e->getResponse();
             $this->error = $response->getStatusCode();
             $this->errorDescription = $this->extractErrorMessageFromResponse($response);
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         } catch (\Exception $e) {
             $this->error = 500;
             $this->errorDescription = $e->getMessage();
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         }
         return false;
     }
@@ -2829,9 +2998,11 @@ class OneLoginClient
             $response = $e->getResponse();
             $this->error = $this->extractStatusCodeFromResponse($response);
             $this->errorDescription = $this->extractErrorMessageFromResponse($response);
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         } catch (\Exception $e) {
             $this->error = 500;
             $this->errorDescription = $e->getMessage();
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         }
     }
 
@@ -2873,9 +3044,11 @@ class OneLoginClient
             $response = $e->getResponse();
             $this->error = $response->getStatusCode();
             $this->errorDescription = $this->extractErrorMessageFromResponse($response);
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         } catch (\Exception $e) {
             $this->error = 500;
             $this->errorDescription = $e->getMessage();
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         }
         return false;
     }
@@ -2913,9 +3086,11 @@ class OneLoginClient
             $response = $e->getResponse();
             $this->error = $response->getStatusCode();
             $this->errorDescription = $this->extractErrorMessageFromResponse($response);
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         } catch (\Exception $e) {
             $this->error = 500;
             $this->errorDescription = $e->getMessage();
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         }
         return false;
     }
@@ -2987,9 +3162,11 @@ class OneLoginClient
             $response = $e->getResponse();
             $this->error = $this->extractStatusCodeFromResponse($response);
             $this->errorDescription = $this->extractErrorMessageFromResponse($response);
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         } catch (\Exception $e) {
             $this->error = 500;
             $this->errorDescription = $e->getMessage();
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         }
     }
 
@@ -3031,9 +3208,11 @@ class OneLoginClient
             $response = $e->getResponse();
             $this->error = $response->getStatusCode();
             $this->errorDescription = $this->extractErrorMessageFromResponse($response);
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         } catch (\Exception $e) {
             $this->error = 500;
             $this->errorDescription = $e->getMessage();
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         }
         return false;
     }
@@ -3071,9 +3250,11 @@ class OneLoginClient
             $response = $e->getResponse();
             $this->error = $response->getStatusCode();
             $this->errorDescription = $this->extractErrorMessageFromResponse($response);
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         } catch (\Exception $e) {
             $this->error = 500;
             $this->errorDescription = $e->getMessage();
+            $this->throwAppropriateException($this->error, $this->errorDescription);
         }
         return false;
     }
