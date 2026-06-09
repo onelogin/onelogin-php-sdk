@@ -1,6 +1,7 @@
 {
     "name": "onelogin/api",
     "type": "library",
+    "license": "MIT",
     "minimum-stability": "dev",
     "require": {
         "php": ">=8.1",
