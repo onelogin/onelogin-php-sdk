@@ -22,23 +22,14 @@ composer require onelogin/api
 ```
 
 ### Dependencies
-The SDK has the following dependencies:
-
-* PHP >5.6
-* guzzle
+See [`composer.json`](composer.json) for the authoritative list of required PHP and library versions. At a high level the SDK requires a supported PHP version and the [Guzzle](https://docs.guzzlephp.org/) HTTP client; Composer resolves the exact compatible versions for your project automatically.
 
 
 ## Getting started
 
-### Version 1.8.0 - Exception Handling Support & Bug Fixes 🎉
+> **Changelog:** Release notes and the changes in each version are published on the [Releases page](https://github.com/onelogin/onelogin-php-sdk/releases).
 
-Starting with version 1.7.0, the OneLogin PHP SDK supports exception-based error handling alongside the traditional manual error checking approach. Version 1.8.0 includes additional bug fixes and improvements while maintaining full backward compatibility.
-
-**New Features:**
-- Optional exception throwing for API errors
-- Type-safe exception classes for different error categories
-- Configurable per-client or per-operation
-- Fully backward compatible
+The SDK supports two interchangeable, fully backward-compatible approaches to error handling: exception-based handling and traditional manual error checking. Both are described under [Errors and exceptions](#errors-and-exceptions) below.
 
 You'll need a OneLogin account and a set of API credentials before you get started. 
 
