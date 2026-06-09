@@ -48,7 +48,9 @@ class OneLoginClient
     /** @var string $clientId OneLogin Client ID */
     public $clientId;
 
-    /** @deprecated Use $clientId instead */
+    /** @var string $clientID OneLogin Client ID
+     *  @deprecated Use $clientId instead
+     */
     public $clientID;
 
     /** @var string $clientSecret OneLogin Client  */
