@@ -45,8 +45,8 @@ class OneLoginClient
     /** @var GuzzleHttp\Client client  */
     protected $client;
 
-    /** @var string $clientID OneLogin Client ID */
-    public $clientID;
+    /** @var string $clientId OneLogin Client ID */
+    public $clientId;
 
     /** @var string $clientSecret OneLogin Client  */
     public $clientSecret;
