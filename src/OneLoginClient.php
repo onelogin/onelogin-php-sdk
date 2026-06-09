@@ -45,7 +45,10 @@ class OneLoginClient
     /** @var GuzzleHttp\Client client  */
     protected $client;
 
-    /** @var string $clientID OneLogin Client ID */
+    /** @var string $clientId OneLogin Client ID */
+    public $clientId;
+
+    /** @deprecated Use $clientId instead */
     public $clientID;
 
     /** @var string $clientSecret OneLogin Client  */
@@ -88,6 +91,7 @@ class OneLoginClient
     {
         $this->client = new Client();
         $this->clientId = $clientId;
+        $this->clientID = $clientId;
         $this->clientSecret = $clientSecret;
         $this->urlBuilder = new UrlBuilder($region);
         $this->userAgent = OneLoginClient::CUSTOM_USER_AGENT;
