@@ -91,7 +91,7 @@ class OneLoginClient
     {
         $this->client = new Client();
         $this->clientId = $clientId;
-        $this->clientID = $clientId;
+        $this->clientID =& $this->clientId;
         $this->clientSecret = $clientSecret;
         $this->urlBuilder = new UrlBuilder($region);
         $this->userAgent = OneLoginClient::CUSTOM_USER_AGENT;
