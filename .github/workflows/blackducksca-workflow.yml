@@ -31,11 +31,12 @@ jobs:
         uses: blackduck-inc/black-duck-security-scan@v2
         env:
           # One Black Duck project per repo, named owner/repo (what Detect infers from
-          # git when no package file names it), with one version, the default branch,
-          # that PR rapid scans compare against. Names inferred from package files
-          # collided across repos and drifted between branches.
+          # git when no package file names it). Full scans save to a version named after
+          # their branch, so a second long-lived branch can't overwrite the default
+          # branch's results. PR rapid scans compare against the default branch. Names
+          # inferred from package files collided across repos and drifted between branches.
           DETECT_PROJECT_NAME: ${{ github.repository }}
-          DETECT_PROJECT_VERSION_NAME: ${{ github.event.repository.default_branch }}
+          DETECT_PROJECT_VERSION_NAME: ${{ github.event_name == 'pull_request' && github.event.repository.default_branch || github.ref_name }}
           # Report what each detector can see instead of failing the scan when, e.g., a
           # package.json has no installed node_modules (FAILURE_ACCURACY_NOT_MET).
           DETECT_ACCURACY_REQUIRED: NONE
